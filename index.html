@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-07 Sun 13:23 -->
+<!-- 2024-04-07 Sun 23:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Notes deel 2</title>
@@ -60,141 +60,141 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9bca4e6">1. Matchings</a>
+<li><a href="#org6a08081">1. Matchings</a>
 <ul>
-<li><a href="#org300829b">1.1. Matchings</a></li>
-<li><a href="#orga218e65">1.2. Matchings in bipartite graphs</a></li>
-<li><a href="#org5430c74">1.3. Matchings of different types of graphs</a></li>
-<li><a href="#org7bfe85f">1.4. Stable matching / stable-marriage problem</a></li>
+<li><a href="#orgf1539fb">1.1. Matchings</a></li>
+<li><a href="#org2c21cec">1.2. Matchings in bipartite graphs</a></li>
+<li><a href="#org0d4fdbe">1.3. Matchings of different types of graphs</a></li>
+<li><a href="#orga44f32c">1.4. Stable matching / stable-marriage problem</a></li>
 </ul>
 </li>
-<li><a href="#org30cca1c">2. Flow and cuts</a>
+<li><a href="#orga6e3df2">2. Flow and cuts</a>
 <ul>
-<li><a href="#org65c7ac4">2.1. Flow</a></li>
-<li><a href="#org0cedf89">2.2. Bipartite matching as flow</a></li>
-<li><a href="#org4ccfb9e">2.3. Generalized matching as flow</a></li>
-<li><a href="#orgf85b0a9">2.4. The Ford-Fulkerson Algorithm</a></li>
-<li><a href="#org4722830">2.5. Cuts</a>
+<li><a href="#org9109d4c">2.1. Flow</a></li>
+<li><a href="#orgbd05be6">2.2. Bipartite matching as flow</a></li>
+<li><a href="#orgac2c27c">2.3. Generalized matching as flow</a></li>
+<li><a href="#orgf171ff6">2.4. The Ford-Fulkerson Algorithm</a></li>
+<li><a href="#orgae699e1">2.5. Cuts</a>
 <ul>
-<li><a href="#org2f61d91">2.5.1. Finding a mimimum cut</a></li>
+<li><a href="#org2d46058">2.5.1. Finding a mimimum cut</a></li>
 </ul>
 </li>
-<li><a href="#org9bd38d5">2.6. Edmonds-Karp Algorithm</a></li>
-<li><a href="#org96abac3">2.7. Other algorithms</a></li>
+<li><a href="#org2015ce4">2.6. Edmonds-Karp Algorithm</a></li>
+<li><a href="#org863b48a">2.7. Other algorithms</a></li>
 </ul>
 </li>
-<li><a href="#org7439474">3. Amortized analysis</a>
+<li><a href="#orgde87bd8">3. Amortized analysis</a>
 <ul>
-<li><a href="#org15db0df">3.1. Super stack</a></li>
-<li><a href="#org5c9b893">3.2. Aggregate method</a>
+<li><a href="#org5ffbaa2">3.1. Super stack</a></li>
+<li><a href="#org748899c">3.2. Aggregate method</a>
 <ul>
-<li><a href="#orga2539ae">3.2.1. Super stack example</a></li>
+<li><a href="#org3bdd380">3.2.1. Super stack example</a></li>
 </ul>
 </li>
-<li><a href="#org86a8f67">3.3. Accounting method</a>
+<li><a href="#org1512e0d">3.3. Accounting method</a>
 <ul>
-<li><a href="#orgb1b582f">3.3.1. Super stack example</a></li>
+<li><a href="#org86ba7f2">3.3.1. Super stack example</a></li>
 </ul>
 </li>
-<li><a href="#org74bef99">3.4. Potential function</a></li>
-<li><a href="#orgc49cd18">3.5. Fibonacci heaps</a>
+<li><a href="#orgdd57661">3.4. Potential function</a></li>
+<li><a href="#orga7ea96f">3.5. Fibonacci heaps</a>
 <ul>
-<li><a href="#orgcc38cfb">3.5.1. binary heap</a></li>
-<li><a href="#org16a8edb">3.5.2. Fibonacci Heaps Structure</a></li>
-<li><a href="#org892be21">3.5.3. Fibonacci heap operations</a></li>
-<li><a href="#orgdcfd2c1">3.5.4. Amortized analysis of Fibonacci heaps</a></li>
+<li><a href="#org577662e">3.5.1. binary heap</a></li>
+<li><a href="#orgc8cdc1e">3.5.2. Fibonacci Heaps Structure</a></li>
+<li><a href="#org53bb460">3.5.3. Fibonacci heap operations</a></li>
+<li><a href="#orgfc48b4d">3.5.4. Amortized analysis of Fibonacci heaps</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgec99178">4. Minimum spanning trees and Union find</a>
+<li><a href="#org0beed4a">4. Minimum spanning trees and Union find</a>
 <ul>
-<li><a href="#org16f50e9">4.1. Generic MST algorithm</a></li>
-<li><a href="#orga8dee2d">4.2. Light Edges</a></li>
-<li><a href="#orge2a752c">4.3. Boruvka&rsquo;s algorithm</a></li>
-<li><a href="#org03e7c40">4.4. Prim&rsquo;s algorithm</a></li>
-<li><a href="#org60fe466">4.5. Disjoint Set Union-Find</a>
+<li><a href="#org9d84722">4.1. Generic MST algorithm</a></li>
+<li><a href="#orga17486c">4.2. Light Edges</a></li>
+<li><a href="#org7f5508c">4.3. Boruvka&rsquo;s algorithm</a></li>
+<li><a href="#org747579c">4.4. Prim&rsquo;s algorithm</a></li>
+<li><a href="#org6386208">4.5. Disjoint Set Union-Find</a>
 <ul>
-<li><a href="#orga8febe8">4.5.1. Linked lists</a></li>
-<li><a href="#orgbdc95c5">4.5.2. Forest</a></li>
+<li><a href="#orgb295e2b">4.5.1. Linked lists</a></li>
+<li><a href="#orgda10351">4.5.2. Forest</a></li>
 </ul>
 </li>
-<li><a href="#org5aeca23">4.6. Kruskal&rsquo;s algorithm</a></li>
-<li><a href="#org2f7bcc0">4.7. Graphs with repeated weights</a></li>
+<li><a href="#org1a68931">4.6. Kruskal&rsquo;s algorithm</a></li>
+<li><a href="#orgd5599da">4.7. Graphs with repeated weights</a></li>
 </ul>
 </li>
-<li><a href="#orge7025f9">5. NP-completeness</a>
+<li><a href="#org8285f11">5. NP-completeness</a>
 <ul>
-<li><a href="#org407cf5b">5.1. P and NP</a>
+<li><a href="#org0641753">5.1. P and NP</a>
 <ul>
-<li><a href="#org8e12113">5.1.1. The class P</a></li>
-<li><a href="#org2dbc35d">5.1.2. The class NP</a></li>
+<li><a href="#org95de1db">5.1.1. The class P</a></li>
+<li><a href="#org2b68331">5.1.2. The class NP</a></li>
 </ul>
 </li>
-<li><a href="#orgbae9ec2">5.2. Polynomial-time reduction and NP-hardness</a></li>
-<li><a href="#org76f9f15">5.3. NP-Completeness</a></li>
+<li><a href="#org0896aba">5.2. Polynomial-time reduction and NP-hardness</a></li>
+<li><a href="#org00a4330">5.3. NP-Completeness</a></li>
 </ul>
 </li>
-<li><a href="#org508d315">6. Approximation Algorithms</a>
+<li><a href="#org046a4c7">6. Approximation Algorithms</a>
 <ul>
-<li><a href="#org3f06224">6.1. Minimum vertex cover approximation algorithm</a></li>
-<li><a href="#org8519e38">6.2. Knapsack approximation algorithm</a></li>
-<li><a href="#org96dfe53">6.3. Improving an approximation algorithm</a></li>
+<li><a href="#orgd565cf7">6.1. Minimum vertex cover approximation algorithm</a></li>
+<li><a href="#org93dab48">6.2. Knapsack approximation algorithm</a></li>
+<li><a href="#orgda54d39">6.3. Improving an approximation algorithm</a></li>
 </ul>
 </li>
-<li><a href="#org3658788">7. String Matching</a>
+<li><a href="#org7790503">7. String Matching</a>
 <ul>
-<li><a href="#org309135b">7.1. Kansrekening</a></li>
-<li><a href="#org1d86b76">7.2. Naief algoritme</a></li>
-<li><a href="#orgae092e8">7.3. <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</a></li>
-<li><a href="#orgc6a797c">7.4. Rabin-Karp</a></li>
-<li><a href="#org5fe5695">7.5. Eindige automaat</a></li>
+<li><a href="#org1dfaad5">7.1. Kansrekening</a></li>
+<li><a href="#orgd6b4cdc">7.2. Naief algoritme</a></li>
+<li><a href="#org5184193">7.3. <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</a></li>
+<li><a href="#org3d49759">7.4. Rabin-Karp</a></li>
+<li><a href="#orge27f680">7.5. Eindige automaat</a></li>
 </ul>
 </li>
-<li><a href="#orgb90dca8">8. <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</a></li>
-<li><a href="#orgae70ae1">9. Deel 1</a>
+<li><a href="#org2bdfefc">8. <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</a></li>
+<li><a href="#orgfbe54a4">9. Deel 1</a>
 <ul>
-<li><a href="#org0144779">9.1. Divide and Conquer</a>
+<li><a href="#orgfbbda39">9.1. Divide and Conquer</a>
 <ul>
-<li><a href="#org2f0638b">9.1.1. Divide and Conquer : in het algemeen</a></li>
-<li><a href="#org6297c84">9.1.2. Correctheid: inductie</a></li>
-<li><a href="#orgb777e57">9.1.3. MergeSort</a></li>
-<li><a href="#orgbf3b1ac">9.1.4. Oplossen recurrente betrekking</a></li>
+<li><a href="#orgfd50ca5">9.1.1. Divide and Conquer : in het algemeen</a></li>
+<li><a href="#orgc4a78a2">9.1.2. Correctheid: inductie</a></li>
+<li><a href="#orge169c55">9.1.3. MergeSort</a></li>
+<li><a href="#org3fda629">9.1.4. Oplossen recurrente betrekking</a></li>
 </ul>
 </li>
-<li><a href="#org87f49c1">9.2. Recursief programmeren</a>
+<li><a href="#orge7391ae">9.2. Recursief programmeren</a>
 <ul>
-<li><a href="#org3c33075">9.2.1. Gepast betalen</a></li>
-<li><a href="#org67f2da2">9.2.2. optimaliteitsprincipe</a></li>
-<li><a href="#org05a835a">9.2.3. Samenvatting</a></li>
+<li><a href="#org96dca2b">9.2.1. Gepast betalen</a></li>
+<li><a href="#org064fc20">9.2.2. optimaliteitsprincipe</a></li>
+<li><a href="#orgfdefbaf">9.2.3. Samenvatting</a></li>
 </ul>
 </li>
-<li><a href="#org12437c8">9.3. Dynamisch Programmeren</a>
+<li><a href="#org56b24f3">9.3. Dynamisch Programmeren</a>
 <ul>
-<li><a href="#org31dcbf4">9.3.1. Driehoek van Pascal DP</a></li>
-<li><a href="#org9b77380">9.3.2. Klassiek DP</a></li>
-<li><a href="#org6828a19">9.3.3. Knapsack probleem</a></li>
-<li><a href="#org043470c">9.3.4. subset sum</a></li>
-<li><a href="#orgcbec623">9.3.5. DP slides 2</a></li>
+<li><a href="#org9272243">9.3.1. Driehoek van Pascal DP</a></li>
+<li><a href="#org7d8bb8f">9.3.2. Klassiek DP</a></li>
+<li><a href="#org56e5b0e">9.3.3. Knapsack probleem</a></li>
+<li><a href="#orga23450b">9.3.4. subset sum</a></li>
+<li><a href="#org2178f23">9.3.5. DP slides 2</a></li>
 </ul>
 </li>
-<li><a href="#org74493ae">9.4. Graphs</a>
+<li><a href="#org4d03837">9.4. Graphs</a>
 <ul>
-<li><a href="#orgadb75b1">9.4.1. Graph representation</a></li>
-<li><a href="#org714ad67">9.4.2. Adjacency list</a></li>
-<li><a href="#orgdcdcea2">9.4.3. Adjacency Matrix</a></li>
-<li><a href="#orgbd688f7">9.4.4. Adjacency List and Adjacency Matrix</a></li>
-<li><a href="#org8d72d7b">9.4.5. Depth-First Search</a></li>
+<li><a href="#org7e90409">9.4.1. Graph representation</a></li>
+<li><a href="#org045bcd9">9.4.2. Adjacency list</a></li>
+<li><a href="#org2420cc3">9.4.3. Adjacency Matrix</a></li>
+<li><a href="#org0bbca0c">9.4.4. Adjacency List and Adjacency Matrix</a></li>
+<li><a href="#orgad3c596">9.4.5. Depth-First Search</a></li>
 </ul>
 </li>
-<li><a href="#orga441ee3">9.5. All pair shortest paths</a></li>
+<li><a href="#org26c7842">9.5. All pair shortest paths</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9bca4e6" class="outline-2">
-<h2 id="org9bca4e6"><span class="section-number-2">1.</span> Matchings</h2>
+<div id="outline-container-org6a08081" class="outline-2">
+<h2 id="org6a08081"><span class="section-number-2">1.</span> Matchings</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 chapter 25
@@ -206,8 +206,8 @@ chapter 25
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org300829b" class="outline-3">
-<h3 id="org300829b"><span class="section-number-3">1.1.</span> Matchings</h3>
+<div id="outline-container-orgf1539fb" class="outline-3">
+<h3 id="orgf1539fb"><span class="section-number-3">1.1.</span> Matchings</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>Matching:</b> Subset of edges  that do not have a common endpoint.
@@ -230,7 +230,7 @@ Given a matching M in an undirected graph \(G=(V,E)\), an <b>M-alternating</b> p
 </p>
 
 <p>
-<b>M-augmenting path</b> (sometimes called an augmenting path with respect to M ): an M-alternating path whose first and last edges belong to \(E-M\) (not in the matching). This means the first and last vertex are also unmatched. <a id="orgdebfe56"></a>
+<b>M-augmenting path</b> (sometimes called an augmenting path with respect to M ): an M-alternating path whose first and last edges belong to \(E-M\) (not in the matching). This means the first and last vertex are also unmatched. <a id="org905afb1"></a>
 </p>
 
 <p>
@@ -276,11 +276,11 @@ Algorithm MaxMatching(G)
 </p>
 </div>
 </div>
-<div id="outline-container-orga218e65" class="outline-3">
-<h3 id="orga218e65"><span class="section-number-3">1.2.</span> Matchings in bipartite graphs</h3>
+<div id="outline-container-org2c21cec" class="outline-3">
+<h3 id="org2c21cec"><span class="section-number-3">1.2.</span> Matchings in bipartite graphs</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-Bipartite graphs are those whose vertices can be partitioned into two sets such that no edge of the graph has both its end-points in the same set.
+<b>Bipartite graphs</b> are those whose vertices can be partitioned into two sets such that no edge of the graph has both its end-points in the same set.
 </p>
 
 <p>
@@ -291,7 +291,7 @@ Bipartite graph is a graph whose vertices can be divided into two disjoint and i
 </ul>
 
 <p>
-Finding an *<a href="#orgdebfe56">M-augmenting path*</a>:
+Finding an *<a href="#org905afb1">M-augmenting path*</a>:
 </p>
 <ul class="org-ul">
 <li>Since the end points of an M-augmenting path must be unmatched, we start from an unmatched vertex.</li>
@@ -326,7 +326,7 @@ We can avoid doing multiple DFS&rsquo;s by adding a source and sink vertex:
 </ul>
 
 
-<div id="orgc867b6d" class="figure">
+<div id="orgb90a33f" class="figure">
 <p><img src="Matchings_and_flow_1+2/2024-03-27_12-31-16_screenshot.png" alt="2024-03-27_12-31-16_screenshot.png" />
 </p>
 </div>
@@ -358,8 +358,8 @@ Running time: \(O(n(n+m)) = O(nm)\)
 </p>
 </div>
 </div>
-<div id="outline-container-org5430c74" class="outline-3">
-<h3 id="org5430c74"><span class="section-number-3">1.3.</span> Matchings of different types of graphs</h3>
+<div id="outline-container-org0d4fdbe" class="outline-3">
+<h3 id="org0d4fdbe"><span class="section-number-3">1.3.</span> Matchings of different types of graphs</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 <b>Bipartite graphs</b>
@@ -410,8 +410,8 @@ Gabow [1990]: \(O(n (m + n \log n))\)
 </p>
 </div>
 </div>
-<div id="outline-container-org7bfe85f" class="outline-3">
-<h3 id="org7bfe85f"><span class="section-number-3">1.4.</span> Stable matching / stable-marriage problem</h3>
+<div id="outline-container-orga44f32c" class="outline-3">
+<h3 id="orga44f32c"><span class="section-number-3">1.4.</span> Stable matching / stable-marriage problem</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 We add information to each vertex: a ranking of the vertices in the other side.
@@ -446,12 +446,12 @@ The Gale–Shapley algorithm: \(O(n^2)\)
 </div>
 </div>
 </div>
-<div id="outline-container-org30cca1c" class="outline-2">
-<h2 id="org30cca1c"><span class="section-number-2">2.</span> Flow and cuts</h2>
+<div id="outline-container-orga6e3df2" class="outline-2">
+<h2 id="orga6e3df2"><span class="section-number-2">2.</span> Flow and cuts</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org65c7ac4" class="outline-3">
-<h3 id="org65c7ac4"><span class="section-number-3">2.1.</span> Flow</h3>
+<div id="outline-container-org9109d4c" class="outline-3">
+<h3 id="org9109d4c"><span class="section-number-3">2.1.</span> Flow</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A flow network
@@ -508,8 +508,8 @@ Algorithms for finding a maximum value flow:
 </ul>
 </div>
 </div>
-<div id="outline-container-org0cedf89" class="outline-3">
-<h3 id="org0cedf89"><span class="section-number-3">2.2.</span> Bipartite matching as flow</h3>
+<div id="outline-container-orgbd05be6" class="outline-3">
+<h3 id="orgbd05be6"><span class="section-number-3">2.2.</span> Bipartite matching as flow</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Finding a maximum matching in a bipartite graph can be modeled as a max-flow problem.
@@ -547,8 +547,8 @@ Algorithm for maximum bipartite matching:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4ccfb9e" class="outline-3">
-<h3 id="org4ccfb9e"><span class="section-number-3">2.3.</span> Generalized matching as flow</h3>
+<div id="outline-container-orgac2c27c" class="outline-3">
+<h3 id="orgac2c27c"><span class="section-number-3">2.3.</span> Generalized matching as flow</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Given: bipartite graph \(G=(UV, E)\) with a capacity \(c(v)\) for every \(v\) in \(UV\)</li>
@@ -566,8 +566,8 @@ The vertices also need to have capacities, this is modelled by translating the v
 </p>
 </div>
 </div>
-<div id="outline-container-orgf85b0a9" class="outline-3">
-<h3 id="orgf85b0a9"><span class="section-number-3">2.4.</span> The Ford-Fulkerson Algorithm</h3>
+<div id="outline-container-orgf171ff6" class="outline-3">
+<h3 id="orgf171ff6"><span class="section-number-3">2.4.</span> The Ford-Fulkerson Algorithm</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 The Ford-Fulkerson Algorithm iteratively increases the value of flow. It starts with \(f(u,v)=0\) for all \(u,v\in V\), giving an initial flow of 0. Each iteration increases the flow value in G by finding an augmenting path in an associated residual network \(G_f\).
@@ -654,8 +654,8 @@ Running time:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4722830" class="outline-3">
-<h3 id="org4722830"><span class="section-number-3">2.5.</span> Cuts</h3>
+<div id="outline-container-orgae699e1" class="outline-3">
+<h3 id="orgae699e1"><span class="section-number-3">2.5.</span> Cuts</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 An s-t-<b>cut</b> in a network \(G = (V, A)\) is a partition of the vertices into two sets \(S\) and \(T\), such that
@@ -696,8 +696,8 @@ The two above observations leads us to the following theorem:
 <b>Max-Flow Min-Cut Theorem:</b> he maximum value of flow in a network G is equal to the capacity of a cut of smallest capacity.
 </p>
 </div>
-<div id="outline-container-org2f61d91" class="outline-4">
-<h4 id="org2f61d91"><span class="section-number-4">2.5.1.</span> Finding a mimimum cut</h4>
+<div id="outline-container-org2d46058" class="outline-4">
+<h4 id="org2d46058"><span class="section-number-4">2.5.1.</span> Finding a mimimum cut</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 Given a direct graph \(G=(V,A)\), vertices s, t
@@ -723,8 +723,8 @@ Not the best way as we will see next
 </div>
 </div>
 </div>
-<div id="outline-container-org9bd38d5" class="outline-3">
-<h3 id="org9bd38d5"><span class="section-number-3">2.6.</span> Edmonds-Karp Algorithm</h3>
+<div id="outline-container-org2015ce4" class="outline-3">
+<h3 id="org2015ce4"><span class="section-number-3">2.6.</span> Edmonds-Karp Algorithm</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 The ford-fulkerson algorithm could run for ever with non-integer output, and can also run for a long time even with integer valued capacities.
@@ -754,8 +754,8 @@ Once again proof in lecture notes.
 </p>
 </div>
 </div>
-<div id="outline-container-org96abac3" class="outline-3">
-<h3 id="org96abac3"><span class="section-number-3">2.7.</span> Other algorithms</h3>
+<div id="outline-container-org863b48a" class="outline-3">
+<h3 id="org863b48a"><span class="section-number-3">2.7.</span> Other algorithms</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 Goldberg&rsquo;s push-relabel (preflow-push) algorithms:
@@ -770,8 +770,8 @@ It can be solved in \(O(nm)\) time if the graph has a special structure.
 </div>
 </div>
 </div>
-<div id="outline-container-org7439474" class="outline-2">
-<h2 id="org7439474"><span class="section-number-2">3.</span> Amortized analysis</h2>
+<div id="outline-container-orgde87bd8" class="outline-2">
+<h2 id="orgde87bd8"><span class="section-number-2">3.</span> Amortized analysis</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Amortized analysis:</b>
@@ -809,13 +809,13 @@ Key Ideas of Amortized Analysis
 </ul>
 
 
-<div id="org8957ff0" class="figure">
+<div id="org1c260d6" class="figure">
 <p><img src="Amortized_analysis/2024-03-31_21-30-05_screenshot.png" alt="2024-03-31_21-30-05_screenshot.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org15db0df" class="outline-3">
-<h3 id="org15db0df"><span class="section-number-3">3.1.</span> Super stack</h3>
+<div id="outline-container-org5ffbaa2" class="outline-3">
+<h3 id="org5ffbaa2"><span class="section-number-3">3.1.</span> Super stack</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We will use a extended stack as an example for amortized analysis.
@@ -843,8 +843,8 @@ So the actual complexity of n operations here is \(O(n)\)
 </p>
 </div>
 </div>
-<div id="outline-container-org5c9b893" class="outline-3">
-<h3 id="org5c9b893"><span class="section-number-3">3.2.</span> Aggregate method</h3>
+<div id="outline-container-org748899c" class="outline-3">
+<h3 id="org748899c"><span class="section-number-3">3.2.</span> Aggregate method</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 <b>Aggregate method</b> is a method to find the amortized complexity of a operation.
@@ -873,8 +873,8 @@ Step 2: Divide the total time complexity by the number of the operations. The re
 <li>Using aggregate method, every operation has the same amortized cost</li>
 </ul>
 </div>
-<div id="outline-container-orga2539ae" class="outline-4">
-<h4 id="orga2539ae"><span class="section-number-4">3.2.1.</span> Super stack example</h4>
+<div id="outline-container-org3bdd380" class="outline-4">
+<h4 id="org3bdd380"><span class="section-number-4">3.2.1.</span> Super stack example</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Super stack under a sequence of PUSH/POP/MULTI-POP operations:
@@ -886,8 +886,8 @@ Super stack under a sequence of PUSH/POP/MULTI-POP operations:
 </div>
 </div>
 </div>
-<div id="outline-container-org86a8f67" class="outline-3">
-<h3 id="org86a8f67"><span class="section-number-3">3.3.</span> Accounting method</h3>
+<div id="outline-container-org1512e0d" class="outline-3">
+<h3 id="org1512e0d"><span class="section-number-3">3.3.</span> Accounting method</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <b>Accounting method</b> is a method to find the amortized complexity of a operation.
@@ -930,8 +930,8 @@ Step 2: Prove that your amortized cost is valid, that is, for all \(n, \sum^n_{i
 <li>The goal is to find the best “prices” for the operations such that the total amortized cost is low while the inequality holds</li>
 </ul>
 </div>
-<div id="outline-container-orgb1b582f" class="outline-4">
-<h4 id="orgb1b582f"><span class="section-number-4">3.3.1.</span> Super stack example</h4>
+<div id="outline-container-org86ba7f2" class="outline-4">
+<h4 id="org86ba7f2"><span class="section-number-4">3.3.1.</span> Super stack example</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 A super stack supports operations PUSH, POP, and MULTI-POP.
@@ -975,8 +975,8 @@ Base case: When \(n=0\), both the amortized cost and the actual cost are 0. \(0\
 </div>
 </div>
 </div>
-<div id="outline-container-org74bef99" class="outline-3">
-<h3 id="org74bef99"><span class="section-number-3">3.4.</span> Potential function</h3>
+<div id="outline-container-orgdd57661" class="outline-3">
+<h3 id="orgdd57661"><span class="section-number-3">3.4.</span> Potential function</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Amortized analysis is for data structures where expensive operations happen only when there are many cheap operations
@@ -1027,12 +1027,12 @@ Examples in the slides, worth it to read through.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc49cd18" class="outline-3">
-<h3 id="orgc49cd18"><span class="section-number-3">3.5.</span> Fibonacci heaps</h3>
+<div id="outline-container-orga7ea96f" class="outline-3">
+<h3 id="orga7ea96f"><span class="section-number-3">3.5.</span> Fibonacci heaps</h3>
 <div class="outline-text-3" id="text-3-5">
 </div>
-<div id="outline-container-orgcc38cfb" class="outline-4">
-<h4 id="orgcc38cfb"><span class="section-number-4">3.5.1.</span> binary heap</h4>
+<div id="outline-container-org577662e" class="outline-4">
+<h4 id="org577662e"><span class="section-number-4">3.5.1.</span> binary heap</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <p>
 A data structure to create a priority queue.
@@ -1047,7 +1047,7 @@ A data structure to create a priority queue.
 </ul>
 
 
-<div id="orgd6fcfed" class="figure">
+<div id="org17148b2" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_12-12-18_screenshot.png" alt="2024-04-01_12-12-18_screenshot.png" />
 </p>
 </div>
@@ -1070,8 +1070,8 @@ Operations:
 </ul>
 </div>
 </div>
-<div id="outline-container-org16a8edb" class="outline-4">
-<h4 id="org16a8edb"><span class="section-number-4">3.5.2.</span> Fibonacci Heaps Structure</h4>
+<div id="outline-container-orgc8cdc1e" class="outline-4">
+<h4 id="orgc8cdc1e"><span class="section-number-4">3.5.2.</span> Fibonacci Heaps Structure</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <p>
 A <b>fibonacci heap</b> is a collection of <b>min-heap-ordered</b> component trees
@@ -1101,14 +1101,14 @@ Terminologies:
 </ul>
 
 
-<div id="orgac6f227" class="figure">
+<div id="org31d6d0f" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_13-50-23_screenshot.png" alt="2024-04-01_13-50-23_screenshot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org892be21" class="outline-4">
-<h4 id="org892be21"><span class="section-number-4">3.5.3.</span> Fibonacci heap operations</h4>
+<div id="outline-container-org53bb460" class="outline-4">
+<h4 id="org53bb460"><span class="section-number-4">3.5.3.</span> Fibonacci heap operations</h4>
 <div class="outline-text-4" id="text-3-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1167,13 +1167,13 @@ Terminologies:
 </table>
 
 
-<div id="orgeb76a59" class="figure">
+<div id="org450edd7" class="figure">
 <p><img src="Amortized_analysis/2024-04-02_21-16-31_screenshot.png" alt="2024-04-02_21-16-31_screenshot.png" />
 </p>
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org54da7dd"></a>INSERT<br />
+<li><a id="org5031fc0"></a>INSERT<br />
 <div class="outline-text-5" id="text-3-5-3-1">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #89b4fa;">INSERT</span> (<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, <span style="color: #f9e2af;">key</span> <span style="color: #cdd6f4;">k</span>)
@@ -1189,22 +1189,22 @@ Example insert 0:
 </p>
 
 
-<div id="org567df61" class="figure">
+<div id="org19056f8" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_14-29-06_screenshot.png" alt="2024-04-01_14-29-06_screenshot.png" />
 </p>
 </div>
 
 
-<div id="org679bd32" class="figure">
+<div id="org138a4c2" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_14-31-00_screenshot.png" alt="2024-04-01_14-31-00_screenshot.png" />
 </p>
 </div>
 </div>
 </li>
-<li><a id="org6d9763e"></a>FIND-MIN<br />
+<li><a id="org2bc976c"></a>FIND-MIN<br />
 <div class="outline-text-5" id="text-3-5-3-2">
 <p>
-FIND-MIN (heap H): return the minimum value of the keys in the heap H
+FIN     D-MIN (heap H): return the minimum value of the keys in the heap H
 </p>
 
 <p>
@@ -1212,7 +1212,7 @@ Simply return the value pointed to by the Min pointer
 </p>
 </div>
 </li>
-<li><a id="orga6c17b7"></a>UNION<br />
+<li><a id="org6ea41a8"></a>UNION<br />
 <div class="outline-text-5" id="text-3-5-3-3">
 <p>
 UNION heap \(H_1\), heap \(H_2\): union two heaps \(H_1\) and \(H_2\)
@@ -1228,7 +1228,7 @@ UNION heap \(H_1\), heap \(H_2\): union two heaps \(H_1\) and \(H_2\)
 </div>
 </div>
 </li>
-<li><a id="orga270aaf"></a>DECREASE-KEY<br />
+<li><a id="org66cb6f1"></a>DECREASE-KEY<br />
 <div class="outline-text-5" id="text-3-5-3-4">
 <p>
 DECREASE-KEY(heap H, node x, target<sub>key</sub> k): given a specified node x (by a pointer), lower its key to the value k
@@ -1264,7 +1264,7 @@ Example: with target key 3
 </p>
 
 
-<div id="org379ec19" class="figure">
+<div id="org1858258" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_15-10-59_screenshot.png" alt="2024-04-01_15-10-59_screenshot.png" />
 </p>
 </div>
@@ -1274,7 +1274,7 @@ Example: with target key 3
 </p>
 
 
-<div id="orgffc3c44" class="figure">
+<div id="orgf3cda32" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_15-13-47_screenshot.png" alt="2024-04-01_15-13-47_screenshot.png" />
 </p>
 </div>
@@ -1284,7 +1284,7 @@ Now example with target 4 and node x
 </p>
 
 
-<div id="org7da34b0" class="figure">
+<div id="org089d2c6" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_15-15-03_screenshot.png" alt="2024-04-01_15-15-03_screenshot.png" />
 </p>
 </div>
@@ -1294,7 +1294,7 @@ Now example with target 4 and node x
 </p>
 
 
-<div id="orga51760f" class="figure">
+<div id="org7e4a368" class="figure">
 <p><img src="Amortized_analysis/2024-04-01_15-16-09_screenshot.png" alt="2024-04-01_15-16-09_screenshot.png" />
 </p>
 </div>
@@ -1305,7 +1305,7 @@ Because p was marked it is cut and unmarked, and cascading cut is called on its 
 </p>
 </div>
 </li>
-<li><a id="org974adbe"></a>EXTRACT-MIN<br />
+<li><a id="org6a155be"></a>EXTRACT-MIN<br />
 <div class="outline-text-5" id="text-3-5-3-5">
 <p>
 <code>EXTRACT-MIN(heap H)</code>: return the minimum value and remove it from H
@@ -1352,7 +1352,7 @@ Actual cost: \(O(\text{max degree}+{\#trees})\)
 </p>
 </div>
 </li>
-<li><a id="org6b7dbb5"></a>DELETE<br />
+<li><a id="orgafe6e96"></a>DELETE<br />
 <div class="outline-text-5" id="text-3-5-3-6">
 <p>
 We first decrease the key value of the target node to the minimuym vlaue, and then call <code>EXTRACT-MIN</code> on it.
@@ -1367,11 +1367,11 @@ EXTRACT-MIN(H)
 </li>
 </ol>
 </div>
-<div id="outline-container-orgdcfd2c1" class="outline-4">
-<h4 id="orgdcfd2c1"><span class="section-number-4">3.5.4.</span> Amortized analysis of Fibonacci heaps</h4>
+<div id="outline-container-orgfc48b4d" class="outline-4">
+<h4 id="orgfc48b4d"><span class="section-number-4">3.5.4.</span> Amortized analysis of Fibonacci heaps</h4>
 <div class="outline-text-4" id="text-3-5-4">
 
-<div id="orge61ccc2" class="figure">
+<div id="org17fc31b" class="figure">
 <p><img src="Amortized_analysis/2024-04-02_21-16-31_screenshot.png" alt="2024-04-02_21-16-31_screenshot.png" />
 </p>
 </div>
@@ -1381,7 +1381,7 @@ Without amortized analysis the fibonacci heap does not make sense, however with 
 </p>
 
 <p>
-In the lecture notes it is analysed using <a href="#org74bef99">potential functions.</a>
+In the lecture notes it is analysed using <a href="#orgdd57661">potential functions.</a>
 </p>
 
 <p>
@@ -1394,7 +1394,7 @@ First we define some things:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgccf4958"></a>DECREASE-KEY analysis<br />
+<li><a id="orgc5b86d1"></a>DECREASE-KEY analysis<br />
 <div class="outline-text-5" id="text-3-5-4-1">
 <p>
 Recall that decrease-key takes \(O(c)\) time, where c is the number of cuttings incurred by the cascading cut.
@@ -1413,7 +1413,7 @@ So the amortized cost is \(t_i+ \Phi_i-\Phi_{i-1}=O(c)+O(c)+O(-c+1)=O(1)\)
 </p>
 </div>
 </li>
-<li><a id="org6b17e4a"></a>EXTRACT-MIN analysis<br />
+<li><a id="org538c1b1"></a>EXTRACT-MIN analysis<br />
 <div class="outline-text-5" id="text-3-5-4-2">
 <p>
 EXTRACT-MIN takes \(O(\text{max degree}+\text{\#trees})\) time.
@@ -1456,15 +1456,15 @@ So the amortized extract min cost is \(O(\log n)\)
 </div>
 </div>
 </div>
-<div id="outline-container-orgec99178" class="outline-2">
-<h2 id="orgec99178"><span class="section-number-2">4.</span> Minimum spanning trees and Union find</h2>
+<div id="outline-container-org0beed4a" class="outline-2">
+<h2 id="org0beed4a"><span class="section-number-2">4.</span> Minimum spanning trees and Union find</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Example minimum spanning tree: connect the cities with as little cost as possible
 </p>
 
 
-<div id="orgf18cc01" class="figure">
+<div id="orgd8f9694" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-45-15_screenshot.png" alt="2024-04-05_08-45-15_screenshot.png" />
 </p>
 </div>
@@ -1485,8 +1485,8 @@ Terminologies:
 If all edge weights in the given graph are different, the minimum spanning tree is unique. Throughout this lecture we assume the edge weights are unique.
 </p>
 </div>
-<div id="outline-container-org16f50e9" class="outline-3">
-<h3 id="org16f50e9"><span class="section-number-3">4.1.</span> Generic MST algorithm</h3>
+<div id="outline-container-org9d84722" class="outline-3">
+<h3 id="org9d84722"><span class="section-number-3">4.1.</span> Generic MST algorithm</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 All of the mst algorithms work like this:
@@ -1512,20 +1512,20 @@ F &#8592; &#981;
 </pre>
 </div>
 
-<div id="org55e70b9" class="figure">
+<div id="org4fcba8d" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-58-49_screenshot.png" alt="2024-04-05_08-58-49_screenshot.png" />
 </p>
 </div>
 
 
-<div id="org5426ff6" class="figure">
+<div id="orgbb18b6b" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-59-19_screenshot.png" alt="2024-04-05_08-59-19_screenshot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orga8dee2d" class="outline-3">
-<h3 id="orga8dee2d"><span class="section-number-3">4.2.</span> Light Edges</h3>
+<div id="outline-container-orga17486c" class="outline-3">
+<h3 id="orga17486c"><span class="section-number-3">4.2.</span> Light Edges</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 How do we now if an edge is safe to add to a graph?
@@ -1540,14 +1540,14 @@ At any moment during the generic algorithm, the subgraph F has one or more conne
 </p>
 
 
-<div id="org8da8e85" class="figure">
+<div id="org26905d3" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_11-34-38_screenshot.png" alt="2024-04-06_11-34-38_screenshot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge2a752c" class="outline-3">
-<h3 id="orge2a752c"><span class="section-number-3">4.3.</span> Boruvka&rsquo;s algorithm</h3>
+<div id="outline-container-org7f5508c" class="outline-3">
+<h3 id="org7f5508c"><span class="section-number-3">4.3.</span> Boruvka&rsquo;s algorithm</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <b>Boruvka&rsquo;s algorit</b> is quite simple:
@@ -1573,8 +1573,8 @@ At any moment during the generic algorithm, the subgraph F has one or more conne
 </ul>
 </div>
 </div>
-<div id="outline-container-org03e7c40" class="outline-3">
-<h3 id="org03e7c40"><span class="section-number-3">4.4.</span> Prim&rsquo;s algorithm</h3>
+<div id="outline-container-org747579c" class="outline-3">
+<h3 id="org747579c"><span class="section-number-3">4.4.</span> Prim&rsquo;s algorithm</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 <b>Prim’s algorithm</b> starts at an arbitrary vertex and repeatedly adds its light edge.
@@ -1628,8 +1628,8 @@ Time complexity:
 </ul>
 </div>
 </div>
-<div id="outline-container-org60fe466" class="outline-3">
-<h3 id="org60fe466"><span class="section-number-3">4.5.</span> Disjoint Set Union-Find</h3>
+<div id="outline-container-org6386208" class="outline-3">
+<h3 id="org6386208"><span class="section-number-3">4.5.</span> Disjoint Set Union-Find</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 This data structure will be important to the next minimum spanning tree algorithm.
@@ -1659,11 +1659,11 @@ There are two ways to implement this datastructure
 <li>Using a forest</li>
 </ul>
 </div>
-<div id="outline-container-orga8febe8" class="outline-4">
-<h4 id="orga8febe8"><span class="section-number-4">4.5.1.</span> Linked lists</h4>
+<div id="outline-container-orgb295e2b" class="outline-4">
+<h4 id="orgb295e2b"><span class="section-number-4">4.5.1.</span> Linked lists</h4>
 <div class="outline-text-4" id="text-4-5-1">
 
-<div id="org91b86fd" class="figure">
+<div id="org5d8e208" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-01-03_screenshot.png" alt="2024-04-06_17-01-03_screenshot.png" />
 </p>
 </div>
@@ -1683,8 +1683,8 @@ There are two ways to implement this datastructure
 </p>
 </div>
 </div>
-<div id="outline-container-orgbdc95c5" class="outline-4">
-<h4 id="orgbdc95c5"><span class="section-number-4">4.5.2.</span> Forest</h4>
+<div id="outline-container-orgda10351" class="outline-4">
+<h4 id="orgda10351"><span class="section-number-4">4.5.2.</span> Forest</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <p>
 For each of the sets there is a tree.
@@ -1703,7 +1703,7 @@ When union, always link root of the smaller tree to the root of the larger tree
 </ul>
 
 
-<div id="org5c39ea1" class="figure">
+<div id="orgb7162ff" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-15-15_screenshot.png" alt="2024-04-06_17-15-15_screenshot.png" />
 </p>
 </div>
@@ -1713,7 +1713,7 @@ When union, always link root of the smaller tree to the root of the larger tree
 </p>
 
 
-<div id="orgb591f05" class="figure">
+<div id="orgf21a2a7" class="figure">
 <p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-16-06_screenshot.png" alt="2024-04-06_17-16-06_screenshot.png" />
 </p>
 </div>
@@ -1727,8 +1727,8 @@ When union, always link root of the smaller tree to the root of the larger tree
 </div>
 </div>
 </div>
-<div id="outline-container-org5aeca23" class="outline-3">
-<h3 id="org5aeca23"><span class="section-number-3">4.6.</span> Kruskal&rsquo;s algorithm</h3>
+<div id="outline-container-org1a68931" class="outline-3">
+<h3 id="org1a68931"><span class="section-number-3">4.6.</span> Kruskal&rsquo;s algorithm</h3>
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #89b4fa;">Kruskal</span>(G):
@@ -1753,8 +1753,8 @@ When union, always link root of the smaller tree to the root of the larger tree
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f7bcc0" class="outline-3">
-<h3 id="org2f7bcc0"><span class="section-number-3">4.7.</span> Graphs with repeated weights</h3>
+<div id="outline-container-orgd5599da" class="outline-3">
+<h3 id="orgd5599da"><span class="section-number-3">4.7.</span> Graphs with repeated weights</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 The algorithms described in this lecture also work for graphs where some edges have equal weights, as long as we have a consistent method for breaking ties when choosing the light edge.
@@ -1767,8 +1767,8 @@ The algorithms described in this lecture also work for graphs where some edges h
 </div>
 </div>
 </div>
-<div id="outline-container-orge7025f9" class="outline-2">
-<h2 id="orge7025f9"><span class="section-number-2">5.</span> NP-completeness</h2>
+<div id="outline-container-org8285f11" class="outline-2">
+<h2 id="org8285f11"><span class="section-number-2">5.</span> NP-completeness</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Decision problems:</b> solution is a yes/no answer.
@@ -1781,8 +1781,8 @@ The algorithms described in this lecture also work for graphs where some edges h
 <b>Optimization problems:</b> minimize or maximize some objective
 </p>
 </div>
-<div id="outline-container-org407cf5b" class="outline-3">
-<h3 id="org407cf5b"><span class="section-number-3">5.1.</span> P and NP</h3>
+<div id="outline-container-org0641753" class="outline-3">
+<h3 id="org0641753"><span class="section-number-3">5.1.</span> P and NP</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 We define <b>input size</b> as the number of bits needed to encode it.
@@ -1792,8 +1792,8 @@ We define <b>input size</b> as the number of bits needed to encode it.
 Given an algorithm, its <b>time complexity</b> is a function f where f (n) is the maximum number of steps that the algorithm takes on any input of length n.
 </p>
 </div>
-<div id="outline-container-org8e12113" class="outline-4">
-<h4 id="org8e12113"><span class="section-number-4">5.1.1.</span> The class P</h4>
+<div id="outline-container-org95de1db" class="outline-4">
+<h4 id="org95de1db"><span class="section-number-4">5.1.1.</span> The class P</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 The class <b>P</b> is the set of decision problems that can be solved in polynomial time.
@@ -1808,8 +1808,8 @@ The problems in class p are restricted to decisions problems. We can make an <b>
 </p>
 </div>
 </div>
-<div id="outline-container-org2dbc35d" class="outline-4">
-<h4 id="org2dbc35d"><span class="section-number-4">5.1.2.</span> The class NP</h4>
+<div id="outline-container-org2b68331" class="outline-4">
+<h4 id="org2b68331"><span class="section-number-4">5.1.2.</span> The class NP</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 For some problems, solving them directly is difficult. But if someone somehow discovered the solution it is easy to verify.
@@ -1845,8 +1845,8 @@ Example proof in lecture slides.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbae9ec2" class="outline-3">
-<h3 id="orgbae9ec2"><span class="section-number-3">5.2.</span> Polynomial-time reduction and NP-hardness</h3>
+<div id="outline-container-org0896aba" class="outline-3">
+<h3 id="org0896aba"><span class="section-number-3">5.2.</span> Polynomial-time reduction and NP-hardness</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Besides solving the problems directly, we can also show that a problem is solvable by reducing it to another problem. A <b>reduction</b> is a way of converting one problem to another such that a solution to the second problem can be used to solve the first problem. That is, if problem A reduces to problem B, we can use a solution to B to solve A.
@@ -1862,7 +1862,7 @@ If problem A is polynomial-time reducible to problem B and problem B is polynomi
 </p>
 
 
-<div id="org4e8d6ae" class="figure">
+<div id="orge13619e" class="figure">
 <p><img src="NP-completeness/2024-04-05_21-51-29_screenshot.png" alt="2024-04-05_21-51-29_screenshot.png" />
 </p>
 </div></li>
@@ -1889,8 +1889,8 @@ A problem is <b>NP-hard</b> if all problems in NP are polynomial-time reducible 
 </p>
 </div>
 </div>
-<div id="outline-container-org76f9f15" class="outline-3">
-<h3 id="org76f9f15"><span class="section-number-3">5.3.</span> NP-Completeness</h3>
+<div id="outline-container-org00a4330" class="outline-3">
+<h3 id="org00a4330"><span class="section-number-3">5.3.</span> NP-Completeness</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 There are a few problems in NP that if they can be solved in polynomial time, then \(P=NP\).
@@ -1923,8 +1923,8 @@ NP-Completeness proof.
 </div>
 </div>
 </div>
-<div id="outline-container-org508d315" class="outline-2">
-<h2 id="org508d315"><span class="section-number-2">6.</span> Approximation Algorithms</h2>
+<div id="outline-container-org046a4c7" class="outline-2">
+<h2 id="org046a4c7"><span class="section-number-2">6.</span> Approximation Algorithms</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 How do we deal with an NP-complete problem?
@@ -1965,8 +1965,8 @@ We want to try to give some sort of upper bound to the approximation ratio. This
 We say that the algorithm is a $&alpha;$-approximation algorithm if \(\text{approximation ratio}\le \alpha\) for any instance \(I\).
 </p>
 </div>
-<div id="outline-container-org3f06224" class="outline-3">
-<h3 id="org3f06224"><span class="section-number-3">6.1.</span> Minimum vertex cover approximation algorithm</h3>
+<div id="outline-container-orgd565cf7" class="outline-3">
+<h3 id="orgd565cf7"><span class="section-number-3">6.1.</span> Minimum vertex cover approximation algorithm</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 A vertex cover (sometimes node cover) of a graph is a set of vertices that includes at least one endpoint of every edge of the graph. We want to find a vertex cover with the least amount of vertices.
@@ -1998,8 +1998,8 @@ Approximation ratio of Approx-VC: First, we note that for any instance, the size
 </p>
 </div>
 </div>
-<div id="outline-container-org8519e38" class="outline-3">
-<h3 id="org8519e38"><span class="section-number-3">6.2.</span> Knapsack approximation algorithm</h3>
+<div id="outline-container-org93dab48" class="outline-3">
+<h3 id="org93dab48"><span class="section-number-3">6.2.</span> Knapsack approximation algorithm</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Given a set of items \(S\), each with an integral value \(v_i\) and integral weight \(w_i\). Also give integers \(B\) and \(k\). Is there a subset of \(S\) of weight no more than \(B\) with total value at least \(k\)?
@@ -2045,14 +2045,14 @@ Approximation ratio of Approx-Knapsack:
 </ul>
 
 
-<div id="org8e46997" class="figure">
+<div id="org2522b53" class="figure">
 <p><img src="Approximation_Algorithms/2024-04-07_13-07-41_screenshot.png" alt="2024-04-07_13-07-41_screenshot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org96dfe53" class="outline-3">
-<h3 id="org96dfe53"><span class="section-number-3">6.3.</span> Improving an approximation algorithm</h3>
+<div id="outline-container-orgda54d39" class="outline-3">
+<h3 id="orgda54d39"><span class="section-number-3">6.3.</span> Improving an approximation algorithm</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Improving ussualy means have a smaller approximation ratio.
@@ -2069,8 +2069,8 @@ Take the matching-based approximation algorithm Approx-Knapsack for the minimum 
 </div>
 </div>
 </div>
-<div id="outline-container-org3658788" class="outline-2">
-<h2 id="org3658788"><span class="section-number-2">7.</span> String Matching</h2>
+<div id="outline-container-org7790503" class="outline-2">
+<h2 id="org7790503"><span class="section-number-2">7.</span> String Matching</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Gegeven string (<b>haystack</b>) zoek alle voorkomens van een patroon (<b>needle</b>)
@@ -2094,8 +2094,8 @@ Gegeven string (<b>haystack</b>) zoek alle voorkomens van een patroon (<b>needle
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org309135b" class="outline-3">
-<h3 id="org309135b"><span class="section-number-3">7.1.</span> Kansrekening</h3>
+<div id="outline-container-org1dfaad5" class="outline-3">
+<h3 id="org1dfaad5"><span class="section-number-3">7.1.</span> Kansrekening</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Variabele X waarvan de waarde afhangt van de uitkomst van een kansexperiment
@@ -2158,8 +2158,8 @@ Andere:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1d86b76" class="outline-3">
-<h3 id="org1d86b76"><span class="section-number-3">7.2.</span> Naief algoritme</h3>
+<div id="outline-container-orgd6b4cdc" class="outline-3">
+<h3 id="orgd6b4cdc"><span class="section-number-3">7.2.</span> Naief algoritme</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-python">NaiveMatch(A,P)
@@ -2195,11 +2195,11 @@ Dit algoritme is traag want het gebruikt de informatie van een mismatch niet
 </p>
 </div>
 </div>
-<div id="outline-container-orgae092e8" class="outline-3">
-<h3 id="orgae092e8"><span class="section-number-3">7.3.</span> <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</h3>
+<div id="outline-container-org5184193" class="outline-3">
+<h3 id="org5184193"><span class="section-number-3">7.3.</span> <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</h3>
 </div>
-<div id="outline-container-orgc6a797c" class="outline-3">
-<h3 id="orgc6a797c"><span class="section-number-3">7.4.</span> Rabin-Karp</h3>
+<div id="outline-container-org3d49759" class="outline-3">
+<h3 id="org3d49759"><span class="section-number-3">7.4.</span> Rabin-Karp</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 Idee: sla strings op als getallen in base \(|\Sigma |\)
@@ -2209,11 +2209,11 @@ Idee: sla strings op als getallen in base \(|\Sigma |\)
 Bijvoorbeeld: zoek orit in algoritme
 </p>
 <ul class="org-ul">
-<li>\(orit = 15 ⋅ 26^3 + 18 ⋅ 26^2 + 9 ⋅ 26^1 + 20 = 15 / 26 + 18 / 26 + 9 / 26 + 20 = 276062\)</li>
-<li>\(algo = 1 ⋅ 26 + 12 ⋅ 26 + 7 ⋅ 26 + 15 = 25885\)</li>
-<li>\(lgor = 12 ⋅ 26 + 7 ⋅ 26 + 15 ⋅ 26 + 18 = 216052\)</li>
-<li>\(gori= 7 ⋅ 26 + 15 ⋅ 26 + 18 ⋅ 26 + 9 = 133649\)</li>
-<li>\(orit= 15 ⋅ 26 + 18 ⋅ 26 + 9 ⋅ 26 + 20 = 276062\)</li>
+<li>\(orit = 15 * 26^3 + 18 * 26^2 + 9 * 26^1 + 20 = 15 / 26 + 18 / 26 + 9 / 26 + 20 = 276062\)</li>
+<li>\(algo = 1 * 26 + 12 * 26 + 7 * 26 + 15 = 25885\)</li>
+<li>\(lgor = 12 * 26 + 7 * 26 + 15 * 26 + 18 = 216052\)</li>
+<li>\(gori= 7 * 26 + 15 * 26 + 18 * 26 + 9 = 133649\)</li>
+<li>\(orit= 15 * 26 + 18 * 26 + 9 * 26 + 20 = 276062\)</li>
 </ul>
 
 <p>
@@ -2291,13 +2291,10 @@ Als twee woorden gelijk zijn dat is de mod gelijk, maar andersom geld de relatie
 <li>\(O(m)\) per gevonden substring</li>
 <li>\(O(m)\) per spurious hit</li>
 </ul>
-<p>
-TODO
-</p>
 </div>
 </div>
-<div id="outline-container-org5fe5695" class="outline-3">
-<h3 id="org5fe5695"><span class="section-number-3">7.5.</span> Eindige automaat</h3>
+<div id="outline-container-orge27f680" class="outline-3">
+<h3 id="orge27f680"><span class="section-number-3">7.5.</span> Eindige automaat</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>Eindige Automaat/Finite Automaton</li>
@@ -2316,7 +2313,7 @@ Overgangen: \(\delta : Q\time \Sigma \rightarrow Q\)
 </p>
 
 
-<div id="org77961b1" class="figure">
+<div id="orgcae8226" class="figure">
 <p><img src="String_Matching/2024-04-02_14-55-12_screenshot.png" alt="2024-04-02_14-55-12_screenshot.png" />
 </p>
 </div>
@@ -2359,23 +2356,89 @@ Eindige automaat is \(O(n)\) tijd, met \(O(m|\Sigma |)\)
 </div>
 </div>
 </div>
-<div id="outline-container-orgb90dca8" class="outline-2">
-<h2 id="orgb90dca8"><span class="section-number-2">8.</span> <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</h2>
+<div id="outline-container-org2bdfefc" class="outline-2">
+<h2 id="org2bdfefc"><span class="section-number-2">8.</span> <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-Nog niet samengevat
+Gebruiken getallen uit toevalsgeneratoren
+</p>
+
+<p>
+De toevalsgetallen sturen twee dingen:
+</p>
+<ul class="org-ul">
+<li>hoe lang het algoritme zoekt</li>
+<li>in welk deel van de oplossingsruimte het algoritme zoekt</li>
+</ul>
+
+<p>
+Twee dingen zijn belangrijk bij randomisatie:
+</p>
+<ol class="org-ol">
+<li>Wat is de kans dat het algoritme een (in)correct antwoord geeft?</li>
+<li>Wat is de (verwachte) looptijd van het algoritme?</li>
+</ol>
+
+<p>
+Er zijn twee types gerandomiseerde algoritmes:
+</p>
+
+<p>
+<b>Las Vegas algoritme:</b>
+</p>
+<ul class="org-ul">
+<li>Geeft altijd een correct ja/nee antwoord of oplossing</li>
+<li>Verwachte looptijd is eindig/beperkt</li>
+<li>Intuïtie: we gokken met hoeveel rekentijd we gebruiken, maar niet met het antwoord</li>
+</ul>
+
+<p>
+<b>Monte Carlo algoritme:</b>
+</p>
+<ul class="org-ul">
+<li>Geeft niet altijd een correct antwoord
+<ul class="org-ul">
+<li>Eenzijdige fout of tweezijdige fout</li>
+<li>Wel grote kans op goed antwoord</li>
+</ul></li>
+<li>Worst-case looptijd is eindig/beperkt</li>
+<li>Intuïtie: we gokken met het antwoord, maar niet met hoeveel looptijd we nodig hebben</li>
+</ul>
+
+<p>
+Ieder Las Vegas algoritme kan een Monte Carlo algoritme worden
+</p>
+<ul class="org-ul">
+<li>Beëindig het LV algoritme na zekere tijd en geef eventueel een willekeurig antwoord terug</li>
+<li>M.b.v. kansrekening bepaal je vervolgens de kans op het goede antwoord</li>
+</ul>
+
+<p>
+Ieder Monte Carlo algoritme kan een Las Vegas algoritme worden, mits je efficiënt kunt controleren of een antwoord correct is
+</p>
+<ul class="org-ul">
+<li>Draai het Monte Carlo algoritme net zo lang totdat de oplossing correct is</li>
+<li>M.b.v. kansrekening bepaal je vervolgens de verwachte looptijd</li>
+</ul>
+
+<p>
+Toevalsvariable \(X\), \(P(X=k)\): kans dat \(X\) waarde \(k\) heeft
+</p>
+
+<p>
+\(E[X] =\) gemiddelde waarde van toevalsvariabele \(X\), gewogen door kansen
 </p>
 </div>
 </div>
-<div id="outline-container-orgae70ae1" class="outline-2">
-<h2 id="orgae70ae1"><span class="section-number-2">9.</span> Deel 1</h2>
+<div id="outline-container-orgfbe54a4" class="outline-2">
+<h2 id="orgfbe54a4"><span class="section-number-2">9.</span> Deel 1</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Niet heel goed samengevat
 </p>
 </div>
-<div id="outline-container-org0144779" class="outline-3">
-<h3 id="org0144779"><span class="section-number-3">9.1.</span> Divide and Conquer</h3>
+<div id="outline-container-orgfbbda39" class="outline-3">
+<h3 id="orgfbbda39"><span class="section-number-3">9.1.</span> Divide and Conquer</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 grote O: \(f(n)=O(g(n))\) als er een constante c bestaat zdd voor iedere \(n\ge n_0\) geldt dat \(f(n)\le c*g(n)\)
@@ -2389,8 +2452,8 @@ grote O: \(f(n)=O(g(n))\) als er een constante c bestaat zdd voor iedere \(n\ge 
 <li>\(f(n)=\omega(g(n))\): f(n) is asymp. &rsquo;strict groter&rsquo; dan g(n)</li>
 </ul>
 </div>
-<div id="outline-container-org2f0638b" class="outline-4">
-<h4 id="org2f0638b"><span class="section-number-4">9.1.1.</span> Divide and Conquer : in het algemeen</h4>
+<div id="outline-container-orgfd50ca5" class="outline-4">
+<h4 id="orgfd50ca5"><span class="section-number-4">9.1.1.</span> Divide and Conquer : in het algemeen</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <ol class="org-ol">
 <li>Divide: splits in deelproblemen</li>
@@ -2424,8 +2487,8 @@ then los direct op (basisgeval)
 </ul>
 </div>
 </div>
-<div id="outline-container-org6297c84" class="outline-4">
-<h4 id="org6297c84"><span class="section-number-4">9.1.2.</span> Correctheid: inductie</h4>
+<div id="outline-container-orgc4a78a2" class="outline-4">
+<h4 id="orgc4a78a2"><span class="section-number-4">9.1.2.</span> Correctheid: inductie</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <ul class="org-ul">
 <li>Bewijs dat basisgeval correct is</li>
@@ -2438,8 +2501,8 @@ then los direct op (basisgeval)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb777e57" class="outline-4">
-<h4 id="orgb777e57"><span class="section-number-4">9.1.3.</span> MergeSort</h4>
+<div id="outline-container-orge169c55" class="outline-4">
+<h4 id="orge169c55"><span class="section-number-4">9.1.3.</span> MergeSort</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <p>
 Sorteer array van getallen
@@ -2465,7 +2528,7 @@ Sorteer array van getallen
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org04da7a2"></a>Correctheid Mergesort<br />
+<li><a id="org9909762"></a>Correctheid Mergesort<br />
 <div class="outline-text-5" id="text-9-1-3-1">
 <ul class="org-ul">
 <li>Gebruik inductie!</li>
@@ -2481,7 +2544,7 @@ Sorteer array van getallen
 </ul>
 </div>
 </li>
-<li><a id="org579b1df"></a>Looptijd<br />
+<li><a id="org38c7c18"></a>Looptijd<br />
 <div class="outline-text-5" id="text-9-1-3-2">
 <ul class="org-ul">
 <li>MergeSort(int[] X, int a, int b)  O(1)</li>
@@ -2498,12 +2561,12 @@ Sorteer array van getallen
 </li>
 </ol>
 </div>
-<div id="outline-container-orgbf3b1ac" class="outline-4">
-<h4 id="orgbf3b1ac"><span class="section-number-4">9.1.4.</span> Oplossen recurrente betrekking</h4>
+<div id="outline-container-org3fda629" class="outline-4">
+<h4 id="org3fda629"><span class="section-number-4">9.1.4.</span> Oplossen recurrente betrekking</h4>
 <div class="outline-text-4" id="text-9-1-4">
 </div>
 <ol class="org-ol">
-<li><a id="org917c509"></a>Subsitutie<br />
+<li><a id="orgc79b502"></a>Subsitutie<br />
 <div class="outline-text-5" id="text-9-1-4-1">
 <ul class="org-ul">
 <li>Inductiebewijs!</li>
@@ -2524,7 +2587,7 @@ Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen \(O()
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org7ab5bb0"></a>Voorbeeld<br />
+<li><a id="org7caa164"></a>Voorbeeld<br />
 <div class="outline-text-6" id="text-9-1-4-1-1">
 <ul class="org-ul">
 <li>Voorbeeld: T(n) = T(n/2) + 1; T(1)=0</li>
@@ -2564,10 +2627,10 @@ Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen \(O()
 </li>
 </ol>
 </li>
-<li><a id="orge376e8e"></a>Recursieboom<br />
+<li><a id="org0800b53"></a>Recursieboom<br />
 <div class="outline-text-5" id="text-9-1-4-2">
 
-<div id="org961db05" class="figure">
+<div id="orgc9ad5dd" class="figure">
 <p><img src="Divide_and_Conquer/2024-03-02_12-18-44_screenshot.png" alt="2024-03-02_12-18-44_screenshot.png" />
 </p>
 </div>
@@ -2578,7 +2641,7 @@ Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen \(O()
 </ul>
 </div>
 </li>
-<li><a id="org0150d0d"></a>master theorem<br />
+<li><a id="org1838a99"></a>master theorem<br />
 <div class="outline-text-5" id="text-9-1-4-3">
 <p>
 Uit het book van vierde editie, dit is de beste volgensmij
@@ -2595,7 +2658,7 @@ Uit het book van vierde editie, dit is de beste volgensmij
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org12acffd"></a>Derde editie versie<br />
+<li><a id="org6886a78"></a>Derde editie versie<br />
 <div class="outline-text-6" id="text-9-1-4-3-1">
 <p>
 Iets simpeler, minder compleet
@@ -2618,8 +2681,8 @@ Iets simpeler, minder compleet
 </ol>
 </div>
 </div>
-<div id="outline-container-org87f49c1" class="outline-3">
-<h3 id="org87f49c1"><span class="section-number-3">9.2.</span> Recursief programmeren</h3>
+<div id="outline-container-orge7391ae" class="outline-3">
+<h3 id="orge7391ae"><span class="section-number-3">9.2.</span> Recursief programmeren</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Los deelproblemen op en voeg oplossingen samen
@@ -2634,8 +2697,8 @@ Los deelproblemen op en voeg oplossingen samen
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org3c33075" class="outline-4">
-<h4 id="org3c33075"><span class="section-number-4">9.2.1.</span> Gepast betalen</h4>
+<div id="outline-container-org96dca2b" class="outline-4">
+<h4 id="org96dca2b"><span class="section-number-4">9.2.1.</span> Gepast betalen</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <p>
 <b>Optimaliseringsprobleem</b>:
@@ -2696,11 +2759,11 @@ Gevraagd: op welke manier kan \(b\) verkregen worden door zo min mogelijk munten
 </ul>
 </div>
 </div>
-<div id="outline-container-org67f2da2" class="outline-4">
-<h4 id="org67f2da2"><span class="section-number-4">9.2.2.</span> optimaliteitsprincipe</h4>
+<div id="outline-container-org064fc20" class="outline-4">
+<h4 id="org064fc20"><span class="section-number-4">9.2.2.</span> optimaliteitsprincipe</h4>
 <div class="outline-text-4" id="text-9-2-2">
 
-<div id="org80b7a02" class="figure">
+<div id="org9d13f96" class="figure">
 <p><img src="Recursief_programmeren/2024-02-21_10-45-11_screenshot.png" alt="2024-02-21_10-45-11_screenshot.png" />
 </p>
 </div>
@@ -2731,8 +2794,8 @@ Uitwisselargument:
 </p>
 </div>
 </div>
-<div id="outline-container-org05a835a" class="outline-4">
-<h4 id="org05a835a"><span class="section-number-4">9.2.3.</span> Samenvatting</h4>
+<div id="outline-container-orgfdefbaf" class="outline-4">
+<h4 id="orgfdefbaf"><span class="section-number-4">9.2.3.</span> Samenvatting</h4>
 <div class="outline-text-4" id="text-9-2-3">
 <ul class="org-ul">
 <li>Wat is de rij keuzes die leidt tot een oplossing?
@@ -2752,8 +2815,8 @@ Uitwisselargument:
 </div>
 </div>
 </div>
-<div id="outline-container-org12437c8" class="outline-3">
-<h3 id="org12437c8"><span class="section-number-3">9.3.</span> Dynamisch Programmeren</h3>
+<div id="outline-container-org56b24f3" class="outline-3">
+<h3 id="org56b24f3"><span class="section-number-3">9.3.</span> Dynamisch Programmeren</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 Twee mogelijkheden:
@@ -2763,11 +2826,11 @@ Twee mogelijkheden:
 <li><b>&rsquo;Klassiek&rsquo; DP:</b> vul datastructuur met antwoorden voor deelproblemen, zodat nodige gegevens al eerder zijn berekend</li>
 </ul>
 </div>
-<div id="outline-container-org31dcbf4" class="outline-4">
-<h4 id="org31dcbf4"><span class="section-number-4">9.3.1.</span> Driehoek van Pascal DP</h4>
+<div id="outline-container-org9272243" class="outline-4">
+<h4 id="org9272243"><span class="section-number-4">9.3.1.</span> Driehoek van Pascal DP</h4>
 </div>
-<div id="outline-container-org9b77380" class="outline-4">
-<h4 id="org9b77380"><span class="section-number-4">9.3.2.</span> Klassiek DP</h4>
+<div id="outline-container-org7d8bb8f" class="outline-4">
+<h4 id="org7d8bb8f"><span class="section-number-4">9.3.2.</span> Klassiek DP</h4>
 <div class="outline-text-4" id="text-9-3-2">
 <ul class="org-ul">
 <li>Initialiseer array</li>
@@ -2780,7 +2843,7 @@ Twee mogelijkheden:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgf7c06b1"></a>Ontwerp<br />
+<li><a id="orgf94729a"></a>Ontwerp<br />
 <div class="outline-text-5" id="text-9-3-2-1">
 <ul class="org-ul">
 <li>Wat is de rij keuzes die leidt tot een oplossing?
@@ -2828,7 +2891,7 @@ Twee mogelijkheden:
 </ul>
 </div>
 </li>
-<li><a id="orge0e50ff"></a>Constructieversies<br />
+<li><a id="orgd0b7636"></a>Constructieversies<br />
 <div class="outline-text-5" id="text-9-3-2-2">
 <ol class="org-ol">
 <li>Doe eerst DP algoritme voor beslisprobleem of optimalisatieprobleem
@@ -2846,7 +2909,7 @@ zie slides vanaf 44 voor voorbeeld
 </p>
 </div>
 </li>
-<li><a id="org2ce0685"></a>Voorbeeld: gepast betalen:<br />
+<li><a id="org134481d"></a>Voorbeeld: gepast betalen:<br />
 <div class="outline-text-5" id="text-9-3-2-3">
 <ul class="org-ul">
 <li>\(G(c) = \min_i \{ 1 + G(c-a_i) \}\)
@@ -2874,8 +2937,8 @@ Method \(Gepast(a_1,..,a_r,b)\)
 </li>
 </ol>
 </div>
-<div id="outline-container-org6828a19" class="outline-4">
-<h4 id="org6828a19"><span class="section-number-4">9.3.3.</span> Knapsack probleem</h4>
+<div id="outline-container-org56e5b0e" class="outline-4">
+<h4 id="org56e5b0e"><span class="section-number-4">9.3.3.</span> Knapsack probleem</h4>
 <div class="outline-text-4" id="text-9-3-3">
 <p>
 vanaf slide 52
@@ -2883,19 +2946,19 @@ vanaf slide 67
 </p>
 </div>
 </div>
-<div id="outline-container-org043470c" class="outline-4">
-<h4 id="org043470c"><span class="section-number-4">9.3.4.</span> subset sum</h4>
+<div id="outline-container-orga23450b" class="outline-4">
+<h4 id="orga23450b"><span class="section-number-4">9.3.4.</span> subset sum</h4>
 </div>
-<div id="outline-container-orgcbec623" class="outline-4">
-<h4 id="orgcbec623"><span class="section-number-4">9.3.5.</span> DP slides 2</h4>
+<div id="outline-container-org2178f23" class="outline-4">
+<h4 id="org2178f23"><span class="section-number-4">9.3.5.</span> DP slides 2</h4>
 </div>
 </div>
-<div id="outline-container-org74493ae" class="outline-3">
-<h3 id="org74493ae"><span class="section-number-3">9.4.</span> Graphs</h3>
+<div id="outline-container-org4d03837" class="outline-3">
+<h3 id="org4d03837"><span class="section-number-3">9.4.</span> Graphs</h3>
 <div class="outline-text-3" id="text-9-4">
 </div>
-<div id="outline-container-orgadb75b1" class="outline-4">
-<h4 id="orgadb75b1"><span class="section-number-4">9.4.1.</span> Graph representation</h4>
+<div id="outline-container-org7e90409" class="outline-4">
+<h4 id="org7e90409"><span class="section-number-4">9.4.1.</span> Graph representation</h4>
 <div class="outline-text-4" id="text-9-4-1">
 <p>
 \(G=(V,E)\)
@@ -2929,8 +2992,8 @@ Terminologies:
 </p>
 </div>
 </div>
-<div id="outline-container-org714ad67" class="outline-4">
-<h4 id="org714ad67"><span class="section-number-4">9.4.2.</span> Adjacency list</h4>
+<div id="outline-container-org045bcd9" class="outline-4">
+<h4 id="org045bcd9"><span class="section-number-4">9.4.2.</span> Adjacency list</h4>
 <div class="outline-text-4" id="text-9-4-2">
 <p>
 For each vertex, store its neighbors in a linked list
@@ -2941,17 +3004,17 @@ For each vertex, store its neighbors in a linked list
 </ul>
 
 
-<div id="org5a21443" class="figure">
+<div id="org3b9ba57" class="figure">
 <p><img src="Graphs/2024-02-22_09-15-25_screenshot.png" alt="2024-02-22_09-15-25_screenshot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcdcea2" class="outline-4">
-<h4 id="orgdcdcea2"><span class="section-number-4">9.4.3.</span> Adjacency Matrix</h4>
+<div id="outline-container-org2420cc3" class="outline-4">
+<h4 id="org2420cc3"><span class="section-number-4">9.4.3.</span> Adjacency Matrix</h4>
 <div class="outline-text-4" id="text-9-4-3">
 
-<div id="orgd28aba9" class="figure">
+<div id="org14491bd" class="figure">
 <p><img src="Graphs/2024-02-22_09-21-03_screenshot.png" alt="2024-02-22_09-21-03_screenshot.png" />
 </p>
 </div>
@@ -2969,8 +3032,8 @@ Use a \(|V|\times |V|\) matrix A such that
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd688f7" class="outline-4">
-<h4 id="orgbd688f7"><span class="section-number-4">9.4.4.</span> Adjacency List and Adjacency Matrix</h4>
+<div id="outline-container-org0bbca0c" class="outline-4">
+<h4 id="org0bbca0c"><span class="section-number-4">9.4.4.</span> Adjacency List and Adjacency Matrix</h4>
 <div class="outline-text-4" id="text-9-4-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3029,8 +3092,8 @@ Use a \(|V|\times |V|\) matrix A such that
 </table>
 </div>
 </div>
-<div id="outline-container-org8d72d7b" class="outline-4">
-<h4 id="org8d72d7b"><span class="section-number-4">9.4.5.</span> Depth-First Search</h4>
+<div id="outline-container-orgad3c596" class="outline-4">
+<h4 id="orgad3c596"><span class="section-number-4">9.4.5.</span> Depth-First Search</h4>
 <div class="outline-text-4" id="text-9-4-5">
 <div class="org-src-container">
 <pre class="src src-c">Procedure DFS-VISIT(u)
@@ -3057,7 +3120,7 @@ Use a \(|V|\times |V|\) matrix A such that
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgc057bd5"></a>Parenthesis Theorem<br />
+<li><a id="org635f879"></a>Parenthesis Theorem<br />
 <div class="outline-text-5" id="text-9-4-5-1">
 <p>
 In any DFS of a graph \(G=(V,E)\), for any two vertices \(u,v\in V\), there are three cases of the positions of u and v in the depth-first forest
@@ -3078,7 +3141,7 @@ In any DFS of a graph \(G=(V,E)\), for any two vertices \(u,v\in V\), there are 
 </ul>
 
 
-<div id="orgc04a060" class="figure">
+<div id="org475aedc" class="figure">
 <p><img src="Graphs/2024-02-22_10-03-04_screenshot.png" alt="2024-02-22_10-03-04_screenshot.png" />
 </p>
 </div>
@@ -3088,7 +3151,7 @@ In any DFS of a graph \(G=(V,E)\), for any two vertices \(u,v\in V\), there are 
 </p>
 </div>
 </li>
-<li><a id="org1592cbb"></a>Edges Classification<br />
+<li><a id="org70deb80"></a>Edges Classification<br />
 <div class="outline-text-5" id="text-9-4-5-2">
 <p>
 According to the Depth-first forest \(G_\pi(V,E_\pi)\), each edge \((u,v)\in E\) is on of for type
@@ -3099,13 +3162,13 @@ According to the Depth-first forest \(G_\pi(V,E_\pi)\), each edge \((u,v)\in E\)
 </p>
 
 
-<div id="orgcf743bc" class="figure">
+<div id="org27f43a7" class="figure">
 <p><img src="Graphs/2024-02-22_10-10-01_screenshot.png" alt="2024-02-22_10-10-01_screenshot.png" />
 </p>
 </div>
 </div>
 </li>
-<li><a id="org8c8f0c2"></a>White-Path Theorem<br />
+<li><a id="org505b875"></a>White-Path Theorem<br />
 <div class="outline-text-5" id="text-9-4-5-3">
 <p>
 From slide 137
@@ -3123,8 +3186,8 @@ Application: Cycle Detection
 </ol>
 </div>
 </div>
-<div id="outline-container-orga441ee3" class="outline-3">
-<h3 id="orga441ee3"><span class="section-number-3">9.5.</span> All pair shortest paths</h3>
+<div id="outline-container-org26c7842" class="outline-3">
+<h3 id="org26c7842"><span class="section-number-3">9.5.</span> All pair shortest paths</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 We want to know the shortest path from every possible source to every possible destination.
@@ -3143,7 +3206,7 @@ A naive way would be to just run Dijkstra or Bellman-Ford for each of the vertic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Martijn Voordouw</p>
-<p class="date">Created: 2024-04-07 Sun 13:23</p>
+<p class="date">Created: 2024-04-07 Sun 23:02</p>
 </div>
 </body>
 </html>

@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-04-07 Sun 22:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cheatsheat</title>
+<meta name="author" content="martijnV" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Cheatsheat</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb63326e">1. Matchings</a></li>
+<li><a href="#org2645f4a">2. Flow and cuts</a></li>
+<li><a href="#org329582a">3. Amortized analysis</a></li>
+<li><a href="#org686b043">4. Minimum spanning trees and Union find</a></li>
+<li><a href="#org13e479b">5. NP-completeness</a></li>
+<li><a href="#org22feb18">6. String Matching</a></li>
+<li><a href="#org54d3a23">7. Gerandomiseerde algoritmes</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb63326e" class="outline-2">
+<h2 id="orgb63326e"><span class="section-number-2">1.</span> Matchings</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Matching:</b> Subset of edges  that do not have a common endpoint.
+</p>
+
+<p>
+Matching M is <b>maximum</b> if there is no matching with more number of edges.
+</p>
+
+<p>
+A <b>maximal</b> matching is a matching M to which no other edges can be added.
+</p>
+
+<p>
+Given a matching M in an undirected graph \(G=(V,E)\), an <b>M-alternating</b> path is a simple path whose edges alternate between being in M and being in \(E-M\).
+</p>
+
+<p>
+<b>M-augmenting path</b> (sometimes called an augmenting path with respect to M ): an M-alternating path whose first and last edges belong to \(E-M\) (not in the matching). This means the first and last vertex are also unmatched. <a id="orge403c64"></a>
+</p>
+
+<p>
+Larger matching M&rsquo;: exchange edges of M-augmenting path P
+</p>
+<ul class="org-ul">
+<li>\(e\in P \setminus M\) (edges in the path but not in the matching): put in M&rsquo;</li>
+<li>\(e\in P\cap M\) (edges in both the path and the matching): don’t put in M&rsquo;</li>
+<li>Other edges of M: put in M&rsquo;</li>
+</ul>
+
+<p>
+Matching M in graph G is maximum if and only if there is no M-augmenting path in G.
+</p>
+
+
+<p>
+<b>Bipartite graph</b> is a graph whose vertices can be divided into two disjoint and independent sets \(U\) and \(V\). Every edge connects a vertex in \(U\) to one in \(V\).
+</p>
+
+<p>
+To find an M-augmenting path, we use an <b>auxillary graph</b>:
+</p>
+<ul class="org-ul">
+<li>direct the edges of the bipartite graph as follows:
+<ul class="org-ul">
+<li>If \(e\in M\), direct it from right to left.</li>
+<li>If \(e \notin M\), direct it from left to right.</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">Algorithm FindBipMAugmenting(G, M)
+  Make directed aux. graph <span style="color: #cba6f7;">for</span> G <span style="color: #cba6f7;">as</span> <span style="color: #cba6f7;">in</span> last slide
+  Find source<span style="color: #89dceb;">-</span>sink path P <span style="color: #cba6f7;">with</span> DFS <span style="color: #cba6f7;">in</span> aux. graph
+  If path P found, then P <span style="color: #cba6f7;">is</span> a M<span style="color: #89dceb;">-</span>augmenting path
+  No path found? Then M <span style="color: #cba6f7;">is</span> maximum
+</pre>
+</div>
+
+<p>
+Running time: \(O(n+m)\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">Algorithm BipMaxMatching(G)
+   <span style="color: #cdd6f4;">M</span> <span style="color: #89dceb;">=</span> {}
+      <span style="color: #cba6f7;">while</span> P <span style="color: #89dceb;">=</span> FindBipMAugmenting(G, M)
+      do exchange edges of P (augment M)
+   <span style="color: #cba6f7;">return</span> M
+</pre>
+</div>
+
+<p>
+Running time: \(O(n(n+m)) = O(nm)\)
+</p>
+
+<p>
+<b>Bipartite graphs</b>
+</p>
+
+<p>
+Hopcroft-karp algorithm: \(O(m\sqrt n)\)
+</p>
+
+<p>
+<b>Weighted maximum matching</b>
+</p>
+
+<p>
+From a graph with weighted edges \(w:E(G)\rightarrow \mathbb{R}\) find matching of largest possible total weight.
+</p>
+
+<p>
+In bipartite graphs: make directed auxillary graph.
+</p>
+<ul class="org-ul">
+<li>set \(length(e)= -w(e)\ if\ e \in E(G)\setminus M\)</li>
+<li>set \(length(e)= w(e)\ if\ e \in M\)</li>
+</ul>
+
+<p>
+Then find the shortest M-augmenting path.
+</p>
+
+<p>
+Finding weigted maximmum matching in bipartite graph: Gabow-Tarjan [1988]: \(O(m\sqrt n \log (nW))\)
+</p>
+
+<p>
+<b>Matching on general graphs</b>
+</p>
+
+<p>
+Matchings on general paths is much harder, best time complexity is \(O(n^2m)\) Micali-Vazirani [1980], not taught in this course.
+</p>
+
+<p>
+<b>Weighted general graphs</b>
+</p>
+
+<p>
+Gabow [1990]: \(O(n (m + n \log n))\)
+</p>
+
+<p>
+The <b>stable-marriage problem</b>:
+</p>
+<ul class="org-ul">
+<li>comes from the notion of heterosexual marriage, viewing L as a set of women and R as a set of men.</li>
+<li>Each woman ranks all the men in terms of desirability, and each man does the same with all the women.</li>
+<li>The goal is to pair up women and men (a matching) so that if a woman and a man are not matched to each other, then at least one of them prefers their assigned partner.</li>
+<li>A men and a woman are a <b>blocking pair</b> if they are not matched but each prefers the other over their assigned partner.
+<ul class="org-ul">
+<li>Such a pair prevents a a matching from being stable: <b>unstable</b></li>
+</ul></li>
+<li>A <b>stable</b> matching is a matching that has no blocking pairs</li>
+<li>A stable matching is always possible</li>
+</ul>
+
+<p>
+The Gale–Shapley algorithm: \(O(n^2)\)
+</p>
+</div>
+</div>
+<div id="outline-container-org2645f4a" class="outline-2">
+<h2 id="org2645f4a"><span class="section-number-2">2.</span> Flow and cuts</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A flow network
+</p>
+<ul class="org-ul">
+<li>A directed graph \(G = (V, A)\)</li>
+<li>For every arc \((u, v) \in A\),</li>
+<li>There is a <b>capacity</b> denoted by \(c(u, v) \ge 0\).</li>
+<li>There are two special vertices called the source and the sink such that all the arcs incident on the source are outgoing and all the arcs incident on the sink are incoming arcs.
+<ul class="org-ul">
+<li><b>Source:</b> \(s\) arcs incident on the source are outgoing</li>
+<li><b>Sink:</b> \(t\) arcs incident on the sink are incoming</li>
+</ul></li>
+</ul>
+
+<p>
+If we want a network with multiple sources and sinks we add a <b>super sink</b> and a <b>super source</b> such that there are arcs from the super source to every source vertex and arcs from every sink vertex to the super sink.
+</p>
+
+<p>
+<b>Flow:</b> A flow in any network \(G=(V,A)\) can be defined as a function \(f:A\rightarrow  \mathbb R\) such that it follows the following rules:
+</p>
+<ul class="org-ul">
+<li><b>Capacity Constraint</b>: \(f (a) \le c(a)\), for all \(a\in A\)</li>
+<li><b>Conservation of flow</b>: For every vertex v other than the source and the sink, the total flow going into the vertex equals the flow going out of it.
+<ul class="org-ul">
+<li>That is \(\sum_{u:(u,v)\in A}f((u,v))=\sum_{u:(v,u)\in A}f((v,u))\)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Value of flow</b>: The total value of flow in a given flow network
+</p>
+<ul class="org-ul">
+<li>\(|f|=\sum_{u:(s,u)\in A}f((s,u))=\sum_{u:(u,t)\in A}f((u,t))\)</li>
+<li>The total sum going from the source or the total sum going into the sink.</li>
+</ul>
+
+<p>
+Finding a maximum matching in a bipartite graph can be modeled as a max-flow problem.
+</p>
+
+<p>
+Given bipartite graph \(G=(U\cup V, E)\), to create the flow network \(G'\):
+</p>
+<ul class="org-ul">
+<li>Direct all the edges in \(G\) from \(U\) to \(V\) and assign a capacity of \(1\) to each.</li>
+<li>Add a source vertex \(s\) and add arcs of capacity \(1\) directed from \(s\) to each vertex in \(u\in U\)</li>
+<li>Add a sink vertex \(t\) and add arcs of capacity \(1\) directed from each vertex in \(v\in V\) to \(t\).</li>
+</ul>
+
+<p>
+Finding a maximum flow in \(G'\) amounts to finding a maximum matching in the bipartite graph G.
+</p>
+
+<ul class="org-ul">
+<li>Given: bipartite graph \(G=(UV, E)\) with a capacity \(c(v)\) for every \(v\) in \(UV\)</li>
+<li>Wanted: The largest subset of edges \(M \subseteq E\) such that every vertex \(v\) in \(U V\) is the endpoint of at most \(c(v)\) edges in \(M\)</li>
+<li>Example application: U are workers who can do c(v) tasks. V are tasks with c(w)=1</li>
+</ul>
+
+<p>
+Translate bipartite graph into flow network by appropriately assigning capacities to arcs.
+</p>
+
+<p>
+The vertices also need to have capacities, this is modelled by translating the vertices to two vertices and a edge.
+</p>
+
+<p>
+The Ford-Fulkerson Algorithm iteratively increases the value of flow. It starts with \(f(u,v)=0\) for all \(u,v\in V\), giving an initial flow of 0. Each iteration increases the flow value in G by finding an augmenting path in an associated residual network \(G_f\).
+</p>
+
+<p>
+<b>Residual Network:</b>
+</p>
+<ul class="org-ul">
+<li>Let \(f\) be a flow in the network \(G = (V, A)\) with capacities \(c\).</li>
+<li>The residual network \(G_f\):</li>
+<li>For every arc \((v,w)\) in A:
+<ul class="org-ul">
+<li>If \(f (v, w) < c(v, w)\), then \((v, w)\) is a forward arc in \(G_f\) of residual capacity
+\(c_f (v, w) = c(v, w) - f (v, w)\)</li>
+<li>If \(f (v, w) > 0\), then \((w, v)\) is a backward arc in \(G_f\) of residual capacity \(c_f (w, v) = f (v, w)\)</li>
+</ul></li>
+</ul>
+
+<p>
+The residual network gives us an overview of possible improvement/augmentation of flow. As long as there is an s - t path in the residual network, it is possible to augment the flow.
+</p>
+
+<p>
+<b>Ford-Fulkerson Algorithm</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">f</span>: f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> <span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">all</span> (v,w) <span style="color: #cba6f7;">in</span> A
+Construct residual network G_f
+<span style="color: #cba6f7;">while</span> There <span style="color: #cba6f7;">is</span> a path P <span style="color: #cba6f7;">from</span> s to t <span style="color: #cba6f7;">in</span> G_f do:
+    <span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">min</span>{c_f(v,w)<span style="color: #89dceb;">|</span>(v,w) <span style="color: #cba6f7;">in</span> P}
+    <span style="color: #cba6f7;">for</span> (v,w) <span style="color: #cba6f7;">in</span> P do:
+        <span style="color: #cba6f7;">if</span> (v,w) <span style="color: #cba6f7;">is</span> forward arc then:
+            f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f(v,w) <span style="color: #89dceb;">+</span> x
+        <span style="color: #cba6f7;">else</span>:
+            f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f(v,w) <span style="color: #89dceb;">-</span> x
+<span style="color: #cba6f7;">return</span> f
+</pre>
+</div>
+
+<p>
+The edges of the augmenting path in \(G_f\) indicate on which edges in \(G\) to update the flow in order to increase the flow value.
+</p>
+
+<p>
+Let \(f\) be the flow in \(G\) and \(g\) be the flow in \(G_f\). We define the <b>augmented flow</b> as:
+</p>
+
+\begin{equation}
+(f+g)(u,v)=
+\begin{cases}
+f(u,v)+g(u,v)-g(v,u) & \text{if}(u,v) \in E(G)\\
+0 & \text{otherwise} \\
+\end{cases}
+\end{equation}
+
+<p>
+An s-t-<b>cut</b> in a network \(G = (V, A)\) is a partition of the vertices into two sets \(S\) and \(T\), such that
+</p>
+<ul class="org-ul">
+<li>\(S\cup T=V\)</li>
+<li>\(S\cap T=\emptyset\)</li>
+<li>\(s\in S\) and \(t\in T\)</li>
+</ul>
+
+<p>
+The <b>capacity</b> of a cut \((S, T )\) is the sum of capacities of all the edges going from \(S\) to \(T\):
+</p>
+<ul class="org-ul">
+<li>\(c(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} c(v,w)\)</li>
+</ul>
+
+<p>
+The flow over cut:
+</p>
+<ul class="org-ul">
+<li>\(f(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} f(v,w)\)</li>
+</ul>
+
+<p>
+For every s-t cut \((S,T): f(S,T)\le c(S,T)\), from this it follows that \(|f| \le c(S,T)\).
+</p>
+<ul class="org-ul">
+<li>It means that if we find a cut in G of capacity c, there cannot exist a flow in G of value greater than c.</li>
+<li>Likewise, if we found a flow value \(c^*\) in G, we cannot find a cut of capacity less than \(c^*\).</li>
+</ul>
+
+<p>
+The two above observations leads us to the following theorem:
+</p>
+
+<p>
+<b>Max-Flow Min-Cut Theorem:</b> he maximum value of flow in a network G is equal to the capacity of a cut of smallest capacity.
+</p>
+
+<p>
+Finding a minimum cut:
+</p>
+<ul class="org-ul">
+<li>Assign all arcs capacity 1</li>
+<li>Find maximum flow, for ex. using Ford-Fulk.</li>
+<li>Determine S: all vertices reachable from s in \(G_f\)</li>
+<li>Output set of arcs in G from S to V – S</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">procedure Edmonds<span style="color: #89dceb;">-</span>Karp(G, c):
+    <span style="color: #cdd6f4;">f</span>: f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> <span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">all</span> (v,w) <span style="color: #cba6f7;">in</span> A
+    Construct residual network G_f
+    Find the shortest path P <span style="color: #cba6f7;">from</span> s to t
+      <span style="color: #cba6f7;">in</span> Gf using BFS
+    <span style="color: #cba6f7;">if</span> P exists then
+        <span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">min</span>{cf (v, w) <span style="color: #89dceb;">|</span> (v, w) &#8712; P }
+        <span style="color: #cba6f7;">for</span> (v, w) &#8712; P do
+            <span style="color: #cba6f7;">if</span> (v, w) <span style="color: #cba6f7;">is</span> forward arc then
+                f (<span style="color: #cdd6f4;">v</span>, <span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f (v, w) <span style="color: #89dceb;">+</span> x
+            <span style="color: #cba6f7;">else</span>
+                f (<span style="color: #cdd6f4;">v</span>, <span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f (v, w) &#8722; x
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org329582a" class="outline-2">
+<h2 id="org329582a"><span class="section-number-2">3.</span> Amortized analysis</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Amortized analysis:</b> Find the amortized time complexity \(a^i\) for the i&rsquo;th operation such that \(\sum^n_{i=1}t_i \le\sum^n_{i=1}a_i \le f(n)\)
+</p>
+
+
+<p>
+<b>Aggregate method</b> is a method to find the amortized complexity of a operation.
+</p>
+
+<p>
+\[\text{amortized time for each operation} = \frac{\text{total time complexity}}{\text{number of operations}}\]
+</p>
+
+<ol class="org-ol">
+<li>Calculate the total time complexity over the sequence of operations
+<ul class="org-ul">
+<li>You may need some parameters to help you calculate
+<ul class="org-ul">
+<li>There are PUSHs in the super stack example</li>
+</ul></li>
+</ul></li>
+<li>Divide the total time complexity by the number of the operations. The result is the amortized cost per operation
+<ul class="org-ul">
+<li>Using aggregate method, every operation has the same amortized cost</li>
+</ul></li>
+</ol>
+
+<p>
+<b>Accounting method</b> is a method to find the amortized complexity of a operation.
+</p>
+<ul class="org-ul">
+<li>Instead of averaging the cost evenly on each of the operations, we design the “prices” for different types of operations
+<ul class="org-ul">
+<li>The prices are the amortized cost of the operations</li>
+<li>Different operations may have different amortized costs</li>
+</ul></li>
+<li>Saving:
+<ul class="org-ul">
+<li>Some operations have price higher than its actual cost: save credits</li>
+<li>Some operations have price lower than its actual cost: withdraw credits</li>
+<li>Always make sure that the saving is non-negative:  \(\sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0\)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Tips:</b>
+Step 1: decide the amortized cost \(a_i\) for each (types) of the operations
+</p>
+<ul class="org-ul">
+<li>You may have to make several guesses and check if any of them helps you to have low amortized cost</li>
+</ul>
+<p>
+Step 2: Prove that your amortized cost is valid, that is, for all \(n, \sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0\)
+</p>
+<ul class="org-ul">
+<li>As long as the inequality holds for all \(n\), the amortized cost is valid</li>
+<li>The goal is to find the best “prices” for the operations such that the total amortized cost is low while the inequality holds</li>
+</ul>
+
+<p>
+<b>Potential function stuff:</b> Amortized analysis is for data structures where expensive operations happen only when there are many cheap operations
+</p>
+
+<p>
+There are risky situations that the next operation might be expensive
+</p>
+<ul class="org-ul">
+<li>In Super stack: when there are many items in the stack, the next MULTI-POP( ) can be expensive</li>
+<li>After these expensive operations, the data structure is safe again</li>
+</ul>
+
+<p>
+Instead of associationg cost with particular operations or pieces of the data structure, we define a potential function on the entire data structure.
+</p>
+<ul class="org-ul">
+<li>The potential function maps the <b>configuration</b> of the current data structure to a real number (the <b>potential</b>)</li>
+<li>We aim to absorb the expensive cost by the <b>potential change</b>.</li>
+</ul>
+
+<p>
+Let \(D_i\) denote our data structure configuration after ith the operation has been performed, and \(\Phi\) let  denote its potential.
+</p>
+
+<p>
+The amortized cost of the i-th operation \(a_i=t_i+\Phi_i-\Phi_{i-1}\)
+</p>
+
+<p>
+Where \(t_i\) is the actual cost of the i-th operation
+</p>
+<ul class="org-ul">
+<li>A potential function is valid if for any i:</li>
+<li>\(\sum^n_{i=1} a_i= \sum^n_{i=1} (t_i+\Phi_i-\Phi_{i-1})= (\sum^n_{i=1} t_i)+\Phi_n-\Phi_{0}\ge \sum^n_{i=1}t_i\)</li>
+</ul>
+
+<p>
+We define a potential function which takes the current “configuration” of the data structure as a parameter and maps it to a real number (potential).
+</p>
+
+<p>
+The amortized cost of an operation is the sum of its actual cost and the potential change due to this operation. The potential function is carefully designed such that when the actual cost is high, the potential is decreased and can compensate for the high cost.
+</p>
+
+<p>
+<b>Fibonacci-heap</b>
+</p>
+<ul class="org-ul">
+<li>Simply add as a single tree, assign min to it if it is the lowest</li>
+<li>Union simply add the forests together</li>
+<li>Delete is simply a decrease key with infinite and an extract-min</li>
+<li>DECREASE-KEY(heap H, node x, target<sub>key</sub> k): given a specified node x (by a pointer), lower its key to the value k</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c">DECREASE-KEY(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, <span style="color: #f9e2af;">node</span> <span style="color: #cdd6f4;">x</span>, target_key k){
+    Change the key value x of to k
+    If k is smaller than the key of x&#8217;s parent p
+        Cut x from p
+        CASCADING-CUT(H, p)
+    <span style="color: #f9e2af;">Update</span> <span style="color: #89b4fa;">min</span>(H)}
+
+CASCADING-CUT(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, node x){
+    If x is not marked
+        Mark x
+    Else
+        Cut x from its <span style="color: #f9e2af;">parent</span> <span style="color: #cdd6f4;">p</span>, <span style="color: #cdd6f4;">unmark</span> x
+        CASCADING-CUT( H, p)}
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>EXTRACT-MIN(heap H)</code>: return the minimum value and remove it from H</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c">EXTRACT-MIN(heap H){
+  Delete the min node y from H
+  For each child z of y
+    The subtree rooted on z is a new tree in H
+    unmark <span style="color: #f9e2af;">z</span>
+  <span style="color: #89b4fa;">Consolidate</span>(H)
+  <span style="color: #f9e2af;">Update</span> <span style="color: #89b4fa;">min</span>(H)
+}
+
+<span style="color: #89b4fa;">Consolidate</span>(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>){
+  <span style="color: #f9e2af;">For</span> <span style="color: #cdd6f4;">i</span> = <span style="color: #fab387;">0</span> to max-degree(h)
+    Pair the trees with order i and make the one
+    with larger root-key value a new child of the
+    other one
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org686b043" class="outline-2">
+<h2 id="org686b043"><span class="section-number-2">4.</span> Minimum spanning trees and Union find</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Example minimum spanning tree: connect the cities with as little cost as possible
+</p>
+
+<p>
+Terminologies:
+</p>
+<ul class="org-ul">
+<li><b>Span:</b> a subset of edges that connects al the vertices</li>
+<li><b>Spanning tree:</b> the subset of edges is acyclic and connects all the vertices</li>
+<li><b>Minimum spanning tree:</b> the spanning tree \(T\) such that total weight \(w(T)=\sum_{(u,v)\in F}w(u,v)\)
+<ul class="org-ul">
+<li>There can be multiple minimum spanning tree in a graph</li>
+</ul></li>
+</ul>
+
+<p>
+If all edge weights in the given graph are different, the minimum spanning tree is unique.
+</p>
+
+<p>
+A <b>light edge</b> for a component \(C\) is an edge \((u, v)\) such that there is exactly one endpoint in \(C\) and has the minimum weight. A light edge can be safely added, it is part fo the minimum spanning tree
+</p>
+
+<p>
+<b>Boruvka&rsquo;s algorit</b> is quite simple:
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #cba6f7;">while</span> F is not a spanning tree <span style="color: #cba6f7;">do</span>
+    Add all light edges
+</pre>
+</div>
+
+<p>
+<b>Prim’s algorithm</b> starts at an arbitrary vertex and repeatedly adds its light edge.
+</p>
+
+<p>
+So just repeatedly add the outgoing edge with the lowest weight that connects a new vertex.
+</p>
+<div class="org-src-container">
+<pre class="src src-c">Start at a singleton T
+Repeatedly adding the light edge of T to F
+</pre>
+</div>
+
+<p>
+We keep all the outgoing edges from T in a priority queue Q, acoording to the edge weights.
+</p>
+
+<p>
+We can also use a fibonacci heap instead, in which we store the vertices instead of the edges. Where the value of v is the minimum edge weight between v and the evolving tree.
+</p>
+
+<p>
+<b>Disjoint set</b> a datastructure to store elements each of which belong to exactly one set. Needed to implement kruskal efficiently.
+</p>
+<ol class="org-ol">
+<li>Using linked lists: A link to the next element an to the first element, indicating the set a element belongs to</li>
+<li>Using a forest: each set is its own tree, top of the tree indicates the set it belongs too</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #89b4fa;">Kruskal</span>(G):
+  Scan all edges by increasing weight
+  <span style="color: #cba6f7;">if</span> an edge is light <span style="color: #cba6f7;">for</span> some component
+    add it to F
+</pre>
+</div>
+
+<p>
+The algorithms for minimum spanning tree also work for graphs where some edges have equal weights, as long as we have a consistent method for breaking ties when choosing the light edge.
+</p>
+</div>
+</div>
+<div id="outline-container-org13e479b" class="outline-2">
+<h2 id="org13e479b"><span class="section-number-2">5.</span> NP-completeness</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Decision problems:</b> solution is a yes/no answer.
+</p>
+<ul class="org-ul">
+<li>Example subset-sum: Given an set of integers, is there a sbuset such that the sum of the elements in T is equal to t</li>
+</ul>
+
+<p>
+<b>Optimization problems:</b> minimize or maximize some objective
+</p>
+
+<p>
+We define <b>input size</b> as the number of bits needed to encode it.
+</p>
+
+<p>
+Given an algorithm, its <b>time complexity</b> is a function f where f (n) is the maximum number of steps that the algorithm takes on any input of length n.
+</p>
+
+<p>
+The class <b>P</b> is the set of decision problems that can be solved in polynomial time.
+</p>
+
+<p>
+To show that a problem is in P, on should design an algorithm that correctly solves the problem and show that this algorithm finishes in time that polynomial in the input length for any input.
+</p>
+
+<p>
+The problems in class p are restricted to decisions problems. We can make an <b>equivalent decision version of optimization problems</b> by introducing an extra parameter as a threshold of the object.
+</p>
+
+<p>
+For some problems, solving them directly is difficult. But if someone somehow discovered the solution it is easy to verify.
+</p>
+
+<p>
+The concept of <b>verify</b> is to use an extra piece of information to check if the answer to a problem instance is yes.
+</p>
+<ul class="org-ul">
+<li>Called a <b>certificate</b> or <b>proof</b></li>
+</ul>
+
+<p>
+If there exists a polynomial-time algorithm that can verify any yes-instance of a problem, its <b>polynomial time verifiable</b>.
+</p>
+
+<p>
+The class <b>NP</b> is the set of decision problems that can be verified in polynomial time.
+</p>
+
+<p>
+To show that a problem is in NP, one should design a polynomial-time algorithm that correctly verifies any yes-instance using a certificate, where the certificate needs to be defined by the prover. The proof consists of three parts:
+</p>
+<ol class="org-ol">
+<li>Show that for every yes-instance of A, there is a certificate c.</li>
+<li>Design a verifier algorithm that answers to the instance is yes using c.</li>
+<li>Show that this verifier algorithm can be run in polynomial time in the input length.</li>
+</ol>
+
+<p>
+A <b>reduction</b> is a way of converting one problem to another such that a solution to the second problem can be used to solve the first problem.
+</p>
+
+<p>
+A problem \(A\) is <b>polynomial-time reducible</b> to problem B, written \(A \le_P B\), if a polynomial-time computable function \(f\) exists, where for every instance \(w\) of \(A\), \(w\) is a yes-instance of \(A\) if and only if \(f (w)\) is a yes-instance of \(B\). The function \(f\) is called the polynomial-time reduction of \(A\) to \(B\).
+</p>
+
+<p>
+A problem is <b>NP-hard</b> if all problems in NP are polynomial-time reducible to it.
+</p>
+
+<p>
+There are a few problems in NP that if they can be solved in polynomial time, then \(P=NP\). These problems are called <b>NP-Complete</b>: problem is in NP and NP-Hard
+</p>
+
+<p>
+NP-Completeness proof.
+</p>
+<ul class="org-ul">
+<li>To show that a problem B is NP-complete, we have to show that it is in NP and NP-hard.</li>
+<li>By the definition of NP-hardness, we have to show that every problem in NP is polynomial-time reducible to B, which is difficult.</li>
+<li>We can instead show that there exists some NP-complete problem A that reduces to B in polynomial time.</li>
+<li>Since A is NP-complete, it is NP-hard, and every problem in NP can be reduced to A in polynomial time.</li>
+<li>Therefore, every problem in NP can be polynomial-time reduced to A first and then polynomial-time reduced to B.</li>
+<li>That is, there is a polynomial-time reduction from any problem in NP to B.</li>
+</ul>
+
+<p>
+<b>Approximation algorithms:</b> Instead of finding the exact solution we find near-optimal solutions efficiently.
+</p>
+<ul class="org-ul">
+<li>Spend polynomial time to get a solution with some guarantee that it won’t be too much worse than the real optimal solution</li>
+</ul>
+
+<p>
+We use <b>approximation ratio</b> measure how “far” the solution of the approximation algorithm \(ALG(I)\) is from the optimal solution \(OPT(I)\)
+</p>
+<ul class="org-ul">
+<li>\(ALG(I)\): the &ldquo;cost&rdquo; of the approximation algorithm on input I</li>
+<li>\(OPT(I)\): the &ldquo;cost&rdquo; of the optimal algorithm on input I</li>
+<li>The definition of cost here is confusing, this isn&rsquo;t referring to running time of the algorithm but of how optimal the solution is
+<ul class="org-ul">
+<li>Each potential solution has a positive cost, depending on the problem we want to minimize or maximize the cost.</li>
+</ul></li>
+<li><b>Minimization problems</b>: the <b>approximation ratio</b> of the algorithm is \(\max_I\frac{ALG(I)}{OPT(I)}\) for all instance \(I\)</li>
+<li><b>Maximization problems</b>: the <b>approximation ratio</b> of the algorithm is \(\max_I\frac{OPT(I)}{ALG(I)}\) for all instance \(I\)</li>
+</ul>
+
+<p>
+We say that the algorithm is a $&alpha;$-approximation algorithm if \(\text{approximation ratio}\le \alpha\) for any instance \(I\).
+</p>
+
+<p>
+To analyze the performance of a aprroximation algorithm we need to now it is <b>feasible</b> the algorithm returns a correct (but possibly not optimal) solution, and the approximation ratio, to show it is not to far of.
+</p>
+</div>
+</div>
+<div id="outline-container-org22feb18" class="outline-2">
+<h2 id="org22feb18"><span class="section-number-2">6.</span> String Matching</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Gegeven string (<b>haystack</b>) zoek alle voorkomens van een patroon (<b>needle</b>)
+</p>
+<ul class="org-ul">
+<li>Tekst \(A[0..n-1]\), patroon \(P[0..m-1]\)</li>
+<li>Wil: k zodat \(A[k..k+m]=P[0..m-1]\)</li>
+<li>Tekst is over alfabet \(\Sigma (\{0,1\},\{A,B,...,Z\},[0,255],\text{etc})\)</li>
+</ul>
+
+<p>
+Algemeen: \(H(K+1)=A[k+m+1]+|\Sigma |*(H(k)-A[k]*|\Sigma|^{m-1})\)
+</p>
+<ul class="org-ul">
+<li>\(H(K+1)=A[k+m+1]+H(k)*|\Sigma |-A[k]*|\Sigma|^{m}\)</li>
+</ul>
+
+<p>
+De getallen kunnen aardig groot worden, daarom gebruiken we modulo, als een module matched checken we daarna de echte match.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">RK4(A,P)
+    ph :<span style="color: #89dceb;">=</span> String2Int(P) <span style="color: #89dceb;">%</span> q
+    sh :<span style="color: #89dceb;">=</span> String2Int(A[<span style="color: #fab387;">0</span>&#8230;m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>]) <span style="color: #89dceb;">%</span> q
+    <span style="color: #cba6f7;">for</span> k :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        <span style="color: #cba6f7;">if</span> (ph <span style="color: #89dceb;">==</span> sh) <span style="color: #cba6f7;">and</span> CheckMatch(A,k,P)
+            output k
+    sh :<span style="color: #89dceb;">=</span> A[k<span style="color: #89dceb;">+</span>m<span style="color: #89dceb;">+</span><span style="color: #fab387;">1</span>] <span style="color: #89dceb;">+</span> sh &#215; &#931; &#8211; A[k] &#215; &#931;<span style="color: #89dceb;">^</span>m <span style="color: #89dceb;">%</span> q
+<span style="color: #cba6f7;">return</span>
+</pre>
+</div>
+
+<p>
+<b>Eindige automaat:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">DFA<span style="color: #89dceb;">-</span>Match(A,P)
+    s :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span>
+    &#948; :<span style="color: #89dceb;">=</span> overgangsfunctie van P
+    <span style="color: #cba6f7;">for</span> i :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        s :<span style="color: #89dceb;">=</span> &#948;(s, A[i])
+        <span style="color: #cba6f7;">if</span> s <span style="color: #89dceb;">=</span> m
+            output i<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">+</span><span style="color: #fab387;">1</span>
+    <span style="color: #cba6f7;">return</span>
+</pre>
+</div>
+
+<p>
+Overgangsfunctie:
+</p>
+<ul class="org-ul">
+<li>\(\delta (i,x) =\) wat is de volgende toestand als we x lezen en nu in toestand i zijn?</li>
+<li>\(i+1\) als \(x=P[i]\)</li>
+<li>de grootste \(j\le i\) zodat \(P[i-j..i-1]=P[0..j-2]\) en \(P[j-1]=x\)</li>
+<li>start-toestand indien zo’n \(j\) niet bestaat</li>
+<li>Naief: \(O(m^3|\Sigma |)\), kan in: \(O(m|\Sigma |)\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org54d3a23" class="outline-2">
+<h2 id="org54d3a23"><span class="section-number-2">7.</span> Gerandomiseerde algoritmes</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Er zijn twee types gerandomiseerde algoritmes:
+</p>
+
+<p>
+<b>Las Vegas algoritme:</b>
+</p>
+<ul class="org-ul">
+<li>Geeft altijd een correct ja/nee antwoord of oplossing</li>
+<li>Verwachte looptijd is eindig/beperkt</li>
+<li>Intuïtie: we gokken met hoeveel rekentijd we gebruiken, maar niet met het antwoord</li>
+</ul>
+
+<p>
+<b>Monte Carlo algoritme:</b>
+</p>
+<ul class="org-ul">
+<li>Geeft niet altijd een correct antwoord
+<ul class="org-ul">
+<li>Eenzijdige fout of tweezijdige fout</li>
+<li>Wel grote kans op goed antwoord</li>
+</ul></li>
+<li>Worst-case looptijd is eindig/beperkt</li>
+<li>Intuïtie: we gokken met het antwoord, maar niet met hoeveel looptijd we nodig hebben</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: martijnV</p>
+<p class="date">Created: 2024-04-07 Sun 22:07</p>
+</div>
+</body>
+</html>

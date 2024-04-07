@@ -1,0 +1,450 @@
+#+title: Cheatsheat
+
+*** Matchings
+
+*Matching:* Subset of edges  that do not have a common endpoint.
+
+Matching M is *maximum* if there is no matching with more number of edges.
+
+A *maximal* matching is a matching M to which no other edges can be added.
+
+Given a matching M in an undirected graph $G=(V,E)$, an *M-alternating* path is a simple path whose edges alternate between being in M and being in $E-M$.
+
+*M-augmenting path* (sometimes called an augmenting path with respect to M ): an M-alternating path whose first and last edges belong to $E-M$ (not in the matching). This means the first and last vertex are also unmatched. <<maug>>
+
+Larger matching M': exchange edges of M-augmenting path P
+- $e\in P \setminus M$ (edges in the path but not in the matching): put in M'
+- $e\in P\cap M$ (edges in both the path and the matching): don’t put in M'
+- Other edges of M: put in M'
+
+Matching M in graph G is maximum if and only if there is no M-augmenting path in G.
+
+
+*Bipartite graph* is a graph whose vertices can be divided into two disjoint and independent sets $U$ and $V$. Every edge connects a vertex in $U$ to one in $V$.
+
+To find an M-augmenting path, we use an *auxillary graph*:
+- direct the edges of the bipartite graph as follows:
+  - If $e\in M$, direct it from right to left.
+  - If $e \notin M$, direct it from left to right.
+
+#+begin_src python
+Algorithm FindBipMAugmenting(G, M)
+  Make directed aux. graph for G as in last slide
+  Find source-sink path P with DFS in aux. graph
+  If path P found, then P is a M-augmenting path
+  No path found? Then M is maximum
+#+end_src
+
+Running time: $O(n+m)$
+
+#+begin_src python
+Algorithm BipMaxMatching(G)
+   M = {}
+      while P = FindBipMAugmenting(G, M)
+      do exchange edges of P (augment M)
+   return M
+#+end_src
+
+Running time: $O(n(n+m)) = O(nm)$
+
+*Bipartite graphs*
+
+Hopcroft-karp algorithm: $O(m\sqrt n)$
+
+*Weighted maximum matching*
+
+From a graph with weighted edges $w:E(G)\rightarrow \mathbb{R}$ find matching of largest possible total weight.
+
+In bipartite graphs: make directed auxillary graph.
+- set $length(e)= -w(e)\ if\ e \in E(G)\setminus M$
+- set $length(e)= w(e)\ if\ e \in M$
+
+Then find the shortest M-augmenting path.
+
+Finding weigted maximmum matching in bipartite graph: Gabow-Tarjan [1988]: $O(m\sqrt n \log (nW))$
+
+*Matching on general graphs*
+
+Matchings on general paths is much harder, best time complexity is $O(n^2m)$ Micali-Vazirani [1980], not taught in this course.
+
+*Weighted general graphs*
+
+Gabow [1990]: $O(n (m + n \log n))$
+
+The *stable-marriage problem*:
+- comes from the notion of heterosexual marriage, viewing L as a set of women and R as a set of men.
+- Each woman ranks all the men in terms of desirability, and each man does the same with all the women.
+- The goal is to pair up women and men (a matching) so that if a woman and a man are not matched to each other, then at least one of them prefers their assigned partner.
+- A men and a woman are a *blocking pair* if they are not matched but each prefers the other over their assigned partner.
+  - Such a pair prevents a a matching from being stable: *unstable*
+- A *stable* matching is a matching that has no blocking pairs
+- A stable matching is always possible
+
+The Gale–Shapley algorithm: $O(n^2)$
+*** Flow and cuts
+A flow network
+- A directed graph $G = (V, A)$
+- For every arc $(u, v) \in A$,
+- There is a *capacity* denoted by $c(u, v) \ge 0$.
+- There are two special vertices called the source and the sink such that all the arcs incident on the source are outgoing and all the arcs incident on the sink are incoming arcs.
+  - *Source:* $s$ arcs incident on the source are outgoing
+  - *Sink:* $t$ arcs incident on the sink are incoming
+
+If we want a network with multiple sources and sinks we add a *super sink* and a *super source* such that there are arcs from the super source to every source vertex and arcs from every sink vertex to the super sink.
+
+*Flow:* A flow in any network $G=(V,A)$ can be defined as a function $f:A\rightarrow  \mathbb R$ such that it follows the following rules:
+- *Capacity Constraint*: $f (a) \le c(a)$, for all $a\in A$
+- *Conservation of flow*: For every vertex v other than the source and the sink, the total flow going into the vertex equals the flow going out of it.
+  - That is $\sum_{u:(u,v)\in A}f((u,v))=\sum_{u:(v,u)\in A}f((v,u))$
+
+*Value of flow*: The total value of flow in a given flow network
+- $|f|=\sum_{u:(s,u)\in A}f((s,u))=\sum_{u:(u,t)\in A}f((u,t))$
+- The total sum going from the source or the total sum going into the sink.
+
+Finding a maximum matching in a bipartite graph can be modeled as a max-flow problem.
+
+Given bipartite graph $G=(U\cup V, E)$, to create the flow network $G'$:
+- Direct all the edges in $G$ from $U$ to $V$ and assign a capacity of $1$ to each.
+- Add a source vertex $s$ and add arcs of capacity $1$ directed from $s$ to each vertex in $u\in U$
+- Add a sink vertex $t$ and add arcs of capacity $1$ directed from each vertex in $v\in V$ to $t$.
+
+Finding a maximum flow in $G'$ amounts to finding a maximum matching in the bipartite graph G.
+
+- Given: bipartite graph $G=(UV, E)$ with a capacity $c(v)$ for every $v$ in $UV$
+- Wanted: The largest subset of edges $M \subseteq E$ such that every vertex $v$ in $U V$ is the endpoint of at most $c(v)$ edges in $M$
+- Example application: U are workers who can do c(v) tasks. V are tasks with c(w)=1
+
+Translate bipartite graph into flow network by appropriately assigning capacities to arcs.
+
+The vertices also need to have capacities, this is modelled by translating the vertices to two vertices and a edge.
+
+The Ford-Fulkerson Algorithm iteratively increases the value of flow. It starts with $f(u,v)=0$ for all $u,v\in V$, giving an initial flow of 0. Each iteration increases the flow value in G by finding an augmenting path in an associated residual network $G_f$.
+
+*Residual Network:*
+- Let $f$ be a flow in the network $G = (V, A)$ with capacities $c$.
+- The residual network $G_f$:
+- For every arc $(v,w)$ in A:
+  - If $f (v, w) < c(v, w)$, then $(v, w)$ is a forward arc in $G_f$ of residual capacity
+    $c_f (v, w) = c(v, w) - f (v, w)$
+  - If $f (v, w) > 0$, then $(w, v)$ is a backward arc in $G_f$ of residual capacity $c_f (w, v) = f (v, w)$
+
+The residual network gives us an overview of possible improvement/augmentation of flow. As long as there is an s - t path in the residual network, it is possible to augment the flow.
+
+*Ford-Fulkerson Algorithm*
+#+begin_src python
+f: f(v,w) = 0 for all (v,w) in A
+Construct residual network G_f
+while There is a path P from s to t in G_f do:
+    x = min{c_f(v,w)|(v,w) in P}
+    for (v,w) in P do:
+        if (v,w) is forward arc then:
+            f(v,w) = f(v,w) + x
+        else:
+            f(v,w) = f(v,w) - x
+return f
+#+end_src
+
+The edges of the augmenting path in $G_f$ indicate on which edges in $G$ to update the flow in order to increase the flow value.
+
+Let $f$ be the flow in $G$ and $g$ be the flow in $G_f$. We define the *augmented flow* as:
+
+\begin{equation}
+(f+g)(u,v)=
+\begin{cases}
+f(u,v)+g(u,v)-g(v,u) & \text{if}(u,v) \in E(G)\\
+0 & \text{otherwise} \\
+\end{cases}
+\end{equation}
+
+An s-t-*cut* in a network $G = (V, A)$ is a partition of the vertices into two sets $S$ and $T$, such that
+- $S\cup T=V$
+- $S\cap T=\emptyset$
+- $s\in S$ and $t\in T$
+
+The *capacity* of a cut $(S, T )$ is the sum of capacities of all the edges going from $S$ to $T$:
+- $c(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} c(v,w)$
+
+The flow over cut:
+- $f(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} f(v,w)$
+
+For every s-t cut $(S,T): f(S,T)\le c(S,T)$, from this it follows that $|f| \le c(S,T)$.
+- It means that if we find a cut in G of capacity c, there cannot exist a flow in G of value greater than c.
+- Likewise, if we found a flow value $c^*$ in G, we cannot find a cut of capacity less than $c^*$.
+
+The two above observations leads us to the following theorem:
+
+*Max-Flow Min-Cut Theorem:* he maximum value of flow in a network G is equal to the capacity of a cut of smallest capacity.
+
+Finding a minimum cut:
+- Assign all arcs capacity 1
+- Find maximum flow, for ex. using Ford-Fulk.
+- Determine S: all vertices reachable from s in $G_f$
+- Output set of arcs in G from S to V – S
+
+#+begin_src python
+procedure Edmonds-Karp(G, c):
+    f: f(v,w) = 0 for all (v,w) in A
+    Construct residual network G_f
+    Find the shortest path P from s to t
+      in Gf using BFS
+    if P exists then
+        x = min{cf (v, w) | (v, w) ∈ P }
+        for (v, w) ∈ P do
+            if (v, w) is forward arc then
+                f (v, w) = f (v, w) + x
+            else
+                f (v, w) = f (v, w) − x
+#+end_src
+
+*** Amortized analysis
+
+*Amortized analysis:* Find the amortized time complexity $a^i$ for the i'th operation such that $\sum^n_{i=1}t_i \le\sum^n_{i=1}a_i \le f(n)$
+
+
+*Aggregate method* is a method to find the amortized complexity of a operation.
+
+$$\text{amortized time for each operation} = \frac{\text{total time complexity}}{\text{number of operations}}$$
+
+1. Calculate the total time complexity over the sequence of operations
+   - You may need some parameters to help you calculate
+     - There are PUSHs in the super stack example
+2. Divide the total time complexity by the number of the operations. The result is the amortized cost per operation
+   - Using aggregate method, every operation has the same amortized cost
+
+*Accounting method* is a method to find the amortized complexity of a operation.
+- Instead of averaging the cost evenly on each of the operations, we design the “prices” for different types of operations
+  - The prices are the amortized cost of the operations
+  - Different operations may have different amortized costs
+- Saving:
+  - Some operations have price higher than its actual cost: save credits
+  - Some operations have price lower than its actual cost: withdraw credits
+  - Always make sure that the saving is non-negative:  $\sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0$
+
+*Tips:*
+Step 1: decide the amortized cost $a_i$ for each (types) of the operations
+- You may have to make several guesses and check if any of them helps you to have low amortized cost
+Step 2: Prove that your amortized cost is valid, that is, for all $n, \sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0$
+- As long as the inequality holds for all $n$, the amortized cost is valid
+- The goal is to find the best “prices” for the operations such that the total amortized cost is low while the inequality holds
+
+*Potential function stuff:* Amortized analysis is for data structures where expensive operations happen only when there are many cheap operations
+
+There are risky situations that the next operation might be expensive
+- In Super stack: when there are many items in the stack, the next MULTI-POP( ) can be expensive
+- After these expensive operations, the data structure is safe again
+
+Instead of associationg cost with particular operations or pieces of the data structure, we define a potential function on the entire data structure.
+- The potential function maps the *configuration* of the current data structure to a real number (the *potential*)
+- We aim to absorb the expensive cost by the *potential change*.
+
+Let $D_i$ denote our data structure configuration after ith the operation has been performed, and $\Phi$ let  denote its potential.
+
+The amortized cost of the i-th operation $a_i=t_i+\Phi_i-\Phi_{i-1}$
+
+Where $t_i$ is the actual cost of the i-th operation
+- A potential function is valid if for any i:
+- $\sum^n_{i=1} a_i= \sum^n_{i=1} (t_i+\Phi_i-\Phi_{i-1})= (\sum^n_{i=1} t_i)+\Phi_n-\Phi_{0}\ge \sum^n_{i=1}t_i$
+
+We define a potential function which takes the current “configuration” of the data structure as a parameter and maps it to a real number (potential).
+
+The amortized cost of an operation is the sum of its actual cost and the potential change due to this operation. The potential function is carefully designed such that when the actual cost is high, the potential is decreased and can compensate for the high cost.
+
+*Fibonacci-heap*
+- Simply add as a single tree, assign min to it if it is the lowest
+- Union simply add the forests together
+- Delete is simply a decrease key with infinite and an extract-min
+- DECREASE-KEY(heap H, node x, target_key k): given a specified node x (by a pointer), lower its key to the value k
+#+begin_src c
+DECREASE-KEY(heap H, node x, target_key k){
+    Change the key value x of to k
+    If k is smaller than the key of x’s parent p
+        Cut x from p
+        CASCADING-CUT(H, p)
+    Update min(H)}
+
+CASCADING-CUT(heap H, node x){
+    If x is not marked
+        Mark x
+    Else
+        Cut x from its parent p, unmark x
+        CASCADING-CUT( H, p)}
+#+end_src
+- =EXTRACT-MIN(heap H)=: return the minimum value and remove it from H
+#+begin_src c
+EXTRACT-MIN(heap H){
+  Delete the min node y from H
+  For each child z of y
+    The subtree rooted on z is a new tree in H
+    unmark z
+  Consolidate(H)
+  Update min(H)
+}
+
+Consolidate(heap H){
+  For i = 0 to max-degree(h)
+    Pair the trees with order i and make the one
+    with larger root-key value a new child of the
+    other one
+}
+#+end_src
+
+*** Minimum spanning trees and Union find
+Example minimum spanning tree: connect the cities with as little cost as possible
+
+Terminologies:
+- *Span:* a subset of edges that connects al the vertices
+- *Spanning tree:* the subset of edges is acyclic and connects all the vertices
+- *Minimum spanning tree:* the spanning tree $T$ such that total weight $w(T)=\sum_{(u,v)\in F}w(u,v)$
+  - There can be multiple minimum spanning tree in a graph
+
+If all edge weights in the given graph are different, the minimum spanning tree is unique.
+
+A *light edge* for a component $C$ is an edge $(u, v)$ such that there is exactly one endpoint in $C$ and has the minimum weight. A light edge can be safely added, it is part fo the minimum spanning tree
+
+*Boruvka's algorit* is quite simple:
+#+begin_src c
+while F is not a spanning tree do
+    Add all light edges
+#+end_src
+
+*Prim’s algorithm* starts at an arbitrary vertex and repeatedly adds its light edge.
+
+So just repeatedly add the outgoing edge with the lowest weight that connects a new vertex.
+#+begin_src c
+Start at a singleton T
+Repeatedly adding the light edge of T to F
+#+end_src
+
+We keep all the outgoing edges from T in a priority queue Q, acoording to the edge weights.
+
+We can also use a fibonacci heap instead, in which we store the vertices instead of the edges. Where the value of v is the minimum edge weight between v and the evolving tree.
+
+*Disjoint set* a datastructure to store elements each of which belong to exactly one set. Needed to implement kruskal efficiently.
+1. Using linked lists: A link to the next element an to the first element, indicating the set a element belongs to
+2. Using a forest: each set is its own tree, top of the tree indicates the set it belongs too
+
+#+begin_src c
+Kruskal(G):
+  Scan all edges by increasing weight
+  if an edge is light for some component
+    add it to F
+#+end_src
+
+The algorithms for minimum spanning tree also work for graphs where some edges have equal weights, as long as we have a consistent method for breaking ties when choosing the light edge.
+
+*** NP-completeness
+*Decision problems:* solution is a yes/no answer.
+- Example subset-sum: Given an set of integers, is there a sbuset such that the sum of the elements in T is equal to t
+
+*Optimization problems:* minimize or maximize some objective
+
+We define *input size* as the number of bits needed to encode it.
+
+Given an algorithm, its *time complexity* is a function f where f (n) is the maximum number of steps that the algorithm takes on any input of length n.
+
+The class *P* is the set of decision problems that can be solved in polynomial time.
+
+To show that a problem is in P, on should design an algorithm that correctly solves the problem and show that this algorithm finishes in time that polynomial in the input length for any input.
+
+The problems in class p are restricted to decisions problems. We can make an *equivalent decision version of optimization problems* by introducing an extra parameter as a threshold of the object.
+
+For some problems, solving them directly is difficult. But if someone somehow discovered the solution it is easy to verify.
+
+The concept of *verify* is to use an extra piece of information to check if the answer to a problem instance is yes.
+- Called a *certificate* or *proof*
+
+If there exists a polynomial-time algorithm that can verify any yes-instance of a problem, its *polynomial time verifiable*.
+
+The class *NP* is the set of decision problems that can be verified in polynomial time.
+
+To show that a problem is in NP, one should design a polynomial-time algorithm that correctly verifies any yes-instance using a certificate, where the certificate needs to be defined by the prover. The proof consists of three parts:
+1. Show that for every yes-instance of A, there is a certificate c.
+2. Design a verifier algorithm that answers to the instance is yes using c.
+3. Show that this verifier algorithm can be run in polynomial time in the input length.
+
+A *reduction* is a way of converting one problem to another such that a solution to the second problem can be used to solve the first problem.
+
+A problem $A$ is *polynomial-time reducible* to problem B, written $A \le_P B$, if a polynomial-time computable function $f$ exists, where for every instance $w$ of $A$, $w$ is a yes-instance of $A$ if and only if $f (w)$ is a yes-instance of $B$. The function $f$ is called the polynomial-time reduction of $A$ to $B$.
+
+A problem is *NP-hard* if all problems in NP are polynomial-time reducible to it.
+
+There are a few problems in NP that if they can be solved in polynomial time, then $P=NP$. These problems are called *NP-Complete*: problem is in NP and NP-Hard
+
+NP-Completeness proof.
+- To show that a problem B is NP-complete, we have to show that it is in NP and NP-hard.
+- By the definition of NP-hardness, we have to show that every problem in NP is polynomial-time reducible to B, which is difficult.
+- We can instead show that there exists some NP-complete problem A that reduces to B in polynomial time.
+- Since A is NP-complete, it is NP-hard, and every problem in NP can be reduced to A in polynomial time.
+- Therefore, every problem in NP can be polynomial-time reduced to A first and then polynomial-time reduced to B.
+- That is, there is a polynomial-time reduction from any problem in NP to B.
+
+*Approximation algorithms:* Instead of finding the exact solution we find near-optimal solutions efficiently.
+- Spend polynomial time to get a solution with some guarantee that it won’t be too much worse than the real optimal solution
+
+We use *approximation ratio* measure how “far” the solution of the approximation algorithm $ALG(I)$ is from the optimal solution $OPT(I)$
+- $ALG(I)$: the "cost" of the approximation algorithm on input I
+- $OPT(I)$: the "cost" of the optimal algorithm on input I
+- The definition of cost here is confusing, this isn't referring to running time of the algorithm but of how optimal the solution is
+  - Each potential solution has a positive cost, depending on the problem we want to minimize or maximize the cost.
+- *Minimization problems*: the *approximation ratio* of the algorithm is $\max_I\frac{ALG(I)}{OPT(I)}$ for all instance $I$
+- *Maximization problems*: the *approximation ratio* of the algorithm is $\max_I\frac{OPT(I)}{ALG(I)}$ for all instance $I$
+
+We say that the algorithm is a $\alpha$-approximation algorithm if $\text{approximation ratio}\le \alpha$ for any instance $I$.
+
+To analyze the performance of a aprroximation algorithm we need to now it is *feasible* the algorithm returns a correct (but possibly not optimal) solution, and the approximation ratio, to show it is not to far of.
+
+*** String Matching
+Gegeven string (*haystack*) zoek alle voorkomens van een patroon (*needle*)
+- Tekst $A[0..n-1]$, patroon $P[0..m-1]$
+- Wil: k zodat $A[k..k+m]=P[0..m-1]$
+- Tekst is over alfabet $\Sigma (\{0,1\},\{A,B,...,Z\},[0,255],\text{etc})$
+
+Algemeen: $H(K+1)=A[k+m+1]+|\Sigma |*(H(k)-A[k]*|\Sigma|^{m-1})$
+- $H(K+1)=A[k+m+1]+H(k)*|\Sigma |-A[k]*|\Sigma|^{m}$
+
+De getallen kunnen aardig groot worden, daarom gebruiken we modulo, als een module matched checken we daarna de echte match.
+
+#+begin_src python
+RK4(A,P)
+    ph := String2Int(P) % q
+    sh := String2Int(A[0…m-1]) % q
+    for k := 0 to n-m-1
+        if (ph == sh) and CheckMatch(A,k,P)
+            output k
+    sh := A[k+m+1] + sh × Σ – A[k] × Σ^m % q
+return
+#+end_src
+
+*Eindige automaat:*
+
+#+begin_src python
+DFA-Match(A,P)
+    s := 0
+    δ := overgangsfunctie van P
+    for i := 0 to n-1
+        s := δ(s, A[i])
+        if s = m
+            output i-m+1
+    return
+#+end_src
+
+Overgangsfunctie:
+- $\delta (i,x) =$ wat is de volgende toestand als we x lezen en nu in toestand i zijn?
+- $i+1$ als $x=P[i]$
+- de grootste $j\le i$ zodat $P[i-j..i-1]=P[0..j-2]$ en $P[j-1]=x$
+- start-toestand indien zo’n $j$ niet bestaat
+- Naief: $O(m^3|\Sigma |)$, kan in: $O(m|\Sigma |)$
+*** Gerandomiseerde algoritmes
+Er zijn twee types gerandomiseerde algoritmes:
+
+*Las Vegas algoritme:*
+- Geeft altijd een correct ja/nee antwoord of oplossing
+- Verwachte looptijd is eindig/beperkt
+- Intuïtie: we gokken met hoeveel rekentijd we gebruiken, maar niet met het antwoord
+
+*Monte Carlo algoritme:*
+- Geeft niet altijd een correct antwoord
+  - Eenzijdige fout of tweezijdige fout
+  - Wel grote kans op goed antwoord
+- Worst-case looptijd is eindig/beperkt
+- Intuïtie: we gokken met het antwoord, maar niet met hoeveel looptijd we nodig hebben

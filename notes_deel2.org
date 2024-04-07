@@ -50,7 +50,7 @@ Algorithm MaxMatching(G)
     return M
 #+end_src c
 ** Matchings in bipartite graphs
-Bipartite graphs are those whose vertices can be partitioned into two sets such that no edge of the graph has both its end-points in the same set.
+*Bipartite graphs* are those whose vertices can be partitioned into two sets such that no edge of the graph has both its end-points in the same set.
 
 Bipartite graph is a graph whose vertices can be divided into two disjoint and independent sets $U$ and $V$
 - Every edge connects a vertex in $U$ to one in $V$.
@@ -485,7 +485,7 @@ Example insert 0:
 
 [[file:Amortized_analysis/2024-04-01_14-31-00_screenshot.png]]
 **** FIND-MIN
-FIND-MIN (heap H): return the minimum value of the keys in the heap H
+FIN     D-MIN (heap H): return the minimum value of the keys in the heap H
 
 Simply return the value pointed to by the Min pointer
 **** UNION
@@ -978,11 +978,11 @@ Dit algoritme is traag want het gebruikt de informatie van een mismatch niet
 Idee: sla strings op als getallen in base $|\Sigma |$
 
 Bijvoorbeeld: zoek orit in algoritme
-- $orit = 15 ⋅ 26^3 + 18 ⋅ 26^2 + 9 ⋅ 26^1 + 20 = 15 / 26 + 18 / 26 + 9 / 26 + 20 = 276062$
-- $algo = 1 ⋅ 26 + 12 ⋅ 26 + 7 ⋅ 26 + 15 = 25885$
-- $lgor = 12 ⋅ 26 + 7 ⋅ 26 + 15 ⋅ 26 + 18 = 216052$
-- $gori= 7 ⋅ 26 + 15 ⋅ 26 + 18 ⋅ 26 + 9 = 133649$
-- $orit= 15 ⋅ 26 + 18 ⋅ 26 + 9 ⋅ 26 + 20 = 276062$
+- $orit = 15 * 26^3 + 18 * 26^2 + 9 * 26^1 + 20 = 15 / 26 + 18 / 26 + 9 / 26 + 20 = 276062$
+- $algo = 1 * 26 + 12 * 26 + 7 * 26 + 15 = 25885$
+- $lgor = 12 * 26 + 7 * 26 + 15 * 26 + 18 = 216052$
+- $gori= 7 * 26 + 15 * 26 + 18 * 26 + 9 = 133649$
+- $orit= 15 * 26 + 18 * 26 + 9 * 26 + 20 = 276062$
 
 Snel herberekenen kan in $O(1)$ door te schuiven.
 - Algo: $H(0)=1*26^3+12*26^2+7*26^1+15*26^0$
@@ -1033,8 +1033,6 @@ return
 - Nu looptijd $O(n)$ voor checken van de hash
 - $O(m)$ per gevonden substring
 - $O(m)$ per spurious hit
-TODO
-
 ** Eindige automaat
 - Eindige Automaat/Finite Automaton
 - $O(n)$ tijd met $O(m|\Sigma |)$ preprocessing
@@ -1073,7 +1071,41 @@ Eindige automaat is $O(n)$ tijd, met $O(m|\Sigma |)$
 
 /Na slide 60 en knuth morris hoeven we niet te weten/
 * TODO Gerandomiseerde algoritmes
-Nog niet samengevat
+Gebruiken getallen uit toevalsgeneratoren
+
+De toevalsgetallen sturen twee dingen:
+- hoe lang het algoritme zoekt
+- in welk deel van de oplossingsruimte het algoritme zoekt
+
+Twee dingen zijn belangrijk bij randomisatie:
+1. Wat is de kans dat het algoritme een (in)correct antwoord geeft?
+2. Wat is de (verwachte) looptijd van het algoritme?
+
+Er zijn twee types gerandomiseerde algoritmes:
+
+*Las Vegas algoritme:*
+- Geeft altijd een correct ja/nee antwoord of oplossing
+- Verwachte looptijd is eindig/beperkt
+- Intuïtie: we gokken met hoeveel rekentijd we gebruiken, maar niet met het antwoord
+
+*Monte Carlo algoritme:*
+- Geeft niet altijd een correct antwoord
+  - Eenzijdige fout of tweezijdige fout
+  - Wel grote kans op goed antwoord
+- Worst-case looptijd is eindig/beperkt
+- Intuïtie: we gokken met het antwoord, maar niet met hoeveel looptijd we nodig hebben
+
+Ieder Las Vegas algoritme kan een Monte Carlo algoritme worden
+- Beëindig het LV algoritme na zekere tijd en geef eventueel een willekeurig antwoord terug
+- M.b.v. kansrekening bepaal je vervolgens de kans op het goede antwoord
+
+Ieder Monte Carlo algoritme kan een Las Vegas algoritme worden, mits je efficiënt kunt controleren of een antwoord correct is
+- Draai het Monte Carlo algoritme net zo lang totdat de oplossing correct is
+- M.b.v. kansrekening bepaal je vervolgens de verwachte looptijd
+
+Toevalsvariable $X$, $P(X=k)$: kans dat $X$ waarde $k$ heeft
+
+$E[X] =$ gemiddelde waarde van toevalsvariabele $X$, gewogen door kansen
 * Deel 1
 Niet heel goed samengevat
 ** Divide and Conquer
