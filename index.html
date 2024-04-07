@@ -1,0 +1,3149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-04-07 Sun 13:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notes deel 2</title>
+<meta name="author" content="Martijn Voordouw" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/hideshow.css"/>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/bigblow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/hideshow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Notes deel 2</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9bca4e6">1. Matchings</a>
+<ul>
+<li><a href="#org300829b">1.1. Matchings</a></li>
+<li><a href="#orga218e65">1.2. Matchings in bipartite graphs</a></li>
+<li><a href="#org5430c74">1.3. Matchings of different types of graphs</a></li>
+<li><a href="#org7bfe85f">1.4. Stable matching / stable-marriage problem</a></li>
+</ul>
+</li>
+<li><a href="#org30cca1c">2. Flow and cuts</a>
+<ul>
+<li><a href="#org65c7ac4">2.1. Flow</a></li>
+<li><a href="#org0cedf89">2.2. Bipartite matching as flow</a></li>
+<li><a href="#org4ccfb9e">2.3. Generalized matching as flow</a></li>
+<li><a href="#orgf85b0a9">2.4. The Ford-Fulkerson Algorithm</a></li>
+<li><a href="#org4722830">2.5. Cuts</a>
+<ul>
+<li><a href="#org2f61d91">2.5.1. Finding a mimimum cut</a></li>
+</ul>
+</li>
+<li><a href="#org9bd38d5">2.6. Edmonds-Karp Algorithm</a></li>
+<li><a href="#org96abac3">2.7. Other algorithms</a></li>
+</ul>
+</li>
+<li><a href="#org7439474">3. Amortized analysis</a>
+<ul>
+<li><a href="#org15db0df">3.1. Super stack</a></li>
+<li><a href="#org5c9b893">3.2. Aggregate method</a>
+<ul>
+<li><a href="#orga2539ae">3.2.1. Super stack example</a></li>
+</ul>
+</li>
+<li><a href="#org86a8f67">3.3. Accounting method</a>
+<ul>
+<li><a href="#orgb1b582f">3.3.1. Super stack example</a></li>
+</ul>
+</li>
+<li><a href="#org74bef99">3.4. Potential function</a></li>
+<li><a href="#orgc49cd18">3.5. Fibonacci heaps</a>
+<ul>
+<li><a href="#orgcc38cfb">3.5.1. binary heap</a></li>
+<li><a href="#org16a8edb">3.5.2. Fibonacci Heaps Structure</a></li>
+<li><a href="#org892be21">3.5.3. Fibonacci heap operations</a></li>
+<li><a href="#orgdcfd2c1">3.5.4. Amortized analysis of Fibonacci heaps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgec99178">4. Minimum spanning trees and Union find</a>
+<ul>
+<li><a href="#org16f50e9">4.1. Generic MST algorithm</a></li>
+<li><a href="#orga8dee2d">4.2. Light Edges</a></li>
+<li><a href="#orge2a752c">4.3. Boruvka&rsquo;s algorithm</a></li>
+<li><a href="#org03e7c40">4.4. Prim&rsquo;s algorithm</a></li>
+<li><a href="#org60fe466">4.5. Disjoint Set Union-Find</a>
+<ul>
+<li><a href="#orga8febe8">4.5.1. Linked lists</a></li>
+<li><a href="#orgbdc95c5">4.5.2. Forest</a></li>
+</ul>
+</li>
+<li><a href="#org5aeca23">4.6. Kruskal&rsquo;s algorithm</a></li>
+<li><a href="#org2f7bcc0">4.7. Graphs with repeated weights</a></li>
+</ul>
+</li>
+<li><a href="#orge7025f9">5. NP-completeness</a>
+<ul>
+<li><a href="#org407cf5b">5.1. P and NP</a>
+<ul>
+<li><a href="#org8e12113">5.1.1. The class P</a></li>
+<li><a href="#org2dbc35d">5.1.2. The class NP</a></li>
+</ul>
+</li>
+<li><a href="#orgbae9ec2">5.2. Polynomial-time reduction and NP-hardness</a></li>
+<li><a href="#org76f9f15">5.3. NP-Completeness</a></li>
+</ul>
+</li>
+<li><a href="#org508d315">6. Approximation Algorithms</a>
+<ul>
+<li><a href="#org3f06224">6.1. Minimum vertex cover approximation algorithm</a></li>
+<li><a href="#org8519e38">6.2. Knapsack approximation algorithm</a></li>
+<li><a href="#org96dfe53">6.3. Improving an approximation algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org3658788">7. String Matching</a>
+<ul>
+<li><a href="#org309135b">7.1. Kansrekening</a></li>
+<li><a href="#org1d86b76">7.2. Naief algoritme</a></li>
+<li><a href="#orgae092e8">7.3. <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</a></li>
+<li><a href="#orgc6a797c">7.4. Rabin-Karp</a></li>
+<li><a href="#org5fe5695">7.5. Eindige automaat</a></li>
+</ul>
+</li>
+<li><a href="#orgb90dca8">8. <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</a></li>
+<li><a href="#orgae70ae1">9. Deel 1</a>
+<ul>
+<li><a href="#org0144779">9.1. Divide and Conquer</a>
+<ul>
+<li><a href="#org2f0638b">9.1.1. Divide and Conquer : in het algemeen</a></li>
+<li><a href="#org6297c84">9.1.2. Correctheid: inductie</a></li>
+<li><a href="#orgb777e57">9.1.3. MergeSort</a></li>
+<li><a href="#orgbf3b1ac">9.1.4. Oplossen recurrente betrekking</a></li>
+</ul>
+</li>
+<li><a href="#org87f49c1">9.2. Recursief programmeren</a>
+<ul>
+<li><a href="#org3c33075">9.2.1. Gepast betalen</a></li>
+<li><a href="#org67f2da2">9.2.2. optimaliteitsprincipe</a></li>
+<li><a href="#org05a835a">9.2.3. Samenvatting</a></li>
+</ul>
+</li>
+<li><a href="#org12437c8">9.3. Dynamisch Programmeren</a>
+<ul>
+<li><a href="#org31dcbf4">9.3.1. Driehoek van Pascal DP</a></li>
+<li><a href="#org9b77380">9.3.2. Klassiek DP</a></li>
+<li><a href="#org6828a19">9.3.3. Knapsack probleem</a></li>
+<li><a href="#org043470c">9.3.4. subset sum</a></li>
+<li><a href="#orgcbec623">9.3.5. DP slides 2</a></li>
+</ul>
+</li>
+<li><a href="#org74493ae">9.4. Graphs</a>
+<ul>
+<li><a href="#orgadb75b1">9.4.1. Graph representation</a></li>
+<li><a href="#org714ad67">9.4.2. Adjacency list</a></li>
+<li><a href="#orgdcdcea2">9.4.3. Adjacency Matrix</a></li>
+<li><a href="#orgbd688f7">9.4.4. Adjacency List and Adjacency Matrix</a></li>
+<li><a href="#org8d72d7b">9.4.5. Depth-First Search</a></li>
+</ul>
+</li>
+<li><a href="#orga441ee3">9.5. All pair shortest paths</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9bca4e6" class="outline-2">
+<h2 id="org9bca4e6"><span class="section-number-2">1.</span> Matchings</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+chapter 25
+</p>
+<ul class="org-ul">
+<li>Book defines flow as something between vertices, instead as something belonging to an arc
+<ul class="org-ul">
+<li>Connections between each vertex in the book kindoff</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org300829b" class="outline-3">
+<h3 id="org300829b"><span class="section-number-3">1.1.</span> Matchings</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Matching:</b> Subset of edges  that do not have a common endpoint.
+</p>
+
+<p>
+Matching M is <b>maximum</b> if there is no matching with more number of edges.
+</p>
+
+<p>
+A <b>maximal</b> matching is a matching M to which no other edges can be added.
+</p>
+
+<p>
+To create a maximum matching we use a greedy algorithm, given a non maximum matching create a bigger matching from it.
+</p>
+
+<p>
+Given a matching M in an undirected graph \(G=(V,E)\), an <b>M-alternating</b> path is a simple path whose edges alternate between being in M and being in \(E-M\).
+</p>
+
+<p>
+<b>M-augmenting path</b> (sometimes called an augmenting path with respect to M ): an M-alternating path whose first and last edges belong to \(E-M\) (not in the matching). This means the first and last vertex are also unmatched. <a id="orgdebfe56"></a>
+</p>
+
+<p>
+<i>In the slides the above two definition are given as the same (both the same as M-augmenting)</i>
+</p>
+
+<p>
+Larger matching M&rsquo;: exchange edges of M-augmenting path P
+</p>
+<ul class="org-ul">
+<li>\(e\in P \setminus M\) (edges in the path but not in the matching): put in M&rsquo;</li>
+<li>\(e\in P\cap M\) (edges in both the path and the matching): don’t put in M&rsquo;</li>
+<li>Other edges of M: put in M&rsquo;</li>
+</ul>
+
+<p>
+Doing this is safe:
+</p>
+<ul class="org-ul">
+<li>Endpoints of P are not matched by M, but are matched in M’</li>
+<li>Every other vertex is/remains incident on at most 1 edge of M’</li>
+</ul>
+
+<p>
+Result is larger!
+</p>
+<ul class="org-ul">
+<li>Majority of edges of P were not in M, but are in M’</li>
+</ul>
+
+<p>
+Matching M in graph G is maximum if and only if there is no M-augmenting path in G. <i>(proof in slides and lecture notes)</i>
+</p>
+
+<p>
+#+begin<sub>src</sub> python
+Algorithm MaxMatching(G)
+    M = {}
+    while G has M-augmenting path P
+    do exchange edges of P (augment M)
+    return M
+#+end<sub>src</sub> c
+</p>
+</div>
+</div>
+<div id="outline-container-orga218e65" class="outline-3">
+<h3 id="orga218e65"><span class="section-number-3">1.2.</span> Matchings in bipartite graphs</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Bipartite graphs are those whose vertices can be partitioned into two sets such that no edge of the graph has both its end-points in the same set.
+</p>
+
+<p>
+Bipartite graph is a graph whose vertices can be divided into two disjoint and independent sets \(U\) and \(V\)
+</p>
+<ul class="org-ul">
+<li>Every edge connects a vertex in \(U\) to one in \(V\).</li>
+</ul>
+
+<p>
+Finding an *<a href="#orgdebfe56">M-augmenting path*</a>:
+</p>
+<ul class="org-ul">
+<li>Since the end points of an M-augmenting path must be unmatched, we start from an unmatched vertex.</li>
+<li>If possible, we cross over to the opposite side using an edge not in M , and then come back to the same side using an edge in M.</li>
+<li>We repeat the process until we either reach an unmatched vertex or conclude that no M-augmenting path exists..</li>
+<li>An M -augmenting path has an odd number of edges.</li>
+<li>So, if we start with an unmatched vertex on the left, we end in an unmatched vertex on the right and vice-versa.</li>
+</ul>
+
+<p>
+To find an M-augmenting path, we use an <b>auxillary graph</b>:
+</p>
+<ul class="org-ul">
+<li>direct the edges of the bipartite graph as follows:
+<ul class="org-ul">
+<li>If \(e\in M\), direct it from right to left.</li>
+<li>If \(e \notin M\), direct it from left to right.</li>
+</ul></li>
+</ul>
+
+<p>
+Now we can do a DFS from every unmatched vertex on the left until we have found a path that ends in an unmatched vertex on the right.
+</p>
+
+<p>
+We can avoid doing multiple DFS&rsquo;s by adding a source and sink vertex:
+</p>
+<ul class="org-ul">
+<li>Add a &ldquo;source&rdquo; vertex and add arcs directed from the source to the unmatched vertices on the left.</li>
+<li>We also add a “sink” vertex and add arcs directed from the unmatched vertices on the right to the sink.</li>
+<li>Now, we can run a DFS once to find a path from the source vertex to the sink. It takes \(O(n + m)\) time to find an M-augmenting path using this algorithm</li>
+</ul>
+
+
+<div id="orgc867b6d" class="figure">
+<p><img src="Matchings_and_flow_1+2/2024-03-27_12-31-16_screenshot.png" alt="2024-03-27_12-31-16_screenshot.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">Algorithm FindBipMAugmenting(G, M)
+    Make directed aux. graph <span style="color: #cba6f7;">for</span> G <span style="color: #cba6f7;">as</span> <span style="color: #cba6f7;">in</span> last slide
+    Find source<span style="color: #89dceb;">-</span>sink path P <span style="color: #cba6f7;">with</span> DFS <span style="color: #cba6f7;">in</span> aux. graph
+    If path P found, then P <span style="color: #cba6f7;">is</span> a M<span style="color: #89dceb;">-</span>augmenting path
+    No path found? Then M <span style="color: #cba6f7;">is</span> maximum
+</pre>
+</div>
+
+<p>
+Running time: \(O(n+m)\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">Algorithm BipMaxMatching(G)
+   <span style="color: #cdd6f4;">M</span> <span style="color: #89dceb;">=</span> {}
+      <span style="color: #cba6f7;">while</span> P <span style="color: #89dceb;">=</span> FindBipMAugmenting(G, M)
+      do exchange edges of P (augment M)
+   <span style="color: #cba6f7;">return</span> M
+</pre>
+</div>
+
+<p>
+Running time: \(O(n(n+m)) = O(nm)\)
+</p>
+</div>
+</div>
+<div id="outline-container-org5430c74" class="outline-3">
+<h3 id="org5430c74"><span class="section-number-3">1.3.</span> Matchings of different types of graphs</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<b>Bipartite graphs</b>
+</p>
+
+<p>
+Hopcroft-karp algorithm: \(O(m\sqrt n)\)
+</p>
+
+<p>
+<b>Weighted maximum matching</b>
+</p>
+
+<p>
+From a graph with weighted edges \(w:E(G)\rightarrow \mathbb{R}\) find matching of largest possible total weight.
+</p>
+
+<p>
+In bipartite graphs: make directed auxillary graph.
+</p>
+<ul class="org-ul">
+<li>set \(length(e)= -w(e)\ if\ e \in E(G)\setminus M\)</li>
+<li>set \(length(e)= w(e)\ if\ e \in M\)</li>
+</ul>
+
+<p>
+Then find the shortest M-augmenting path.
+</p>
+
+<p>
+Finding weigted maximmum matching in bipartite graph: Gabow-Tarjan [1988]: \(O(m\sqrt n \log (nW))\)
+</p>
+
+<p>
+<b>Matching on general graphs</b>
+</p>
+
+<p>
+Matchings on general paths is much harder, best time complexity is \(O(n^2m)\) Micali-Vazirani [1980], not taught in this course.
+</p>
+
+<p>
+<b>Weighted general graphs</b>
+</p>
+
+<p>
+Gabow [1990]: \(O(n (m + n \log n))\)
+</p>
+</div>
+</div>
+<div id="outline-container-org7bfe85f" class="outline-3">
+<h3 id="org7bfe85f"><span class="section-number-3">1.4.</span> Stable matching / stable-marriage problem</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+We add information to each vertex: a ranking of the vertices in the other side.
+</p>
+
+<p>
+That is, each vertex in L has an ordered list of all the vertices in R, and vice-versa.
+</p>
+
+<p>
+The goal here is to match each vertex in L with a vertex in R in a stable way.
+</p>
+
+<p>
+The <b>stable-marriage problem</b>:
+</p>
+<ul class="org-ul">
+<li>comes from the notion of heterosexual marriage, viewing L as a set of women and R as a set of men.</li>
+<li>Each woman ranks all the men in terms of desirability, and each man does the same with all the women.</li>
+<li>The goal is to pair up women and men (a matching) so that if a woman and a man are not matched to each other, then at least one of them prefers their assigned partner.</li>
+<li>A men and a woman are a <b>blocking pair</b> if they are not matched but each prefers the other over their assigned partner.
+<ul class="org-ul">
+<li>Such a pair prevents a a matching from being stable: <b>unstable</b></li>
+</ul></li>
+<li>A <b>stable</b> matching is a matching that has no blocking pairs</li>
+<li>A stable matching is always possible</li>
+</ul>
+
+<p>
+The Gale–Shapley algorithm: \(O(n^2)\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org30cca1c" class="outline-2">
+<h2 id="org30cca1c"><span class="section-number-2">2.</span> Flow and cuts</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org65c7ac4" class="outline-3">
+<h3 id="org65c7ac4"><span class="section-number-3">2.1.</span> Flow</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+A flow network
+</p>
+<ul class="org-ul">
+<li>A directed graph \(G = (V, A)\)</li>
+<li>For every arc \((u, v) \in A\),</li>
+<li>There is a <b>capacity</b> denoted by \(c(u, v) \ge 0\).</li>
+<li>There are two special vertices called the source and the sink such that all the arcs incident on the source are outgoing and all the arcs incident on the sink are incoming arcs.
+<ul class="org-ul">
+<li><b>Source:</b> \(s\) arcs incident on the source are outgoing</li>
+<li><b>Sink:</b> \(t\) arcs incident on the sink are incoming</li>
+</ul></li>
+</ul>
+
+<p>
+If we want a network with multiple sources and sinks we add a <b>super sink</b> and a <b>super source</b> such that there are arcs from the super source to every source vertex and arcs from every sink vertex to the super sink.
+</p>
+
+<p>
+<b>Flow:</b> A flow in any network \(G=(V,A)\) can be defined as a function \(f:A\rightarrow  \mathbb R\) such that it follows the following rules:
+</p>
+<ul class="org-ul">
+<li><b>Capacity Constraint</b>: \(f (a) \le c(a)\), for all \(a\in A\)</li>
+<li><b>Conservation of flow</b>: For every vertex v other than the source and the sink, the total flow going into the vertex equals the flow going out of it.
+<ul class="org-ul">
+<li>That is \(\sum_{u:(u,v)\in A}f((u,v))=\sum_{u:(v,u)\in A}f((v,u))\)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Value of flow</b>: The total value of flow in a given flow network
+</p>
+<ul class="org-ul">
+<li>\(|f|=\sum_{u:(s,u)\in A}f((s,u))=\sum_{u:(u,t)\in A}f((u,t))\)</li>
+<li>The total sum going from the source or the total sum going into the sink.</li>
+</ul>
+
+<p>
+Flow can model many practical problems:
+</p>
+<ul class="org-ul">
+<li>Assignment</li>
+<li>Routing</li>
+<li>Network robustness</li>
+</ul>
+
+<p>
+Algorithms for finding a maximum value flow:
+</p>
+<ul class="org-ul">
+<li>Ford-Fulkerson</li>
+<li>Edmonds-Karp</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0cedf89" class="outline-3">
+<h3 id="org0cedf89"><span class="section-number-3">2.2.</span> Bipartite matching as flow</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Finding a maximum matching in a bipartite graph can be modeled as a max-flow problem.
+</p>
+
+<p>
+Given bipartite graph \(G=(U\cup V, E)\), to create the flow network \(G'\):
+</p>
+<ul class="org-ul">
+<li>Direct all the edges in \(G\) from \(U\) to \(V\) and assign a capacity of \(1\) to each.</li>
+<li>Add a source vertex \(s\) and add arcs of capacity \(1\) directed from \(s\) to each vertex in \(u\in U\)</li>
+<li>Add a sink vertex \(t\) and add arcs of capacity \(1\) directed from each vertex in \(v\in V\) to \(t\).</li>
+</ul>
+
+<p>
+Finding a maximum flow in \(G'\) amounts to finding a maximum matching in the bipartite graph G.
+</p>
+
+<p>
+G has matching of size k if and only if G′ has an integer valued flow equal to k.
+</p>
+
+<p>
+<i>Proof for above statement in lecture notes</i>
+</p>
+
+<p>
+Algorithm for maximum bipartite matching:
+</p>
+<ul class="org-ul">
+<li>Construct flow network</li>
+<li>Find maximum flow from s to t with algorithm for maximum flow that yields integer flow; for example, Ford-Fulkerson</li>
+<li>Translate flow back into a matching</li>
+<li>Time: \(O(nm)\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4ccfb9e" class="outline-3">
+<h3 id="org4ccfb9e"><span class="section-number-3">2.3.</span> Generalized matching as flow</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Given: bipartite graph \(G=(UV, E)\) with a capacity \(c(v)\) for every \(v\) in \(UV\)</li>
+<li>Wanted: The largest subset of edges \(M \subseteq E\) such that every vertex \(v\) in \(U V\) is the endpoint of at most \(c(v)\) edges in \(M\)</li>
+<li>Example application: U are workers who can do c(v) tasks. V are tasks with c(w)=1</li>
+</ul>
+
+<p>
+Translate bipartite graph into flow network by appropriately assigning capacities to arcs.
+</p>
+
+<p>
+The vertices also need to have capacities, this is modelled by translating the vertices to two vertices and a edge.
+<img src="Flow_and_matchings/2024-03-28_21-50-25_screenshot.png" alt="2024-03-28_21-50-25_screenshot.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgf85b0a9" class="outline-3">
+<h3 id="orgf85b0a9"><span class="section-number-3">2.4.</span> The Ford-Fulkerson Algorithm</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+The Ford-Fulkerson Algorithm iteratively increases the value of flow. It starts with \(f(u,v)=0\) for all \(u,v\in V\), giving an initial flow of 0. Each iteration increases the flow value in G by finding an augmenting path in an associated residual network \(G_f\).
+</p>
+
+<p>
+<b>Residual Network:</b>
+</p>
+<ul class="org-ul">
+<li>Let \(f\) be a flow in the network \(G = (V, A)\) with capacities \(c\).</li>
+<li>The residual network \(G_f\):</li>
+<li>For every arc \((v,w)\) in A:
+<ul class="org-ul">
+<li>If \(f (v, w) < c(v, w)\), then \((v, w)\) is a forward arc in \(G_f\) of residual capacity
+\(c_f (v, w) = c(v, w) - f (v, w)\)</li>
+<li>If \(f (v, w) > 0\), then \((w, v)\) is a backward arc in \(G_f\) of residual capacity \(c_f (w, v) = f (v, w)\)</li>
+</ul></li>
+</ul>
+
+<p>
+The residual network gives us an overview of possible improvement/augmentation of flow. As long as there is an s - t path in the residual network, it is possible to augment the flow.
+</p>
+
+<p>
+<b>Ford-Fulkerson Algorithm</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cdd6f4;">f</span>: f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> <span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">all</span> (v,w) <span style="color: #cba6f7;">in</span> A
+Construct residual network G_f
+<span style="color: #cba6f7;">while</span> There <span style="color: #cba6f7;">is</span> a path P <span style="color: #cba6f7;">from</span> s to t <span style="color: #cba6f7;">in</span> G_f do:
+    <span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">min</span>{c_f(v,w)<span style="color: #89dceb;">|</span>(v,w) <span style="color: #cba6f7;">in</span> P}
+    <span style="color: #cba6f7;">for</span> (v,w) <span style="color: #cba6f7;">in</span> P do:
+        <span style="color: #cba6f7;">if</span> (v,w) <span style="color: #cba6f7;">is</span> forward arc then:
+            f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f(v,w) <span style="color: #89dceb;">+</span> x
+        <span style="color: #cba6f7;">else</span>:
+            f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f(v,w) <span style="color: #89dceb;">-</span> x
+<span style="color: #cba6f7;">return</span> f
+</pre>
+</div>
+
+<p>
+Simplified: while there exists an augmenting path, augment the flow along p.
+</p>
+
+<p>
+The edges of the augmenting path in \(G_f\) indicate on which edges in \(G\) to update the flow in order to increase the flow value.
+</p>
+
+<p>
+Let \(f\) be the flow in \(G\) and \(g\) be the flow in \(G_f\). We define the <b>augmented flow</b> as:
+</p>
+
+\begin{equation}
+(f+g)(u,v)=
+\begin{cases}
+f(u,v)+g(u,v)-g(v,u) & \text{if}(u,v) \in E(G)\\
+0 & \text{otherwise} \\
+\end{cases}
+\end{equation}
+
+<p>
+The definition makes sense as we increase the flow on any edge of G by at most its residual capacity and decrease the flow on it by at most its flow value.
+</p>
+
+
+<p>
+Proof of correctness of the algorithm in the lecture notes, probably worth it to read through.
+</p>
+
+<p>
+Running time:
+</p>
+<ul class="org-ul">
+<li>Residual network construction: \(O(n+m)\)
+<ul class="org-ul">
+<li>Only Arcs (u,v) with c(u,v)&gt;0 are relevant</li>
+</ul></li>
+<li>Finding path from s to t: DFS/BFS
+<ul class="org-ul">
+<li>\(O(n+m)\)</li>
+</ul></li>
+<li>Total running time depends on number of iterations</li>
+<li>Could be the case that unlimited time is needed.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4722830" class="outline-3">
+<h3 id="org4722830"><span class="section-number-3">2.5.</span> Cuts</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+An s-t-<b>cut</b> in a network \(G = (V, A)\) is a partition of the vertices into two sets \(S\) and \(T\), such that
+</p>
+<ul class="org-ul">
+<li>\(S\cup T=V\)</li>
+<li>\(S\cap T=\emptyset\)</li>
+<li>\(s\in S\) and \(t\in T\)</li>
+</ul>
+
+<p>
+The <b>capacity</b> of a cut \((S, T )\) is the sum of capacities of all the edges going from \(S\) to \(T\):
+</p>
+<ul class="org-ul">
+<li>\(c(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} c(v,w)\)</li>
+</ul>
+
+<p>
+The flow over cut:
+</p>
+<ul class="org-ul">
+<li>\(f(S, T)=\sum_{v\in S,w\in T:(v,w)\in A} f(v,w)\)</li>
+</ul>
+
+<p>
+For every s-t cut \((S,T): f(S,T)\le c(S,T)\), from this it follows that \(|f| \le c(S,T)\).
+</p>
+<ul class="org-ul">
+<li>It means that if we find a cut in G of capacity c, there cannot exist a flow in G of value greater than c.</li>
+<li>Likewise, if we found a flow value \(c^*\) in G, we cannot find a cut of capacity less than \(c^*\).</li>
+</ul>
+
+<p>
+The two above observations leads us to the following theorem:
+</p>
+
+<p>
+<b>Max-Flow Min-Cut Theorem:</b> he maximum value of flow in a network G is equal to the capacity of a cut of smallest capacity.
+</p>
+</div>
+<div id="outline-container-org2f61d91" class="outline-4">
+<h4 id="org2f61d91"><span class="section-number-4">2.5.1.</span> Finding a mimimum cut</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+Given a direct graph \(G=(V,A)\), vertices s, t
+</p>
+
+<p>
+What is the minimum number of arcs we have to remove from G so that no path from s to t remains.
+</p>
+
+<p>
+Algorithm:
+</p>
+<ul class="org-ul">
+<li>Assign all arcs capacity 1</li>
+<li>Find maximum flow, for ex. using Ford-Fulk.</li>
+<li>Determine S: all vertices reachable from s in \(G_f\)</li>
+<li>Output set of arcs in G from S to V – S</li>
+</ul>
+
+<p>
+Not the best way as we will see next
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9bd38d5" class="outline-3">
+<h3 id="org9bd38d5"><span class="section-number-3">2.6.</span> Edmonds-Karp Algorithm</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+The ford-fulkerson algorithm could run for ever with non-integer output, and can also run for a long time even with integer valued capacities.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">procedure MaxFlow(G, c):
+    <span style="color: #cdd6f4;">f</span>: f(<span style="color: #cdd6f4;">v</span>,<span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> <span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">all</span> (v,w) <span style="color: #cba6f7;">in</span> A
+    Construct residual network G_f
+    Find the shortest path P <span style="color: #cba6f7;">from</span> s to t <span style="color: #cba6f7;">in</span> Gf using BFS
+    <span style="color: #cba6f7;">if</span> P exists then
+        <span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">min</span>{cf (v, w) <span style="color: #89dceb;">|</span> (v, w) &#8712; P }
+        <span style="color: #cba6f7;">for</span> (v, w) &#8712; P do
+            <span style="color: #cba6f7;">if</span> (v, w) <span style="color: #cba6f7;">is</span> forward arc then
+                f (<span style="color: #cdd6f4;">v</span>, <span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f (v, w) <span style="color: #89dceb;">+</span> x
+            <span style="color: #cba6f7;">else</span>
+                f (<span style="color: #cdd6f4;">v</span>, <span style="color: #cdd6f4;">w</span>) <span style="color: #89dceb;">=</span> f (v, w) &#8722; x
+</pre>
+</div>
+
+<p>
+This algorithm has \(O(n*m^2)\) time.
+</p>
+
+<p>
+Once again proof in lecture notes.
+</p>
+</div>
+</div>
+<div id="outline-container-org96abac3" class="outline-3">
+<h3 id="org96abac3"><span class="section-number-3">2.7.</span> Other algorithms</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+Goldberg&rsquo;s push-relabel (preflow-push) algorithms:
+</p>
+<ul class="org-ul">
+<li>Goldber-Tarjan[1986,1988]: \(O(nm\log \frac {n^2} m)\)</li>
+</ul>
+
+<p>
+It can be solved in \(O(nm)\) time if the graph has a special structure.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7439474" class="outline-2">
+<h2 id="org7439474"><span class="section-number-2">3.</span> Amortized analysis</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Amortized analysis:</b>
+</p>
+<ul class="org-ul">
+<li>Find the amortized time complexity \(a^i\) for the i&rsquo;th operation such that \(\sum^n_{i=1}t_i \le\sum^n_{i=1}a_i \le f(n)\)</li>
+<li>Reason about the total complexity instead of the complexity of a single operation</li>
+</ul>
+
+<p>
+Why use amortized?
+</p>
+<ul class="org-ul">
+<li>For maintaining data structures, many operations are involved
+<ul class="org-ul">
+<li>Some of the operations have small cost (time complexity), and some have large cost</li>
+<li>In many cases, we can get better performance in the long-run than we can on a per- operation basis</li>
+</ul></li>
+<li>Other applications:
+<ul class="org-ul">
+<li>Data science: In long data processing pipelines, people care about the total time used more than the cost of a single operation</li>
+<li>Bank loans scheme: Banks use amortization to calculate fixed payments for interest- bearing loans</li>
+<li>Commercial: Some cell phone contracts allow rolling unused calling time from one one month into the next month</li>
+</ul></li>
+</ul>
+
+<p>
+Key Ideas of Amortized Analysis
+</p>
+<ul class="org-ul">
+<li>It works when we consider a sequence of operations</li>
+<li>There are cheap operations and expensive operations. If expensive operations are not possible to happen every time, we can average the large cost over long periods of time.</li>
+<li>The total time complexity is not so high.</li>
+<li>No probability involved, we are averaging over a sequence of operations, not the possible worst case running time of a single operations</li>
+</ul>
+
+
+<div id="org8957ff0" class="figure">
+<p><img src="Amortized_analysis/2024-03-31_21-30-05_screenshot.png" alt="2024-03-31_21-30-05_screenshot.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org15db0df" class="outline-3">
+<h3 id="org15db0df"><span class="section-number-3">3.1.</span> Super stack</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We will use a extended stack as an example for amortized analysis.
+</p>
+
+<p>
+It supports 3 operations:
+</p>
+<ul class="org-ul">
+<li><code>PUSH</code> \(O(1)\)</li>
+<li><code>POP</code> \(O(1)\)</li>
+<li><code>MULTI-POP(k)</code> \(O(min(k,n))\)</li>
+</ul>
+
+<p>
+Assume we have n operations, the total time complexity would be \(O(n*n)\) (n multi pops).
+</p>
+
+<p>
+However when we observe that <code>MULTI-POP</code> can never exceed the total number of items ever pushed into the stack. So the total time complexity of all =MULTI-POP=s cannot exceed \(O(n)\)
+</p>
+
+<p>
+So the actual complexity of n operations here is \(O(n)\)
+</p>
+</div>
+</div>
+<div id="outline-container-org5c9b893" class="outline-3">
+<h3 id="org5c9b893"><span class="section-number-3">3.2.</span> Aggregate method</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<b>Aggregate method</b> is a method to find the amortized complexity of a operation.
+</p>
+
+<p>
+\[\text{amortized time for each operation} = \frac{\text{total time complexity}}{\text{number of operations}}\]
+</p>
+
+<p>
+Step 1: Calculate the total time complexity over the sequence of operations
+</p>
+
+<ul class="org-ul">
+<li>You may need some parameters to help you calculate
+<ul class="org-ul">
+<li>There are PUSHs in the super stack example</li>
+</ul></li>
+</ul>
+
+<p>
+Step 2: Divide the total time complexity by the number of the operations. The result is the amortized cost per operation
+</p>
+
+<ul class="org-ul">
+<li>Using aggregate method, every operation has the same amortized cost</li>
+</ul>
+</div>
+<div id="outline-container-orga2539ae" class="outline-4">
+<h4 id="orga2539ae"><span class="section-number-4">3.2.1.</span> Super stack example</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Super stack under a sequence of PUSH/POP/MULTI-POP operations:
+</p>
+<ul class="org-ul">
+<li>Assume there are \(x\) PUSH operations, the number of pops incurred by <code>POP</code> and <code>MULTI-POP</code> is at most \(x\). Therefore, the worst case total cost is at most \(x+x=2x\le 2n\)</li>
+<li>The amortized time per operation \(\le \frac {2n} n =2\)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org86a8f67" class="outline-3">
+<h3 id="org86a8f67"><span class="section-number-3">3.3.</span> Accounting method</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<b>Accounting method</b> is a method to find the amortized complexity of a operation.
+</p>
+
+<p>
+This method comes from the observation that some operations are expensive and some are cheap.
+</p>
+
+<p>
+We design a pricing scheme where we overestimate the cheap operations and underestimate the expensive operations such that at any moment, we are not underestimating the (current) total cost.
+</p>
+
+<ul class="org-ul">
+<li>Instead of averaging the cost evenly on each of the operations, we design the “prices” for different types of operations
+<ul class="org-ul">
+<li>The prices are the amortized cost of the operations</li>
+<li>Different operations may have different amortized costs</li>
+</ul></li>
+<li>Saving:
+<ul class="org-ul">
+<li>Some operations have price higher than its actual cost: save credits</li>
+<li>Some operations have price lower than its actual cost: withdraw credits</li>
+<li>Always make sure that the saving is non-negative:  \(\sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0\)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Tips:</b>
+Step 1: decide the amortized cost \(a_i\) for each (types) of the operations
+</p>
+<ul class="org-ul">
+<li>You may have to make several guesses and check if any of them helps you to have low amortized cost</li>
+</ul>
+<p>
+Step 2: Prove that your amortized cost is valid, that is, for all \(n, \sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0\)
+</p>
+<ul class="org-ul">
+<li>As long as the inequality holds for all \(n\), the amortized cost is valid</li>
+<li>The goal is to find the best “prices” for the operations such that the total amortized cost is low while the inequality holds</li>
+</ul>
+</div>
+<div id="outline-container-orgb1b582f" class="outline-4">
+<h4 id="orgb1b582f"><span class="section-number-4">3.3.1.</span> Super stack example</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+A super stack supports operations PUSH, POP, and MULTI-POP.
+</p>
+<ul class="org-ul">
+<li>PUSH(x): amortized cost \(a_i=2\) (actual cost \(t_i=1\))</li>
+<li>POP(): amortized cost \(a_i=0\) (actual cost \(t_i=1\))</li>
+<li>MULTI-POP(k): assign amortized cost \(a_i=0\) (actual cost \(t_i=k\))</li>
+</ul>
+
+<p>
+We need to show the amortized costs are valid for the analysis:
+</p>
+<ul class="org-ul">
+<li>starting with an empty stack, for any sequence of n operations, \(\sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge 0\)</li>
+</ul>
+
+<p>
+We proof this using the following claim:
+</p>
+<ul class="org-ul">
+<li>For any n \(\sum^n_{i=1}a_i -\sum^n_{i=1}t_i\ge s_n\)</li>
+<li>Where \(s_i\) denotes the number of items in the stack after the i<sup>th</sup> operation.</li>
+<li>We prove this claim using induction</li>
+</ul>
+
+<p>
+Base case: When \(n=0\), both the amortized cost and the actual cost are 0. \(0\ge 0\)
+</p>
+
+<p>
+<img src="Amortized_analysis/2024-03-31_21-52-49_screenshot.png" alt="2024-03-31_21-52-49_screenshot.png" />
+<img src="Amortized_analysis/2024-03-31_21-54-05_screenshot.png" alt="2024-03-31_21-54-05_screenshot.png" />
+</p>
+
+<ul class="org-ul">
+<li>We use accounting method to upper bound the total cost of Super Stack with n operations.</li>
+<li>We first set the amortized cost of each operation and then prove by induction that the amortized cost is an upper bound of the actual cost at any point of the sequence of n operations.</li>
+<li>If the next operation has an amortized cost lower than its actual cost, there must be enough “savings” from the previous operations to pay for the cost difference.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org74bef99" class="outline-3">
+<h3 id="org74bef99"><span class="section-number-3">3.4.</span> Potential function</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Amortized analysis is for data structures where expensive operations happen only when there are many cheap operations
+</p>
+
+<p>
+There are risky situations that the next operation might be expensive
+</p>
+<ul class="org-ul">
+<li>In Super stack: when there are many items in the stack, the next MULTI-POP( ) can be expensive</li>
+<li>After these expensive operations, the data structure is safe again</li>
+</ul>
+
+<p>
+Instead of associationg cost with particular operations or pieces of the data structure, we define a potential function on the entire data structure.
+</p>
+<ul class="org-ul">
+<li>The potential function maps the <b>configuration</b> of the current data structure to a real number (the <b>potential</b>)</li>
+<li>We aim to absorb the expensive cost by the <b>potential change</b>.</li>
+</ul>
+
+<p>
+Let \(D_i\) denote our data structure configuration after ith the operation has been performed, and \(\Phi\) let  denote its potential.
+</p>
+
+<p>
+The amortized cost of the i-th operation \(a_i=t_i+\Phi_i-\Phi_{i-1}\)
+</p>
+
+<p>
+Where \(t_i\) is the actual cost of the i-th operation
+</p>
+<ul class="org-ul">
+<li>A potential function is valid if for any i:</li>
+<li>\(\sum^n_{i=1} a_i= \sum^n_{i=1} (t_i+\Phi_i-\Phi_{i-1})= (\sum^n_{i=1} t_i)+\Phi_n-\Phi_{0}\ge \sum^n_{i=1}t_i\)</li>
+</ul>
+
+<p>
+We define a potential function which takes the current “configuration” of the data structure as a parameter and maps it to a real number (potential).
+</p>
+
+<p>
+The amortized cost of an operation is the sum of its actual cost and the potential change due to this operation. The potential function is carefully designed such that when the actual cost is high, the potential is decreased and can compensate for the high cost.
+</p>
+
+<p>
+Examples in the slides, worth it to read through.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc49cd18" class="outline-3">
+<h3 id="orgc49cd18"><span class="section-number-3">3.5.</span> Fibonacci heaps</h3>
+<div class="outline-text-3" id="text-3-5">
+</div>
+<div id="outline-container-orgcc38cfb" class="outline-4">
+<h4 id="orgcc38cfb"><span class="section-number-4">3.5.1.</span> binary heap</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+A data structure to create a priority queue.
+</p>
+<ul class="org-ul">
+<li><b>Shape property:</b>
+<ul class="org-ul">
+<li>All levels, except for thee deepest one, are fully filled</li>
+<li>The deepest level is filled from left to right</li>
+</ul></li>
+<li><b>Min-heap ordering:</b> for every node, its children&rsquo;s key is greater than or equal to its key.</li>
+</ul>
+
+
+<div id="orgd6fcfed" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_12-12-18_screenshot.png" alt="2024-04-01_12-12-18_screenshot.png" />
+</p>
+</div>
+
+<p>
+Operations:
+</p>
+<ul class="org-ul">
+<li><code>Find-Min</code>: \(O(1)\) time</li>
+<li><code>Insert</code>: \(O(\log n)\) time
+<ul class="org-ul">
+<li>Start at the bottom, if the new item has a value smaller than its parent&rsquo;s value, swap the two values</li>
+</ul></li>
+<li><code>Extract-Min</code>: \(O(\log n)\) time
+<ul class="org-ul">
+<li>First delete the root, we move the last item to the. If the item moved to the root does not have a value smaller than its children, swap it with the smaller child. Do this recursively.</li>
+</ul></li>
+<li><code>Decrease-Key</code>: \(O(\log n)\) time</li>
+<li><code>Union</code>: \(O(n)\) time</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org16a8edb" class="outline-4">
+<h4 id="org16a8edb"><span class="section-number-4">3.5.2.</span> Fibonacci Heaps Structure</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+A <b>fibonacci heap</b> is a collection of <b>min-heap-ordered</b> component trees
+</p>
+<ul class="org-ul">
+<li>There can be many trees inside one Fibonacci heap</li>
+<li>Each tree satisfies the min-heap ordering</li>
+<li>No need to rebuild everything when UNION is performed</li>
+<li>Is &ldquo;lazy&rdquo;: usually structure is messy, is reorganizes when some expsenive operations happen.</li>
+</ul>
+
+<p>
+Performance:
+</p>
+<ul class="org-ul">
+<li>No good worst-case guarantee for any operation (except INSERT/ FIND-MIN)</li>
+<li>Excellent amortized cost to perform each operation</li>
+</ul>
+
+<p>
+Terminologies:
+</p>
+<ul class="org-ul">
+<li><code>min(heap H)</code> the minimum value over all trees</li>
+<li>Order of a node: the number of children of the node</li>
+<li>Order of a tree: the order of the root node of the tree</li>
+</ul>
+
+
+<div id="orgac6f227" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_13-50-23_screenshot.png" alt="2024-04-01_13-50-23_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org892be21" class="outline-4">
+<h4 id="org892be21"><span class="section-number-4">3.5.3.</span> Fibonacci heap operations</h4>
+<div class="outline-text-4" id="text-3-5-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Operation</th>
+<th scope="col" class="org-left">Actual  Cost</th>
+<th scope="col" class="org-left">Amortized  Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">INSERT(heap H, key k)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">FIND-MIN(heap H)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">UNION(heap H1, heap H2)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">DECREASE-KEY(heap H, node x, target key value k)</td>
+<td class="org-left">O(number of cascading-cuts)</td>
+<td class="org-left">O(1)</td>
+</tr>
+
+<tr>
+<td class="org-left">EXTRACT-MIN(heap H)</td>
+<td class="org-left">O(max degree + number of trees in the heap)</td>
+<td class="org-left">O(log n)</td>
+</tr>
+
+<tr>
+<td class="org-left">DELETE(heap H, node x)</td>
+<td class="org-left">DECREASE-KEY +   EXTRACT-MIN</td>
+<td class="org-left">O(log n)</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="orgeb76a59" class="figure">
+<p><img src="Amortized_analysis/2024-04-02_21-16-31_screenshot.png" alt="2024-04-02_21-16-31_screenshot.png" />
+</p>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org54da7dd"></a>INSERT<br />
+<div class="outline-text-5" id="text-3-5-3-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #89b4fa;">INSERT</span> (<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, <span style="color: #f9e2af;">key</span> <span style="color: #cdd6f4;">k</span>)
+{
+    Add a node with key
+    If k &lt; min(H)
+      min(H) &lt;- k
+}
+</pre>
+</div>
+<p>
+Example insert 0:
+</p>
+
+
+<div id="org567df61" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_14-29-06_screenshot.png" alt="2024-04-01_14-29-06_screenshot.png" />
+</p>
+</div>
+
+
+<div id="org679bd32" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_14-31-00_screenshot.png" alt="2024-04-01_14-31-00_screenshot.png" />
+</p>
+</div>
+</div>
+</li>
+<li><a id="org6d9763e"></a>FIND-MIN<br />
+<div class="outline-text-5" id="text-3-5-3-2">
+<p>
+FIND-MIN (heap H): return the minimum value of the keys in the heap H
+</p>
+
+<p>
+Simply return the value pointed to by the Min pointer
+</p>
+</div>
+</li>
+<li><a id="orga6c17b7"></a>UNION<br />
+<div class="outline-text-5" id="text-3-5-3-3">
+<p>
+UNION heap \(H_1\), heap \(H_2\): union two heaps \(H_1\) and \(H_2\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #89b4fa;">UNION</span>(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H1</span>, <span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H1</span>)
+{
+    <span style="color: #fab387;">1</span>. Put all the elements in both heaps together to the new heap H
+    <span style="color: #fab387;">2</span>. Update min(H)
+}
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orga270aaf"></a>DECREASE-KEY<br />
+<div class="outline-text-5" id="text-3-5-3-4">
+<p>
+DECREASE-KEY(heap H, node x, target<sub>key</sub> k): given a specified node x (by a pointer), lower its key to the value k
+</p>
+<div class="org-src-container">
+<pre class="src src-c">DECREASE-KEY(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, <span style="color: #f9e2af;">node</span> <span style="color: #cdd6f4;">x</span>, target_key k){
+    Change the key value x of to k
+    If k is smaller than the key of x&#8217;s parent p
+        Cut x from p
+        CASCADING-CUT(H, p)
+    <span style="color: #f9e2af;">Update</span> <span style="color: #89b4fa;">min</span>(H)}
+
+CASCADING-CUT(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>, node x){
+    If x is not marked
+        Mark x
+    Else
+        Cut x from its <span style="color: #f9e2af;">parent</span> <span style="color: #cdd6f4;">p</span>, <span style="color: #cdd6f4;">unmark</span> x
+        CASCADING-CUT( H, p)}
+</pre>
+</div>
+
+<p>
+Whithout <code>CASCADING-CUT</code>, we could en up with a loose tree: larger order but there are only a few nodes in a tree.
+</p>
+<ul class="org-ul">
+<li>This way a node can only lose on child before being cut.</li>
+<li>The minimum number of nodes in a tree of order k is \(F_{k+2}\ge \phi^k \Leftrightarrow\) any tree with n nodes has order at most \(O(log_\phi n)\)</li>
+<li>\(\phi=\) gold ratio 1.618</li>
+</ul>
+
+<p>
+Example: with target key 3
+</p>
+
+
+<div id="org379ec19" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_15-10-59_screenshot.png" alt="2024-04-01_15-10-59_screenshot.png" />
+</p>
+</div>
+
+<p>
+5 is changed to 3 and cut from the three put in the top level.
+</p>
+
+
+<div id="orgffc3c44" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_15-13-47_screenshot.png" alt="2024-04-01_15-13-47_screenshot.png" />
+</p>
+</div>
+
+<p>
+Now example with target 4 and node x
+</p>
+
+
+<div id="org7da34b0" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_15-15-03_screenshot.png" alt="2024-04-01_15-15-03_screenshot.png" />
+</p>
+</div>
+
+<p>
+4 gets cut from the tree
+</p>
+
+
+<div id="orga51760f" class="figure">
+<p><img src="Amortized_analysis/2024-04-01_15-16-09_screenshot.png" alt="2024-04-01_15-16-09_screenshot.png" />
+</p>
+</div>
+
+<p>
+Because p was marked it is cut and unmarked, and cascading cut is called on its parent, which then get marked.
+<img src="Amortized_analysis/2024-04-01_15-17-42_screenshot.png" alt="2024-04-01_15-17-42_screenshot.png" />
+</p>
+</div>
+</li>
+<li><a id="org974adbe"></a>EXTRACT-MIN<br />
+<div class="outline-text-5" id="text-3-5-3-5">
+<p>
+<code>EXTRACT-MIN(heap H)</code>: return the minimum value and remove it from H
+</p>
+
+<p>
+An expensive operation because it has to go through te roots of all other trees and find the minimum. Because it is expensive anyway we add reorganize the datastructure to be more efficient later.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">EXTRACT-MIN(heap H){
+    Delete the min node y from H
+    For each child z of y
+        The subtree rooted on z is a new tree <span style="color: #f9e2af;">in</span> <span style="color: #cdd6f4;">H</span>, <span style="color: #cdd6f4;">unmark</span> z
+    Consolidate(H)
+    <span style="color: #f9e2af;">Update</span> <span style="color: #89b4fa;">min</span>(H)
+}
+
+<span style="color: #89b4fa;">Consolidate</span>(<span style="color: #f9e2af;">heap</span> <span style="color: #cdd6f4;">H</span>){
+    <span style="color: #f9e2af;">For</span> <span style="color: #cdd6f4;">i</span> = <span style="color: #fab387;">0</span> to max-degree(h)
+        Pair the trees with order i and make the one
+        with larger root-key value a new child of the
+        other one
+}
+</pre>
+</div>
+
+<p>
+Consolidate combines trees that are of the same order together.
+</p>
+
+<p>
+The two left most trees will be consolidated
+<img src="Amortized_analysis/2024-04-02_20-49-36_screenshot.png" alt="2024-04-02_20-49-36_screenshot.png" />
+</p>
+
+<p>
+Result:
+<img src="Amortized_analysis/2024-04-02_20-49-50_screenshot.png" alt="2024-04-02_20-49-50_screenshot.png" />
+</p>
+
+<p>
+Actual cost: \(O(\text{max degree}+{\#trees})\)
+</p>
+</div>
+</li>
+<li><a id="org6b7dbb5"></a>DELETE<br />
+<div class="outline-text-5" id="text-3-5-3-6">
+<p>
+We first decrease the key value of the target node to the minimuym vlaue, and then call <code>EXTRACT-MIN</code> on it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">DECREASE-KEY(H,x,&#8722;&#8734;)
+EXTRACT-MIN(H)
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgdcfd2c1" class="outline-4">
+<h4 id="orgdcfd2c1"><span class="section-number-4">3.5.4.</span> Amortized analysis of Fibonacci heaps</h4>
+<div class="outline-text-4" id="text-3-5-4">
+
+<div id="orge61ccc2" class="figure">
+<p><img src="Amortized_analysis/2024-04-02_21-16-31_screenshot.png" alt="2024-04-02_21-16-31_screenshot.png" />
+</p>
+</div>
+
+<p>
+Without amortized analysis the fibonacci heap does not make sense, however with it the time complexitys are quite good.
+</p>
+
+<p>
+In the lecture notes it is analysed using <a href="#org74bef99">potential functions.</a>
+</p>
+
+<p>
+First we define some things:
+</p>
+<ul class="org-ul">
+<li>\(b_i\) number of trees after the i-th operation</li>
+<li>\(m_i\) number of marked nodes after the i-th operation</li>
+<li>Potential function \(\Phi _i\) after the i-th operation is \(O(b_i)+O(m_i)\)</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgccf4958"></a>DECREASE-KEY analysis<br />
+<div class="outline-text-5" id="text-3-5-4-1">
+<p>
+Recall that decrease-key takes \(O(c)\) time, where c is the number of cuttings incurred by the cascading cut.
+</p>
+
+<p>
+After decrease-key the \(c\) cuttings create \(c\) new trees, and the \(c\) new roots are unmarked. It marks one node.
+</p>
+
+<p>
+So \(b_i=b_{i-1}+c\) and \(m_i\le m_{i-1} -c+1\).
+</p>
+
+<p>
+So the amortized cost is \(t_i+ \Phi_i-\Phi_{i-1}=O(c)+O(c)+O(-c+1)=O(1)\)
+</p>
+</div>
+</li>
+<li><a id="org6b17e4a"></a>EXTRACT-MIN analysis<br />
+<div class="outline-text-5" id="text-3-5-4-2">
+<p>
+EXTRACT-MIN takes \(O(\text{max degree}+\text{\#trees})\) time.
+</p>
+
+<p>
+After consolidation there are most Max-degree + 1 trees left: \(b_i\le \text{max degree} +1\).
+</p>
+
+<p>
+The number of marked nodes is still the same.
+</p>
+
+<p>
+So the amortized cost is \(t_i+ \Phi_i-\Phi_{i-1} = O(\text{max degree}+b_i) + O(\text{max degree}+1) - O(b_i)=O(\text{max degree})\)
+</p>
+
+<p>
+Now we need to find if we can bound max-degree.
+</p>
+
+<p>
+Right after consolidation an order-k tree has \(2^k\) nodes.
+</p>
+
+<p>
+The marking of nodes makes sure that any node loses at most one child. Therefore an order-k tree has at least \(F_{k+2}\) nodes. Where \(F_i\) is the i-th fibonacci number.
+</p>
+
+<p>
+So an order-k tree has at least \(F_{k+2}\ge \phi^k\) nodes, where \(\phi\) is the golden ratio. In other words, a tree with \(n\) nodes has an order of at mos \(O(\log_\phi n)\).
+</p>
+
+<p>
+So the amortized extract min cost is \(O(\log n)\)
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec99178" class="outline-2">
+<h2 id="orgec99178"><span class="section-number-2">4.</span> Minimum spanning trees and Union find</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Example minimum spanning tree: connect the cities with as little cost as possible
+</p>
+
+
+<div id="orgf18cc01" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-45-15_screenshot.png" alt="2024-04-05_08-45-15_screenshot.png" />
+</p>
+</div>
+
+<p>
+Terminologies:
+</p>
+<ul class="org-ul">
+<li><b>Span:</b> a subset of edges that connects al the vertices</li>
+<li><b>Spanning tree:</b> the subset of edges is acyclic and connects all the vertices</li>
+<li><b>Minimum spanning tree:</b> the spanning tree \(T\) such that total weight \(w(T)=\sum_{(u,v)\in F}w(u,v)\)
+<ul class="org-ul">
+<li>There can be multiple minimum spanning tree in a graph</li>
+</ul></li>
+</ul>
+
+<p>
+If all edge weights in the given graph are different, the minimum spanning tree is unique. Throughout this lecture we assume the edge weights are unique.
+</p>
+</div>
+<div id="outline-container-org16f50e9" class="outline-3">
+<h3 id="org16f50e9"><span class="section-number-3">4.1.</span> Generic MST algorithm</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+All of the mst algorithms work like this:
+</p>
+
+<ul class="org-ul">
+<li>The generic MST algorithm maintains an acyclic subgraph \(F\) of the input graph \(G\)</li>
+<li>At all times \(F\), is a subgraph of the final minimum spanning tree of \(G\)</li>
+<li>Initially, \(F\) consists of \(V\) singleton trees</li>
+<li>The generic algorithm connected trees in \(F\) by adding certain edges between them, and make sure that these added edges are safe.
+<ul class="org-ul">
+<li>After incuding these edges the new Forest \(F\) is still a subgraph of the final minimum spanning tree of G</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">GENERIC<span style="color: #89dceb;">-</span>MST(G)
+F &#8592; &#981;
+<span style="color: #cba6f7;">while</span> F does <span style="color: #cba6f7;">not</span> form a spanning tree
+    find an edge (u,v) that <span style="color: #cba6f7;">is</span> safe <span style="color: #cba6f7;">for</span> F
+    F &#8592; F &#8746; {(u, v)}
+    <span style="color: #cba6f7;">return</span> F
+</pre>
+</div>
+
+<div id="org55e70b9" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-58-49_screenshot.png" alt="2024-04-05_08-58-49_screenshot.png" />
+</p>
+</div>
+
+
+<div id="org5426ff6" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-05_08-59-19_screenshot.png" alt="2024-04-05_08-59-19_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8dee2d" class="outline-3">
+<h3 id="orga8dee2d"><span class="section-number-3">4.2.</span> Light Edges</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+How do we now if an edge is safe to add to a graph?
+</p>
+<ul class="org-ul">
+<li>An edge is safe when it belongs to the minimum spanning tree.</li>
+<li>We call that a <b>light edge</b></li>
+</ul>
+
+<p>
+At any moment during the generic algorithm, the subgraph F has one or more connected components. A light edge for a component \(C\) is an edge \((u, v)\) such that there is exactly one endpoint in \(C\) and has the minimum weight. In the following, we show that adding a light edge is safe.
+</p>
+
+
+<div id="org8da8e85" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_11-34-38_screenshot.png" alt="2024-04-06_11-34-38_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2a752c" class="outline-3">
+<h3 id="orge2a752c"><span class="section-number-3">4.3.</span> Boruvka&rsquo;s algorithm</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<b>Boruvka&rsquo;s algorit</b> is quite simple:
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #cba6f7;">while</span> F is not a spanning tree <span style="color: #cba6f7;">do</span>
+    Add all light edges
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>To maintain the information about components, we can use an array called comp. The entry comp[i] keeps the information of which component the vertex i belongs to.</li>
+<li>Initially, each component is a singleton.</li>
+<li>In each round, the algorithm should check each edge if it is a light edge by checking the comp array in O(|E|) time.</li>
+<li>If an edge is a light edge for some 2 component, it is bought.</li>
+<li>After buying a light edge, the algorithm runs a DFS on the graph \((V, F )\) and updates the component information in \(O(|V | + |F |) = O(|V |)\) time.
+<ul class="org-ul">
+<li>Add the vertices to the update component</li>
+</ul></li>
+<li>In each round, the total time complexity is \(O(|V |+|E|)\).</li>
+<li>There are at most \(O(log |V |)\) rounds since after each round, the components are matched at least in pairs.</li>
+<li>Therefore, total time complexity is \(O(|E| log |V |)\).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03e7c40" class="outline-3">
+<h3 id="org03e7c40"><span class="section-number-3">4.4.</span> Prim&rsquo;s algorithm</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+<b>Prim’s algorithm</b> starts at an arbitrary vertex and repeatedly adds its light edge.
+</p>
+
+<p>
+So just repeatedly add the outgoing edge with the lowest weight that connects a new vertex.
+</p>
+<div class="org-src-container">
+<pre class="src src-c">Start at a singleton T
+Repeatedly adding the light edge of T to F
+</pre>
+</div>
+
+<p>
+We keep all the outgoing edges from T in a priority queue Q, acoording to the edge weights.
+</p>
+
+<p>
+In every of the \(|E|\) rounds:
+</p>
+<ul class="org-ul">
+<li>If the lightest edge in Q has exactly one ednpoint in T, buy it and include the neighbour vertex</li>
+<li>Add all new outgoing edges to Q</li>
+</ul>
+
+<p>
+Time complexity:
+</p>
+<ul class="org-ul">
+<li>Each edge is extracted from Q once: \(O(log|E|)=O(log|V|)\) for each edge</li>
+<li>Each edge is inserted in Q once: \(O(log|E|)=O(log|V|)\) for each edge</li>
+<li>Total complexity: \(O(|E|log|V|+|E|log|V|)=O(|E|log|V|)\)</li>
+</ul>
+
+<p>
+We can also use a fibonacci heap to implement the priority queue.
+</p>
+<ul class="org-ul">
+<li>Now we keep the vertices in the priority queue instead of the edges, where the value of v is the minimum edge weight between v and the evolving tree T (\(\infty\) if there is no such edge)</li>
+<li>In every of the \(|V|\) rounds, ExtractMin(Q), buy the corresponding edge, and decrease the value of some neighboring vertices</li>
+</ul>
+
+<p>
+Time complexity:
+</p>
+<ul class="org-ul">
+<li>\(O(|V|)\) times ExtracTMin amortized \(O(\log |V|)\) time</li>
+<li>\(O(|E|)\) times DecreaseKey amortized \(O(1)\) time</li>
+<li>Total time complexity: \(O(|E|+|V|\log |V|)\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org60fe466" class="outline-3">
+<h3 id="org60fe466"><span class="section-number-3">4.5.</span> Disjoint Set Union-Find</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+This data structure will be important to the next minimum spanning tree algorithm.
+</p>
+
+<p>
+Given a universe of elements \(U=\{a,b,c,...\}\)
+</p>
+
+<p>
+At any time, maintain a collection \(\mathbb S=\{S_1,S_2,...,S_k\}\) of disjoint sets.
+</p>
+
+<p>
+This datastructure supports the following operations:
+</p>
+<ul class="org-ul">
+<li><code>Find(e)</code> return the set name which the element <code>e</code> belongs to</li>
+<li><code>Union(i,j)</code> if the elements i and j are not in the same set, merge these two sets.</li>
+</ul>
+
+<p>
+There are two ways to implement this datastructure
+</p>
+<ul class="org-ul">
+<li>Using linked lists</li>
+<li>Using a forest</li>
+</ul>
+</div>
+<div id="outline-container-orga8febe8" class="outline-4">
+<h4 id="orga8febe8"><span class="section-number-4">4.5.1.</span> Linked lists</h4>
+<div class="outline-text-4" id="text-4-5-1">
+
+<div id="org91b86fd" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-01-03_screenshot.png" alt="2024-04-06_17-01-03_screenshot.png" />
+</p>
+</div>
+
+<p>
+<code>find</code>: \(O(1)\)
+</p>
+
+<p>
+<img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-02-40_screenshot.png" alt="2024-04-06_17-02-40_screenshot.png" />
+<img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-02-57_screenshot.png" alt="2024-04-06_17-02-57_screenshot.png" />
+</p>
+
+
+<p>
+<code>Union</code>: \(O(n)\), with n: number of items
+</p>
+</div>
+</div>
+<div id="outline-container-orgbdc95c5" class="outline-4">
+<h4 id="orgbdc95c5"><span class="section-number-4">4.5.2.</span> Forest</h4>
+<div class="outline-text-4" id="text-4-5-2">
+<p>
+For each of the sets there is a tree.
+</p>
+
+<p>
+When we Find an element, it should return the root of the tree
+</p>
+
+<p>
+When union, always link root of the smaller tree to the root of the larger tree
+</p>
+<ul class="org-ul">
+<li>Doing it this way bounds the max hight of the tree to: \(H_max=O(\log n)\)</li>
+<li>Size is height of the tree in this case.</li>
+</ul>
+
+
+<div id="org5c39ea1" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-15-15_screenshot.png" alt="2024-04-06_17-15-15_screenshot.png" />
+</p>
+</div>
+
+<p>
+<code>Find</code>: \(O(H_{max})=O(\log n)\)
+</p>
+
+
+<div id="orgb591f05" class="figure">
+<p><img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-16-06_screenshot.png" alt="2024-04-06_17-16-06_screenshot.png" />
+</p>
+</div>
+
+<p>
+<code>Union</code>: \(O(H_{max})=O(\log n)\)
+</p>
+<ul class="org-ul">
+<li>Two finds and a link</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5aeca23" class="outline-3">
+<h3 id="org5aeca23"><span class="section-number-3">4.6.</span> Kruskal&rsquo;s algorithm</h3>
+<div class="outline-text-3" id="text-4-6">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #89b4fa;">Kruskal</span>(G):
+  Scan all edges by increasing weight
+  <span style="color: #cba6f7;">if</span> an edge is light <span style="color: #cba6f7;">for</span> some component, add it to F
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>First sort edges by increasing weight: \(O( | E | \log | E | ) = O( | E | \log | V | )\)</li>
+<li>For each of the \(O(|E|)\) rounds
+<ul class="org-ul">
+<li>If the edge connects two different components, buy it \(O(\log |V|)\)
+<ul class="org-ul">
+<li>The two components are merged into one
+<ul class="org-ul">
+<li>This can be done using an array or linked lists, but this is inefficient: total \(O(|V|^2)\)</li>
+<li>We use a forest where we always merge the smaller one to the larger one: total \(O(|V|log|V|)\)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f7bcc0" class="outline-3">
+<h3 id="org2f7bcc0"><span class="section-number-3">4.7.</span> Graphs with repeated weights</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+The algorithms described in this lecture also work for graphs where some edges have equal weights, as long as we have a consistent method for breaking ties when choosing the light edge.
+</p>
+
+<p>
+<i>For example:</i>
+<img src="minimum_spanning_trees_and_Union_find/2024-04-06_17-21-48_screenshot.png" alt="2024-04-06_17-21-48_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7025f9" class="outline-2">
+<h2 id="orge7025f9"><span class="section-number-2">5.</span> NP-completeness</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Decision problems:</b> solution is a yes/no answer.
+</p>
+<ul class="org-ul">
+<li>Example subset-sum: Given an set of integers, is there a sbuset such that the sum of the elements in T is equal to t</li>
+</ul>
+
+<p>
+<b>Optimization problems:</b> minimize or maximize some objective
+</p>
+</div>
+<div id="outline-container-org407cf5b" class="outline-3">
+<h3 id="org407cf5b"><span class="section-number-3">5.1.</span> P and NP</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+We define <b>input size</b> as the number of bits needed to encode it.
+</p>
+
+<p>
+Given an algorithm, its <b>time complexity</b> is a function f where f (n) is the maximum number of steps that the algorithm takes on any input of length n.
+</p>
+</div>
+<div id="outline-container-org8e12113" class="outline-4">
+<h4 id="org8e12113"><span class="section-number-4">5.1.1.</span> The class P</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<p>
+The class <b>P</b> is the set of decision problems that can be solved in polynomial time.
+</p>
+
+<p>
+To show that a problem is in P, on should design an algorithm that correctly solves the problem and show that this algorithm finishes in time that polynomial in the input length for any input.
+</p>
+
+<p>
+The problems in class p are restricted to decisions problems. We can make an <b>equivalent decision version of optimization problems</b> by introducing an extra parameter as a threshold of the object.
+</p>
+</div>
+</div>
+<div id="outline-container-org2dbc35d" class="outline-4">
+<h4 id="org2dbc35d"><span class="section-number-4">5.1.2.</span> The class NP</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+For some problems, solving them directly is difficult. But if someone somehow discovered the solution it is easy to verify.
+</p>
+
+<p>
+The concept of <b>verify</b> is to use an extra piece of information to check if the answer to a problem instance is yes.
+</p>
+<ul class="org-ul">
+<li>Called a <b>certificate</b> or <b>proof</b></li>
+</ul>
+
+<p>
+If there exists a polynomial-time algorithm that can verify any yes-instance of a problem, its <b>polynomial time verifiable</b>.
+</p>
+
+<p>
+The class <b>NP</b> is the set of decision problems that can be verified in polynomial time.
+</p>
+
+<p>
+To show that a problem is in NP, one should design a polynomial-time algorithm that correctly verifies any yes-instance using a certificate, where the certificate needs to be defined by the prover. The proof consists of three parts:
+</p>
+<ol class="org-ol">
+<li>Show that for every yes-instance of A, there is a certificate c.</li>
+<li>Design a verifier algorithm that answers to the instance is yes using c.</li>
+<li>Show that this verifier algorithm can be run in polynomial time in the input length.</li>
+</ol>
+
+<p>
+Example proof in lecture slides.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbae9ec2" class="outline-3">
+<h3 id="orgbae9ec2"><span class="section-number-3">5.2.</span> Polynomial-time reduction and NP-hardness</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Besides solving the problems directly, we can also show that a problem is solvable by reducing it to another problem. A <b>reduction</b> is a way of converting one problem to another such that a solution to the second problem can be used to solve the first problem. That is, if problem A reduces to problem B, we can use a solution to B to solve A.
+</p>
+
+<p>
+A problem \(A\) is polynomial-time reducible to problem B, written \(A \le_P B\), if a polynomial-time computable function \(f\) exists, where for every instance \(w\) of \(A\), \(w\) is a yes-instance of \(A\) if and only if \(f (w)\) is a yes-instance of \(B\). The function \(f\) is called the polynomial-time reduction of \(A\) to \(B\).
+</p>
+<ul class="org-ul">
+<li>If A reduces to problem B, B is not easier than A.</li>
+<li><p>
+If problem A is polynomial-time reducible to problem B and problem B is polynomial-time solvable, then A can be solved in polynomial-time.
+</p>
+
+
+<div id="org4e8d6ae" class="figure">
+<p><img src="NP-completeness/2024-04-05_21-51-29_screenshot.png" alt="2024-04-05_21-51-29_screenshot.png" />
+</p>
+</div></li>
+</ul>
+
+<p>
+A valid reduction should guarantee that after transforming the input of problem A, w, to an input of problem B, f(w), w is a yes-instance of A if and only if f(w) is a yes-instance of B.
+</p>
+
+<p>
+To show that a polynomial-time reduction from A to B is valid, for any input w to A, we should prove the following three things:
+</p>
+<ul class="org-ul">
+<li>The function f can be calculated in polynomial-time in the length of w.</li>
+<li>If f (w) is a yes-instance of problem B, w is a yes-instance of problem A.</li>
+<li>If f (w) is a no-instance of problem B, w is a no-instance of problem A
+<ul class="org-ul">
+<li>This is item is equivalent to If w is a yes-instance of problem A, f (w) is a yes-instance of problem B.</li>
+</ul></li>
+</ul>
+
+<p>
+A problem is <b>NP-hard</b> if all problems in NP are polynomial-time reducible to it.
+</p>
+</div>
+</div>
+<div id="outline-container-org76f9f15" class="outline-3">
+<h3 id="org76f9f15"><span class="section-number-3">5.3.</span> NP-Completeness</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+There are a few problems in NP that if they can be solved in polynomial time, then \(P=NP\).
+</p>
+
+<p>
+These problems are called <b>NP-Complete</b>: problem is in NP and NP-Hard
+</p>
+<ul class="org-ul">
+<li>Individual complexity is related to that of the entier NP class.</li>
+<li>If an NP-Complete problem is proved to be polynomial-time solvable, all problems in NP are polynomial-time solvable.</li>
+<li>On the contrary, if there is any problem in NP that needs more than polynomial time to solve, it must be one of the NP-complete problems.</li>
+</ul>
+
+<p>
+NP-Completeness proof.
+</p>
+<ul class="org-ul">
+<li>To show that a problem B is NP-complete, we have to show that it is in NP and NP-hard.</li>
+<li>By the definition of NP-hardness, we have to show that every problem in NP is polynomial-time reducible to B, which is difficult.</li>
+<li>We can instead show that there exists some NP-complete problem A that reduces to B in polynomial time.</li>
+<li>Since A is NP-complete, it is NP-hard, and every problem in NP can be reduced to A in polynomial time.</li>
+<li>Therefore, every problem in NP can be polynomial-time reduced to A first and then polynomial-time reduced to B.</li>
+<li>That is, there is a polynomial-time reduction from any problem in NP to B.</li>
+</ul>
+
+<p>
+<i>Example proofs in lecture notes, recommended to look at it.</i>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org508d315" class="outline-2">
+<h2 id="org508d315"><span class="section-number-2">6.</span> Approximation Algorithms</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+How do we deal with an NP-complete problem?
+</p>
+<ol class="org-ol">
+<li>Exact exponential time algorithm: very slow</li>
+<li>Polynomial time solvable for some special cases?</li>
+<li>Fixed parameter algorithms</li>
+<li>Approximation algorithms</li>
+</ol>
+
+<p>
+<b>Approximation algorithms:</b> Instead of finding the exact solution we find near-optimal solutions efficiently.
+</p>
+<ul class="org-ul">
+<li>Spend polynomial time to get a solution with some guarantee that it won’t be too much worse than the real optimal solution</li>
+</ul>
+
+<p>
+We use <b>approximation ratio</b> measure how “far” the solution of the approximation algorithm \(ALG(I)\) is from the optimal solution \(OPT(I)\)
+</p>
+<ul class="org-ul">
+<li>\(ALG(I)\): the &ldquo;cost&rdquo; of the approximation algorithm on input I</li>
+<li>\(OPT(I)\): the &ldquo;cost&rdquo; of the optimal algorithm on input I</li>
+<li>The definition of cost here is confusing, this isn&rsquo;t referring to running time of the algorithm but of how optimal the solution is
+<ul class="org-ul">
+<li>Each potential solution has a positive cost, depending on the problem we want to minimize or maximize the cost.</li>
+</ul></li>
+<li><b>Minimization problems</b>: the <b>approximation ratio</b> of the algorithm is \(\max_I\frac{ALG(I)}{OPT(I)}\) for all instance \(I\)</li>
+<li><b>Maximization problems</b>: the <b>approximation ratio</b> of the algorithm is \(\max_I\frac{OPT(I)}{ALG(I)}\) for all instance \(I\)</li>
+</ul>
+
+<p>
+We want to try to give some sort of upper bound to the approximation ratio. This way we can have some sort of guarantee of the approximation.
+</p>
+
+<p>
+We say that the algorithm is a $&alpha;$-approximation algorithm if \(\text{approximation ratio}\le \alpha\) for any instance \(I\).
+</p>
+</div>
+<div id="outline-container-org3f06224" class="outline-3">
+<h3 id="org3f06224"><span class="section-number-3">6.1.</span> Minimum vertex cover approximation algorithm</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+A vertex cover (sometimes node cover) of a graph is a set of vertices that includes at least one endpoint of every edge of the graph. We want to find a vertex cover with the least amount of vertices.
+</p>
+
+<p>
+We can use the following approximation algorithm <code>Approx-VS</code>:
+</p>
+<ul class="org-ul">
+<li>Given the graph G, find a maximal matching M in G and let \(V_M\) be the set of saturated vertices regards M.</li>
+<li>The approximation algorithm returns all vertices in \(V_M\) as a vertex cover</li>
+<li>A maximal matching can be found in polynomial time.</li>
+</ul>
+
+<p>
+To analyze the performance of this algorithm we need to do two things:
+</p>
+<ol class="org-ol">
+<li><b>Feasibility:</b> show that this algorithm does provide a valid vertex cover</li>
+<li><b>Approximation ratio of Approx-VC:</b> show that the size of the vertex cover returned by <code>Approx-VC</code> is not too much larger than the optimal vertex cover size in any given graph.</li>
+</ol>
+
+<p>
+Feasibility: We first show that Approx-VC returns a valid vertex cover. That is, every edge is covered by at least one vertex in the set of vertices, \(V_M\) , returned by Approx-VC. This can be proven by contradiction. Suppose, for the contrary, that there is an edge (u, v) that has both of its endpoints not chosen into VM . Then, this edge should be added to M as both u and v are not saturated, which contradicts the fact that M is a maximal matching. It proves the statement.
+</p>
+
+<p>
+Approximation ratio of Approx-VC: First, we note that for any instance, the size of the set returned by Approx-VC is \(|V_M | = 2|M |\), where M is a maximal matching in the input graph. On the other hand, any feasible vertex cover must contain at least one vertex in every edge in \(M\), otherwise the edge is not covered by any vertex. Hence, the size of the optimal vertex cover is at least \(|M |\). Therefore, \(\frac{\text{Approx-VC}(G)}{OPT(G)}\le \frac{2|M|}{|M|}=2\) for any input graph G. That is, Approx-VC is a 2-approximation algorithm.
+</p>
+</div>
+</div>
+<div id="outline-container-org8519e38" class="outline-3">
+<h3 id="org8519e38"><span class="section-number-3">6.2.</span> Knapsack approximation algorithm</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Given a set of items \(S\), each with an integral value \(v_i\) and integral weight \(w_i\). Also give integers \(B\) and \(k\). Is there a subset of \(S\) of weight no more than \(B\) with total value at least \(k\)?
+</p>
+
+<p>
+<code>Approx-Knapsack</code>: Approximation algorithm for minimum vertex cover:
+</p>
+<ul class="org-ul">
+<li>First, we sort the items in a non-increasing order of \(\frac{v_i}{ w_i}\).</li>
+<li>Next, we keep a collection \(C\) by looking at the items in the non-increasing order of \(\frac{v_i}{ w_i}\) and including item \(i\) if it does not exceed the capacity.</li>
+<li>Let \(v_{max}\) be the largest value of all items that can be put into the knapsack.</li>
+<li>Finally, we return the collection \(C\) if the total value of the items in \(C\) is at least \(v_{max}\). Otherwise, we return \(v_{max}\).</li>
+<li>\(val\leftarrow 0\)</li>
+<li>Sort the items such that \(\frac{v_1}{v_1}\ge\frac{v_2}{v_2}...\ge\frac{v_n}{v_n}\)</li>
+<li>\(For(i=1,2,...,n)\)
+<ul class="org-ul">
+<li>\(If\ B\ge w_i, val\leftarrow val+v_i \text{ and } B\leftarrow B-w_i\)</li>
+</ul></li>
+<li>\(\text{Return } \max \{val, v_{max}\}\) where \(v_{max}\) is the largest item value.</li>
+</ul>
+
+<p>
+I did not fully understand the proof: this is just copy pasted from lecture notes.
+</p>
+
+<p>
+Feasibility: According to the algorithm, the total selected weight \(\le B\)
+</p>
+
+<p>
+Approximation ratio of Approx-Knapsack:
+</p>
+<ul class="org-ul">
+<li>First, we observe that if all items (with weight at most the capacity of the knapsack) are selected by Approx-Knapsack, the algorithm’s cost is as good as optimal.</li>
+<li>Therefore, in the rest of the proof we assume that there is at least one item that is not selected by the algorithm.</li>
+<li>Let the items ordered in the order \[v_1 w_1 \le v_2 w_2 \le ...\] for all 2 vertices with weight of at most B, and item k is the first item that is not in C.</li>
+<li>By a greedy choice argument, we know that \(v_1 + v_2 + ... + v_k > OPT\), where OPT is the total value of the items in the optimal solution.</li>
+<li>By the definition of \(v_{max}, v_1 + v_2 + ... + v_{k−1} + v_{max} \ge v1 + v2 + ... + v_k > OPT\).</li>
+<li>Thus, v1 + v2 + · · · + vk−1 ≥ OPT 2 or vmax ≥ OPT 2 .</li>
+<li>Therefore, objective of Approx-Knapsack is max{total value of C, vmax} ≥ max{v1 + v2 + · · · + vk−1, vmax} ≥ OPT 2 .</li>
+<li>That is, Approx-Knapsack is a 2-approximation algorithm.</li>
+</ul>
+
+
+<div id="org8e46997" class="figure">
+<p><img src="Approximation_Algorithms/2024-04-07_13-07-41_screenshot.png" alt="2024-04-07_13-07-41_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org96dfe53" class="outline-3">
+<h3 id="org96dfe53"><span class="section-number-3">6.3.</span> Improving an approximation algorithm</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Improving ussualy means have a smaller approximation ratio.
+</p>
+
+<p>
+Take the matching-based approximation algorithm Approx-Knapsack for the minimum vertex cover problem, the possible improvement can be:
+</p>
+<ul class="org-ul">
+<li><b>A better analysis?</b> Perhaps we overestimate the cost of Approx-Knapsack or underestimate the optimal cost? Or perhaps the small optimal cost never correlates with a large cost of the algorithm in any instance? Unfortunately, this approach does not work, as there is indeed an instance, which is a graph with exact 8 vertices and 4 edges, that incurs a ratio of 2.</li>
+<li><b>A better algorithm?</b> Or, maybe we should find a better algorithm. Perhaps we don’t always need to include both endpoints. Sadly, this does not work, either. For some instances, both endpoints of the maximal matching have to be chosen.</li>
+<li><b>A better observation on the optimal solution?</b> If the problem is that we cannot escape from choosing both endpoints of the maximal matching, which at the same time is a lower bound of the cost of the optimal vertex cover. Perhaps the idea is that we should find a better way to lower-bound the optimal cost</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3658788" class="outline-2">
+<h2 id="org3658788"><span class="section-number-2">7.</span> String Matching</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Gegeven string (<b>haystack</b>) zoek alle voorkomens van een patroon (<b>needle</b>)
+</p>
+<ul class="org-ul">
+<li>Tekst \(A[0..n-1]\), patroon \(P[0..m-1]\)</li>
+<li>Wil: k zodat \(A[k..k+m]=P[0..m-1]\)</li>
+<li>Tekst is over alfabet \(\Sigma (\{0,1\},\{A,B,...,Z\},[0,255],\text{etc})\)</li>
+<li>We zoeken alle voorkomens van P in A</li>
+
+<li>Gemiddelde looptijd: gemiddelde looptijd over alle invoeren
+<ul class="org-ul">
+<li>(som looptijden van alle invoeren) / (aantal invoeren)</li>
+<li>Slimmer: bekijk een (uniforme) kansverdeling over alle invoeren, en dus een random invoer</li>
+<li>Analyseert vaak een deterministisch algoritme</li>
+</ul></li>
+<li>Verwacht: verwachte looptijd bij één invoer
+<ul class="org-ul">
+<li>Algoritme maakt gebruik van randomisatie</li>
+<li>Looptijd afhankelijk van random keuzes van algoritme</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org309135b" class="outline-3">
+<h3 id="org309135b"><span class="section-number-3">7.1.</span> Kansrekening</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>Variabele X waarvan de waarde afhangt van de uitkomst van een kansexperiment
+<ul class="org-ul">
+<li>Waarde is een getal</li>
+</ul></li>
+<li>Bijvoorbeeld: Het aantal keren kop als je 10 keer een munt opgooid</li>
+<li>\(P(X=k)\): kans dat \(X\) waarde \(k\) heeft</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>X een toevalsvariable, met k mogelijke uitkomsten (1..k): \(\sum^k_{i=1}P(X=i)=1\)</li>
+<li>Als X en Y onafhankelijk zijn. \(P(X=a\text{ en }Y=b)=P(X=a)*P(Y=b)\)</li>
+<li>\(P(X=a\text{ en }Y=b)=P(X=a)*P(Y=b | X=a)\)</li>
+<li>\(E[X]=\sum_{uitkomsten\ x}P(X=k)*k\) gemiddelde waarde van toevalsvariable X.</li>
+<li>Lineariteit van verwachting: \(E[X_1+..+X_n]=E[X_1]+..+E[X_n]\)</li>
+</ul>
+
+<p>
+<b>Bernoulli experimenten</b>
+</p>
+<ul class="org-ul">
+<li>Kans \(p\) of succes \((X=1)\)</li>
+<li>Kans \(1-p\) of succes \((X=0)\)</li>
+</ul>
+
+<p>
+<b>reeks bernoullie experimenten, Geometrische verdeling</b>
+</p>
+<ul class="org-ul">
+<li>Het aantal benodigde experimenten X tot een succes volgt</li>
+<li>\(P(X=k) =(1-p)^{k-1}p\) (\(k\) aantal experimenten)</li>
+<li>\(E[X]=\frac 1 p\)</li>
+</ul>
+
+<p>
+Binomiale kansverdeling
+</p>
+<ul class="org-ul">
+<li>X = aantal successen na n Bernouilli experimenten</li>
+<li>\(E[X] = np\)</li>
+<li>Voorbeeld: X is aantal keren kop bij 10 keer muntwerpen: \(E[X]=5\)</li>
+</ul>
+
+<p>
+Negatief binomiale kansverdeling
+</p>
+<ul class="org-ul">
+<li>X = aantal falen tot r succesvolle Bernouilli experimenten</li>
+<li>\(E[X] = (r/p)-r\)</li>
+</ul>
+
+<p>
+Andere:
+</p>
+<ul class="org-ul">
+<li>Poisson kansverdeling</li>
+<li>Continue kansverdeling</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1d86b76" class="outline-3">
+<h3 id="org1d86b76"><span class="section-number-3">7.2.</span> Naief algoritme</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+<pre class="src src-python">NaiveMatch(A,P)
+    <span style="color: #cba6f7;">for</span> k :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+    <span style="color: #cba6f7;">if</span> Checkmatch(A,k,P)
+        output k
+<span style="color: #cba6f7;">return</span>
+
+CheckMatch(A,k,P)
+    <span style="color: #cba6f7;">for</span> i :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        <span style="color: #cba6f7;">if</span> A[k<span style="color: #89dceb;">+</span>i] &#8800; P[i]
+            <span style="color: #cba6f7;">return</span> false
+<span style="color: #cba6f7;">return</span> true
+</pre>
+</div>
+
+<p>
+Worst case complexity of \(O(mn)\), best case \(O(n)\)
+</p>
+
+<p>
+Gemiddelde looptijd:
+</p>
+<ul class="org-ul">
+<li>Invoer is random string</li>
+<li>Kans dat de loop van CheckMatch stopt op een bepaalde iteratie is kans \(\frac {25} {26}\)</li>
+<li>Verwacht \(\frac {26} {25}\)</li>
+<li>Dus \(O(1)\) verwachte vergelijkingen, dus looptijd \(O(n)\)</li>
+</ul>
+
+<p>
+Dit algoritme is traag want het gebruikt de informatie van een mismatch niet
+</p>
+</div>
+</div>
+<div id="outline-container-orgae092e8" class="outline-3">
+<h3 id="orgae092e8"><span class="section-number-3">7.3.</span> <span class="todo TODO">TODO</span> fix -1 stuff (word geupdated in slides)</h3>
+</div>
+<div id="outline-container-orgc6a797c" class="outline-3">
+<h3 id="orgc6a797c"><span class="section-number-3">7.4.</span> Rabin-Karp</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Idee: sla strings op als getallen in base \(|\Sigma |\)
+</p>
+
+<p>
+Bijvoorbeeld: zoek orit in algoritme
+</p>
+<ul class="org-ul">
+<li>\(orit = 15 ⋅ 26^3 + 18 ⋅ 26^2 + 9 ⋅ 26^1 + 20 = 15 / 26 + 18 / 26 + 9 / 26 + 20 = 276062\)</li>
+<li>\(algo = 1 ⋅ 26 + 12 ⋅ 26 + 7 ⋅ 26 + 15 = 25885\)</li>
+<li>\(lgor = 12 ⋅ 26 + 7 ⋅ 26 + 15 ⋅ 26 + 18 = 216052\)</li>
+<li>\(gori= 7 ⋅ 26 + 15 ⋅ 26 + 18 ⋅ 26 + 9 = 133649\)</li>
+<li>\(orit= 15 ⋅ 26 + 18 ⋅ 26 + 9 ⋅ 26 + 20 = 276062\)</li>
+</ul>
+
+<p>
+Snel herberekenen kan in \(O(1)\) door te schuiven.
+</p>
+<ul class="org-ul">
+<li>Algo: \(H(0)=1*26^3+12*26^2+7*26^1+15*26^0\)</li>
+<li>Igor: \(H(1)=12*26^3+7*26^2+15*26^1+18*26^0\)</li>
+</ul>
+
+<p>
+Algemeen: \(H(K+1)=A[k+m+1]+|\Sigma |*(H(k)-A[k]*|\Sigma|^{m-1})\)
+</p>
+<ul class="org-ul">
+<li>\(H(K+1)=A[k+m+1]+H(k)*|\Sigma |-A[k]*|\Sigma|^{m}\)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">RK2(A,P)
+    ph :<span style="color: #89dceb;">=</span> String2Int(P)
+    sh :<span style="color: #89dceb;">=</span> String2Int(A[<span style="color: #fab387;">0</span>&#8230;m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>])
+    <span style="color: #cba6f7;">for</span> k :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        <span style="color: #cba6f7;">if</span> (ph <span style="color: #89dceb;">==</span> sh)
+            output k
+    sh :<span style="color: #89dceb;">=</span> A[k<span style="color: #89dceb;">+</span>m<span style="color: #89dceb;">+</span><span style="color: #fab387;">1</span>] <span style="color: #89dceb;">+</span> sh &#215; &#931; &#8211; A[k] &#215; &#931;<span style="color: #89dceb;">^</span>m
+<span style="color: #cba6f7;">return</span>
+</pre>
+</div>
+<p>
+Op getallen met \(O(m\log |\sigma|)\) bits
+</p>
+<ul class="org-ul">
+<li>Hash kan tot \(|\Sigma |^m\) groot zijn</li>
+<li>\(\log |\Sigma |^m = O(m\log |\sigma|)\)</li>
+<li>Dit is te groot om \(O(1)\) te zijn</li>
+
+<li>𝑂(1)-bits woorden: 32/64/128-bits computers
+<ul class="org-ul">
+<li>Tijd van complexe arithmetische operaties?</li>
+</ul></li>
+<li>Veel gebruikt: 𝑂(log 𝑛)-bits woorden (Word- RAM model)
+<ul class="org-ul">
+<li>We kunnen operaties in O(1) tijd doen op getallen met 𝑂(log 𝑛) bits</li>
+<li>|Σ| ≤ n + m ≤ 2n, dus O(log n)-bits nodig per letter</li>
+<li>O(m log |Σ|) bits kan nog steeds te veel zijn</li>
+</ul></li>
+<li>Kunnen we toch binnen de grenzen (van Word-RAM) blijven?</li>
+</ul>
+
+<p>
+Gebruik getallen modulo q:
+</p>
+
+<p>
+Als twee woorden gelijk zijn dat is de mod gelijk, maar andersom geld de relatie niet.
+</p>
+<ul class="org-ul">
+<li>Als twee hashes gelijk zijn moet je dus nog handmatig de string controleren.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">RK4(A,P)
+    ph :<span style="color: #89dceb;">=</span> String2Int(P) <span style="color: #89dceb;">%</span> q
+    sh :<span style="color: #89dceb;">=</span> String2Int(A[<span style="color: #fab387;">0</span>&#8230;m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>]) <span style="color: #89dceb;">%</span> q
+    <span style="color: #cba6f7;">for</span> k :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        <span style="color: #cba6f7;">if</span> (ph <span style="color: #89dceb;">==</span> sh) <span style="color: #cba6f7;">and</span> CheckMatch(A,k,P)
+            output k
+    sh :<span style="color: #89dceb;">=</span> A[k<span style="color: #89dceb;">+</span>m<span style="color: #89dceb;">+</span><span style="color: #fab387;">1</span>] <span style="color: #89dceb;">+</span> sh &#215; &#931; &#8211; A[k] &#215; &#931;<span style="color: #89dceb;">^</span>m <span style="color: #89dceb;">%</span> q
+<span style="color: #cba6f7;">return</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Nu looptijd \(O(n)\) voor checken van de hash</li>
+<li>\(O(m)\) per gevonden substring</li>
+<li>\(O(m)\) per spurious hit</li>
+</ul>
+<p>
+TODO
+</p>
+</div>
+</div>
+<div id="outline-container-org5fe5695" class="outline-3">
+<h3 id="org5fe5695"><span class="section-number-3">7.5.</span> Eindige automaat</h3>
+<div class="outline-text-3" id="text-7-5">
+<ul class="org-ul">
+<li>Eindige Automaat/Finite Automaton</li>
+<li>\(O(n)\) tijd met \(O(m|\Sigma |)\) preprocessing</li>
+<li>Geen kosten voor hits</li>
+<li>Gebruikt informatie van eerdere mismatch</li>
+<li>Ieder symbool 1 keer bekeken</li>
+</ul>
+
+<p>
+Toestanden: Q
+</p>
+
+<p>
+Overgangen: \(\delta : Q\time \Sigma \rightarrow Q\)
+</p>
+
+
+<div id="org77961b1" class="figure">
+<p><img src="String_Matching/2024-04-02_14-55-12_screenshot.png" alt="2024-04-02_14-55-12_screenshot.png" />
+</p>
+</div>
+
+<p>
+We gebruiken getallen voor toestanden, other laten we impliciet:
+<img src="String_Matching/2024-04-02_14-54-38_screenshot.png" alt="2024-04-02_14-54-38_screenshot.png" />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">DFA<span style="color: #89dceb;">-</span>Match(A,P)
+    s :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span>
+    &#948; :<span style="color: #89dceb;">=</span> overgangsfunctie van P
+    <span style="color: #cba6f7;">for</span> i :<span style="color: #89dceb;">=</span> <span style="color: #fab387;">0</span> to n<span style="color: #89dceb;">-</span><span style="color: #fab387;">1</span>
+        s :<span style="color: #89dceb;">=</span> &#948;(s, A[i])
+        <span style="color: #cba6f7;">if</span> s <span style="color: #89dceb;">=</span> m
+            output i<span style="color: #89dceb;">-</span>m<span style="color: #89dceb;">+</span><span style="color: #fab387;">1</span>
+    <span style="color: #cba6f7;">return</span>
+</pre>
+</div>
+
+<p>
+Overgangsfunctie:
+</p>
+<ul class="org-ul">
+<li>\(\delta (i,x) =\) wat is de volgende toestand als we x lezen en nu in toestand i zijn?</li>
+<li>\(i+1\) als \(x=P[i]\)</li>
+<li>de grootste \(j\le i\) zodat \(P[i-j..i-1]=P[0..j-2]\) en \(P[j-1]=x\)</li>
+<li>start-toestand indien zo’n \(j\) niet bestaat</li>
+<li>Naief: \(O(m^3|\Sigma |)\), kan in: \(O(m|\Sigma |)\)</li>
+</ul>
+
+<p>
+Eindige automaat is \(O(n)\) tijd, met \(O(m|\Sigma |)\)
+</p>
+
+<p>
+<i>Na slide 60 en knuth morris hoeven we niet te weten</i>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb90dca8" class="outline-2">
+<h2 id="orgb90dca8"><span class="section-number-2">8.</span> <span class="todo TODO">TODO</span> Gerandomiseerde algoritmes</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Nog niet samengevat
+</p>
+</div>
+</div>
+<div id="outline-container-orgae70ae1" class="outline-2">
+<h2 id="orgae70ae1"><span class="section-number-2">9.</span> Deel 1</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Niet heel goed samengevat
+</p>
+</div>
+<div id="outline-container-org0144779" class="outline-3">
+<h3 id="org0144779"><span class="section-number-3">9.1.</span> Divide and Conquer</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+grote O: \(f(n)=O(g(n))\) als er een constante c bestaat zdd voor iedere \(n\ge n_0\) geldt dat \(f(n)\le c*g(n)\)
+</p>
+
+<ul class="org-ul">
+<li>\(f(n)=O(g(n))\): f(n) is asymptotisch hoogstens g(n)</li>
+<li>\(f(n)=\Omega(g(n))\): f(n) is asymptotisch minstens g(n)</li>
+<li>\(f(n)=\Theta(g(n))\): f(n) is asymptotisch gelijk aan g(n)</li>
+<li>\(f(n)=o(g(n))\): f(n) is asymp. &rsquo;strict kleiner&rsquo; dan g(n)</li>
+<li>\(f(n)=\omega(g(n))\): f(n) is asymp. &rsquo;strict groter&rsquo; dan g(n)</li>
+</ul>
+</div>
+<div id="outline-container-org2f0638b" class="outline-4">
+<h4 id="org2f0638b"><span class="section-number-4">9.1.1.</span> Divide and Conquer : in het algemeen</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<ol class="org-ol">
+<li>Divide: splits in deelproblemen</li>
+<li>Conquer: los deelproblemen recursief op</li>
+<li>Combine: voeg deeloplossingen samen tot oplossing hele probleem</li>
+<li>Basisgeval: niet vergeten</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #cba6f7;">if</span> <span style="color: #f38ba8;">input</span> <span style="color: #cba6f7;">is</span> <span style="color: #a6e3a1;">'klein'</span>
+then los direct op (basisgeval)
+<span style="color: #cba6f7;">else</span> splits <span style="color: #cba6f7;">in</span> deelproblemen
+    los deelproblemen recursief op
+    oplossingen deelproblemn samenvoegen
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Doe geen overbodig werk
+<ul class="org-ul">
+<li>Bijv.: iedere keer sorteren, arrays kopiëren</li>
+</ul></li>
+<li>Denk goed na over je combine-stap
+<ul class="org-ul">
+<li>Gebruik hulpwaarden!</li>
+</ul></li>
+<li>Soms kan het handig zijn om de invoer in meer dan twee stukken te splitsen
+<ul class="org-ul">
+<li>Zie bijvoorbeeld Selection-algoritme (boek 9.3)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6297c84" class="outline-4">
+<h4 id="org6297c84"><span class="section-number-4">9.1.2.</span> Correctheid: inductie</h4>
+<div class="outline-text-4" id="text-9-1-2">
+<ul class="org-ul">
+<li>Bewijs dat basisgeval correct is</li>
+<li>Inductiehypothese: algoritme werkt voor alle kleinere invoeren</li>
+<li>Inductiestap:
+<ul class="org-ul">
+<li>Deelproblemen hebben kleinere invoeren en worden dus correct opgelost (IH)</li>
+<li>Oplossingen van deelproblemen worden correct samengevoegd</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb777e57" class="outline-4">
+<h4 id="orgb777e57"><span class="section-number-4">9.1.3.</span> MergeSort</h4>
+<div class="outline-text-4" id="text-9-1-3">
+<p>
+Sorteer array van getallen
+</p>
+
+<ol class="org-ol">
+<li>Divide: splits array in twee helften</li>
+<li>Conquer: sorteer helften</li>
+<li>Combine: voeg gesorteerde lijsten samen tot één gesorteerde lijst
+<ul class="org-ul">
+<li>Pak telkens kleinste element uit twee lijsten</li>
+</ul></li>
+<li>Basisgeval: array heeft grootte 1</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python">MergeSort(<span style="color: #f38ba8;">int</span>[] X, <span style="color: #f38ba8;">int</span> a, <span style="color: #f38ba8;">int</span> b)
+    <span style="color: #cba6f7;">if</span> b<span style="color: #89dceb;">-</span>a <span style="color: #89dceb;">==</span> <span style="color: #fab387;">1</span> then <span style="color: #cba6f7;">return</span>
+    MergeSort(X, a, (a<span style="color: #89dceb;">+</span>b)<span style="color: #89dceb;">/</span><span style="color: #fab387;">2</span>)
+    MergeSort(X, (a<span style="color: #89dceb;">+</span>b)<span style="color: #89dceb;">/</span><span style="color: #fab387;">2</span>, b)
+    Merge(X, a, (a<span style="color: #89dceb;">+</span>b)<span style="color: #89dceb;">/</span><span style="color: #fab387;">2</span>, b)
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org04da7a2"></a>Correctheid Mergesort<br />
+<div class="outline-text-5" id="text-9-1-3-1">
+<ul class="org-ul">
+<li>Gebruik inductie!</li>
+<li>Basisgeval: lijst van 1 element altijd gesorteerd</li>
+<li>Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen</li>
+
+<li>Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen</li>
+<li>Inductiestap: Invoer is een array met n elementen
+<ul class="org-ul">
+<li>Twee helften worden correct gesorteerd (IH)</li>
+<li>Merge werkt correct (Apart bewijs)</li>
+</ul></li>
+</ul>
+</div>
+</li>
+<li><a id="org579b1df"></a>Looptijd<br />
+<div class="outline-text-5" id="text-9-1-3-2">
+<ul class="org-ul">
+<li>MergeSort(int[] X, int a, int b)  O(1)</li>
+<li>if b-a == 1 then return           T(n)</li>
+<li>MergeSort(X, a, (a+b)/2)          T(n/2)</li>
+<li>MergeSort(X, (a+b)/2, b)          T(n/2)</li>
+<li>Merge(X, a, (a+b)/2, b)           O(n)</li>
+</ul>
+
+<p>
+<b>Recurrente betrekking:</b> T(n) = 2T(n/2) + O(n)
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgbf3b1ac" class="outline-4">
+<h4 id="orgbf3b1ac"><span class="section-number-4">9.1.4.</span> Oplossen recurrente betrekking</h4>
+<div class="outline-text-4" id="text-9-1-4">
+</div>
+<ol class="org-ol">
+<li><a id="org917c509"></a>Subsitutie<br />
+<div class="outline-text-5" id="text-9-1-4-1">
+<ul class="org-ul">
+<li>Inductiebewijs!</li>
+<li>Gegeven recurrente betrekking T(n), doe een ‘goede gok’ van de oplossing
+<ul class="org-ul">
+<li>Tip voor de gok: schrijf de recurrente betrekking een aantal stappen of geheel uit</li>
+<li>Kijk of je hieruit iets kunt afleiden</li>
+<li>Houd het simpel</li>
+<li>Voeg extra termen/constantes toe indien nodig</li>
+</ul></li>
+</ul>
+
+<p>
+Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen \(O()\)).
+</p>
+<ul class="org-ul">
+<li>Pas na je inductie-bewijs schat je af emt \(O()\)</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org7ab5bb0"></a>Voorbeeld<br />
+<div class="outline-text-6" id="text-9-1-4-1-1">
+<ul class="org-ul">
+<li>Voorbeeld: T(n) = T(n/2) + 1; T(1)=0</li>
+<li>Gok: T(n) = log n. Gebruik nu inductie!</li>
+<li>Basis: n=1: T(1) = 0; log n = 0. Correct!</li>
+<li>IH: voor alle n’ &lt; n geldt T(n’) = log n’</li>
+<li>Stap: T(n) = T(n/2)+1 = log(n/2) + 1 = log n</li>
+<li>Het bewijs volgt dus uit inductie</li>
+</ul>
+
+<p>
+<b>MergeSort:</b>
+</p>
+<ul class="org-ul">
+<li>\(T(n)=2T(n/2)+c\ n;\ T(1)=c'\)</li>
+<li>Herinner: MergeSort in \(O(n\log n)\)</li>
+<li>Gok: \(T(n)\le d\ n\log n\) voor te kiezen \(d (d\ge c'+c)\)</li>
+<li>Gebruik inductie. Basis: \(n=2\)
+<ul class="org-ul">
+<li>\(T(2)\)</li>
+<li>\(d\ n\log n = 2d\)</li>
+<li>Als \(d\) tenminste \(c'+c\), dan is \(T(2)\le 2d\)</li>
+</ul></li>
+<li>Inductiehypothese: \(T(n')\le d\ n'\log n'\) voor alle \(n'<n\)</li>
+<li>Stap:</li>
+</ul>
+<p>
+\[T(n)=2T(n/2)+cn \]
+\[\le 2d \frac n 2 \log \left(\frac n 2\right) + cn\]
+\[=d\ n\left ( (\log n)-1\right)+cn\]
+\[=d n \log n - dn + cn\]
+</p>
+<ul class="org-ul">
+<li>Als \(d\ge c\), dan is \(T(n)\le d\ n \log n\)</li>
+</ul>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="orge376e8e"></a>Recursieboom<br />
+<div class="outline-text-5" id="text-9-1-4-2">
+
+<div id="org961db05" class="figure">
+<p><img src="Divide_and_Conquer/2024-03-02_12-18-44_screenshot.png" alt="2024-03-02_12-18-44_screenshot.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>O(n) per niveau. Hoeveel niveaus?</li>
+<li>Halveren tot grootte 1: n/2i=1 =&gt; i = log n</li>
+<li>O(n log n) tij</li>
+</ul>
+</div>
+</li>
+<li><a id="org0150d0d"></a>master theorem<br />
+<div class="outline-text-5" id="text-9-1-4-3">
+<p>
+Uit het book van vierde editie, dit is de beste volgensmij
+</p>
+<ul class="org-ul">
+<li>Stel \(a>0\), \(b>1\), \(g(n)\) een functie</li>
+<li>Dan lost \(T(n)= a\ T(n/b)+g(n)\) op tot:
+<ol class="org-ol">
+<li>\(\Theta (n^p)\) als \(g(n)=O(n^e)\) voor \(e<p\)</li>
+<li>\(\Theta (n^p \log^{k+1}n)\) als \(g(n)=\Theta(n^e\log ^k n)\) voor \(k\ge 0\) als \(e=p\)</li>
+<li>\(\Theta(g(n))\) als \(g(n)=\Omega(n^e)\) voor \(e>p\) en er constante \(c<1\) bestaat zdd \(a\ g(n/b)\le c\ g(n)\)</li>
+</ol></li>
+<li>Hierbij is \(p=\log _b a\)</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org12acffd"></a>Derde editie versie<br />
+<div class="outline-text-6" id="text-9-1-4-3-1">
+<p>
+Iets simpeler, minder compleet
+</p>
+
+<ul class="org-ul">
+<li>Stel \(a\ge 1\), \(b>1\), \(g(n)\) een functie</li>
+<li>Dan lost \(T(n)= a\ T(n/b)+g(n)\) op tot:
+<ol class="org-ol">
+<li>\(\Theta (n^p)\) als \(g(n)=O(n^e)\) voor \(e<p\)</li>
+<li>\(\Theta (n^p \log n)\) als \(g(n)=\Theta(n^e)\) voor \(e=p\)</li>
+<li>\(\Theta(g(n))\) als \(g(n)=\Omega(n^e)\) voor \(e>p\) en er constante \(c<1\) bestaat zdd \(a\ g(n/b)\le c\ g(n)\)</li>
+</ol></li>
+<li>Hierbij is \(p=\log _b a\)</li>
+</ul>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org87f49c1" class="outline-3">
+<h3 id="org87f49c1"><span class="section-number-3">9.2.</span> Recursief programmeren</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+Los deelproblemen op en voeg oplossingen samen
+</p>
+<ul class="org-ul">
+<li>Deelproblemen kunnen wel overlappen</li>
+<li>Vaak: alle mogelijkheden proberen</li>
+<li>Bewijs correctheid: inductie</li>
+<li>Werkt voor veel verschillende problemen
+<ul class="org-ul">
+<li>Grootste voordeel bij optimaliseringsproblemen</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org3c33075" class="outline-4">
+<h4 id="org3c33075"><span class="section-number-4">9.2.1.</span> Gepast betalen</h4>
+<div class="outline-text-4" id="text-9-2-1">
+<p>
+<b>Optimaliseringsprobleem</b>:
+</p>
+<ul class="org-ul">
+<li>Je moet deelverzameling/volgorde selecteren die optimaal is</li>
+<li>In welke volgorde levert de postbode pakketjes af in zo kort mogelijke tijd?</li>
+</ul>
+
+<p>
+Gegeven: positieve gehele getallen \(a_1,...,a_r\) (waarde munten), niet-negatief geheel getal \(b\) (doelbedrag)
+</p>
+
+<p>
+Gevraagd: op welke manier kan \(b\) verkregen worden door zo min mogelijk munten van waardes \(a_1,...,a_r\) ?
+</p>
+<ul class="org-ul">
+<li>Hoeveelheid munten van ieder soort is onbeperkt</li>
+<li>Totale som moet b zijn.</li>
+<li>We zoeken dus de aantallen \(x_1,...,x_r\in N = \{0,1,...\}\) met
+<ul class="org-ul">
+<li>\(\sum^r_{i=1}x_i\cdot a_i=b\)</li>
+<li>en \(\sum_{i=1}^r x_i\) zo klein mogelijk</li>
+</ul></li>
+
+<li>Wat is de rij keuzes die leidt tot een oplossing?
+<ul class="org-ul">
+<li>Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt</li>
+</ul></li>
+<li>Identificeer de laatste keuze <b>(top-choice)</b>. Die leidt tot een splitsing in een deelprobleem</li>
+
+<li><b>Top-choice:</b> de laatste munt die ik geef, zeg een munt van waarde \(a_i\)</li>
+<li>Blijft over: Hoe kunnen we \(b-a_i\) gepast betalen met zo min mogelijk munten?</li>
+<li>Deelprobleem: veralgemeniseer dit, want we weten \(a_i\) en dus \(b-a_i\) niet</li>
+<li>Hoe kunnen we \(c\) gepast betalen met zo min mogelijk munten?</li>
+
+<li>Deelprobleem: gegeven \(c\) met \(0 \le c \le b\) , hoe kunnen we \(c\) gepast betalen met zo min mogelijk munten?</li>
+<li>Merk op: originele probleem is speciaal geval van deelprobleem (kies \(c = b\))</li>
+
+<li>Wat is de rij keuzes die leidt tot een oplossing?
+<ul class="org-ul">
+<li>Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt</li>
+</ul></li>
+<li>Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem</li>
+<li>Gebruik top-choice en deelprobleem om een recursieve functie te maken
+<ul class="org-ul">
+<li>Let op de basisgevallen</li>
+</ul></li>
+
+<li>\(G(c)\) = kleinste aantal munten waarmee we c gepast kunnen betalen</li>
+<li>Basisgeval: \(G(0) = 0\)</li>
+<li>We geven munt van waarde \(a_i\) : \(G(c) = 1+G(c-a_i)\)</li>
+<li>Essentieel: we proberen alle mogelijkheden en nemen de beste</li>
+<li>\(G(c) = \min_i \{ 1 + G(c-a_i) \}\)
+<ul class="org-ul">
+<li>Minimum over alle i z.d.d. \(c \ge a_i\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org67f2da2" class="outline-4">
+<h4 id="org67f2da2"><span class="section-number-4">9.2.2.</span> optimaliteitsprincipe</h4>
+<div class="outline-text-4" id="text-9-2-2">
+
+<div id="org80b7a02" class="figure">
+<p><img src="Recursief_programmeren/2024-02-21_10-45-11_screenshot.png" alt="2024-02-21_10-45-11_screenshot.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Hoe weten we dat recursieve functie correct is?</li>
+<li>Gebruik inductie!</li>
+<li>Basisgeval: vaak triviaal (laten we hier achterwege)</li>
+<li>Te bewijzen: als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen</li>
+
+<li>Probleem: gegeven \(c\) met \(0 \le c \le b\), hoe kunnen we \(c\) gepast betalen met zo min mogelijk munten?</li>
+<li>\(T=\{m_1,..,m_k\}\) is optimale oplossing om \(c\) gepast te betalen. Zeg \(m_k\) waarde \(a_i\)</li>
+<li>\(\{m_1,..,m_{k-1}\}\) is een manier om \(c-a_i\) gepast te betalen</li>
+<li>Stel \(D =\{n_1,..,n_{k'}\}\) is optimale oplossing van deel- probleem om \(c-a_i\) gepast te betalen. Dan \(k' \le k -1\)</li>
+<li>Laat \(T' = \{n_1,..n_{k'},m_k\}\). \(T'\) nog steeds een oplossing om \(c\) gepast te betalen</li>
+
+<li>\(T=\{m_1,..,m_k\}\) , \(T' = \{n_1,..n_{k'},m_k\}\)</li>
+<li>\(T\) en \(T'\) zijn een oplossing om \(c\) gepast te betalen</li>
+<li>\(|T'| = k' +1 \le k = |T|\), want \(k' \le k -1\).</li>
+<li>\(|T'| \ge |T|\), want \(T\) is optimaal</li>
+<li>Dus \(|T'|=|T|\)</li>
+<li>Dus optimale oplossing opgebouwd uit optimale oplossing voor deelprobleem</li>
+<li>Optimaliteitsprincipe bewezen</li>
+</ul>
+
+<p>
+Uitwisselargument:
+<img src="Recursief_programmeren/2024-02-21_11-05-35_screenshot.png" alt="2024-02-21_11-05-35_screenshot.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org05a835a" class="outline-4">
+<h4 id="org05a835a"><span class="section-number-4">9.2.3.</span> Samenvatting</h4>
+<div class="outline-text-4" id="text-9-2-3">
+<ul class="org-ul">
+<li>Wat is de rij keuzes die leidt tot een oplossing?
+<ul class="org-ul">
+<li>Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt</li>
+</ul></li>
+<li>Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem</li>
+<li>Gebruik top-choice en deelprobleem om een recursieve functie te maken
+<ul class="org-ul">
+<li>Let op de basisgevallen</li>
+</ul></li>
+<li>Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen</li>
+</ul>
+<p>
+*
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org12437c8" class="outline-3">
+<h3 id="org12437c8"><span class="section-number-3">9.3.</span> Dynamisch Programmeren</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+Twee mogelijkheden:
+</p>
+<ul class="org-ul">
+<li><b>Memoisatie:</b> kijk of we ‘t al eerder hebben uitgerekend – zo ja, geef dat antwoord; zo nee: reken uit en sla antwoord op in datastructuur (bijvoorbeeld array of hashtabel)</li>
+<li><b>&rsquo;Klassiek&rsquo; DP:</b> vul datastructuur met antwoorden voor deelproblemen, zodat nodige gegevens al eerder zijn berekend</li>
+</ul>
+</div>
+<div id="outline-container-org31dcbf4" class="outline-4">
+<h4 id="org31dcbf4"><span class="section-number-4">9.3.1.</span> Driehoek van Pascal DP</h4>
+</div>
+<div id="outline-container-org9b77380" class="outline-4">
+<h4 id="org9b77380"><span class="section-number-4">9.3.2.</span> Klassiek DP</h4>
+<div class="outline-text-4" id="text-9-3-2">
+<ul class="org-ul">
+<li>Initialiseer array</li>
+<li>Vul de basisgevallen in</li>
+<li>Vul de array, lettend op de opvul-volgorde
+<ul class="org-ul">
+<li>Vul van basis naar eind-antwoord</li>
+</ul></li>
+<li>Return oplossing</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgf7c06b1"></a>Ontwerp<br />
+<div class="outline-text-5" id="text-9-3-2-1">
+<ul class="org-ul">
+<li>Wat is de rij keuzes die leidt tot een oplossing?
+<ul class="org-ul">
+<li>Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt</li>
+</ul></li>
+<li>Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem</li>
+<li>Gebruik top-choice en deelprobleem om een recursieve functie te maken
+<ul class="org-ul">
+<li>Let op de basisgevallen</li>
+</ul></li>
+<li>Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen</li>
+<li>Vind de juiste berekeningsvolgorde
+<ul class="org-ul">
+<li>Memoisatie volgt uit recursieve functie</li>
+<li>Opletten bij DP algoritme</li>
+</ul></li>
+<li>Eventueel: geheugenbesparing of oplossing vinden</li>
+</ul>
+
+<p>
+<b>Technieken die vaak werken</b>
+</p>
+<ul class="org-ul">
+<li>Terugredeneren van antwoord</li>
+<li>Bijhouden van extra informatie die vertelt waar je vandaan komt, of dit later zien aan de opgeslagen informatie</li>
+</ul>
+
+<p>
+<b>Versies van problemen</b>
+</p>
+<ul class="org-ul">
+<li>Optimalisatieprobleem
+<ul class="org-ul">
+<li>Wat is het kleinste aantal munten waarmee \(b\) betaald kan worden met munten van waardes \(a_1, ... , a_r\)? (Antwoord is een getal.)</li>
+</ul></li>
+<li>Constructieprobleem
+<ul class="org-ul">
+<li>Op welke manier kan \(b\) betaald worden met zo min mogelijk munten van waardes \(a_1, ... , a_r\)? (Antwoord is een serie van waardes van munten.)</li>
+</ul></li>
+<li>Beslissingsprobleem
+<ul class="org-ul">
+<li>Vb: kan \(b\) betaald worden met hooguit i munten van waardes \(a_1, ... , a_r\)? (Antwoord is: JA of NEE.)</li>
+</ul></li>
+</ul>
+</div>
+</li>
+<li><a id="orge0e50ff"></a>Constructieversies<br />
+<div class="outline-text-5" id="text-9-3-2-2">
+<ol class="org-ol">
+<li>Doe eerst DP algoritme voor beslisprobleem of optimalisatieprobleem
+<ul class="org-ul">
+<li>Eventueel met bijhouden van extra gegevens</li>
+</ul></li>
+<li>Construeer antwoord achterstevoren door gebruik te maken van de opgeslagen en door het DP algoritme berekende informatie
+<ul class="org-ul">
+<li>Bijvoorbeeld: hoe werd het minimum/maximum berekend?</li>
+</ul></li>
+</ol>
+
+<p>
+zie slides vanaf 44 voor voorbeeld
+</p>
+</div>
+</li>
+<li><a id="org2ce0685"></a>Voorbeeld: gepast betalen:<br />
+<div class="outline-text-5" id="text-9-3-2-3">
+<ul class="org-ul">
+<li>\(G(c) = \min_i \{ 1 + G(c-a_i) \}\)
+<ul class="org-ul">
+<li>Minimum over alle i z.d.d. \(c \ge a_i\)</li>
+</ul></li>
+<li>Basisgeval: \(G(0) = 0\)</li>
+</ul>
+
+<p>
+Method \(Gepast(a_1,..,a_r,b)\)
+</p>
+<ul class="org-ul">
+<li>Maak array G[0..b]; G[0] = 0; G[1..b] = ∞</li>
+<li>for c = 1 to b do // nu het minimum berekenen
+<ul class="org-ul">
+<li>for i = 1 to r do
+<ul class="org-ul">
+<li>if \(c \ge a_i\) then \(G[c] = \min\{G[c], 1+ G[c-a_i] \}\)</li>
+</ul></li>
+</ul></li>
+<li>return G[b]</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org6828a19" class="outline-4">
+<h4 id="org6828a19"><span class="section-number-4">9.3.3.</span> Knapsack probleem</h4>
+<div class="outline-text-4" id="text-9-3-3">
+<p>
+vanaf slide 52
+vanaf slide 67
+</p>
+</div>
+</div>
+<div id="outline-container-org043470c" class="outline-4">
+<h4 id="org043470c"><span class="section-number-4">9.3.4.</span> subset sum</h4>
+</div>
+<div id="outline-container-orgcbec623" class="outline-4">
+<h4 id="orgcbec623"><span class="section-number-4">9.3.5.</span> DP slides 2</h4>
+</div>
+</div>
+<div id="outline-container-org74493ae" class="outline-3">
+<h3 id="org74493ae"><span class="section-number-3">9.4.</span> Graphs</h3>
+<div class="outline-text-3" id="text-9-4">
+</div>
+<div id="outline-container-orgadb75b1" class="outline-4">
+<h4 id="orgadb75b1"><span class="section-number-4">9.4.1.</span> Graph representation</h4>
+<div class="outline-text-4" id="text-9-4-1">
+<p>
+\(G=(V,E)\)
+</p>
+<ul class="org-ul">
+<li>V: set of vertices in the graps (dots)
+<ul class="org-ul">
+<li>\(n=|v|\)</li>
+<li>Example : \(V={a,b,c,d,e}\)</li>
+</ul></li>
+<li>E: set of edges in the graph (lines)
+<ul class="org-ul">
+<li>\(m=|E|\)</li>
+<li>Example: \(E=\{(a, b), (a, c), (b, c), (c, d)\}\)</li>
+</ul></li>
+</ul>
+
+<p>
+In directed graphs, the edges are ordered set. That is, \((u,v)\ne (v,u)\)
+<img src="Graphs/2024-02-22_09-08-27_screenshot.png" alt="2024-02-22_09-08-27_screenshot.png" />
+</p>
+
+<p>
+Weighted graph: the edges can be associated with weights.
+<img src="Graphs/2024-02-22_09-10-03_screenshot.png" alt="2024-02-22_09-10-03_screenshot.png" />
+</p>
+
+<p>
+Terminologies:
+<img src="Graphs/2024-02-22_09-10-21_screenshot.png" alt="2024-02-22_09-10-21_screenshot.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org714ad67" class="outline-4">
+<h4 id="org714ad67"><span class="section-number-4">9.4.2.</span> Adjacency list</h4>
+<div class="outline-text-4" id="text-9-4-2">
+<p>
+For each vertex, store its neighbors in a linked list
+</p>
+<ul class="org-ul">
+<li>Space complexity: \(O(|E|)\)</li>
+<li>Querying complexity: \(O(max\ degree)\)</li>
+</ul>
+
+
+<div id="org5a21443" class="figure">
+<p><img src="Graphs/2024-02-22_09-15-25_screenshot.png" alt="2024-02-22_09-15-25_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdcdcea2" class="outline-4">
+<h4 id="orgdcdcea2"><span class="section-number-4">9.4.3.</span> Adjacency Matrix</h4>
+<div class="outline-text-4" id="text-9-4-3">
+
+<div id="orgd28aba9" class="figure">
+<p><img src="Graphs/2024-02-22_09-21-03_screenshot.png" alt="2024-02-22_09-21-03_screenshot.png" />
+</p>
+</div>
+
+<p>
+Use a \(|V|\times |V|\) matrix A such that
+</p>
+<ul class="org-ul">
+<li>\(A(u,v)=1\) iff \((u,v)\in E\)</li>
+<li>\(A(u,v)=0\) otherwise</li>
+
+<li>Space complexity: \(O(|V|^2)\)</li>
+<li>Querying complexity: \(O(1)\)</li>
+<li>For directed graphs, A is not necessarily symmetric</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbd688f7" class="outline-4">
+<h4 id="orgbd688f7"><span class="section-number-4">9.4.4.</span> Adjacency List and Adjacency Matrix</h4>
+<div class="outline-text-4" id="text-9-4-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Adjacency list</th>
+<th scope="col" class="org-left">Adjacency matrix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Space</td>
+<td class="org-left">\(O(V+E)\)</td>
+<td class="org-left">\(O(V^2)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Add an edge</td>
+<td class="org-left">\(O(1)\)</td>
+<td class="org-left">\(O(1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Delete an edge</td>
+<td class="org-left">\(O(max degree) = O(V)\)</td>
+<td class="org-left">\(O(1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">List all neighbors of a vertex</td>
+<td class="org-left">\(O(# of neighbors) = O(V)\)</td>
+<td class="org-left">\(O(V)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Check adjacency of vertices u and v</td>
+<td class="org-left">\(O(max degree) = O(V)\)</td>
+<td class="org-left">\(O(1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">List all edges</td>
+<td class="org-left">\(O(E)\)</td>
+<td class="org-left">\(O(V^2)\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org8d72d7b" class="outline-4">
+<h4 id="org8d72d7b"><span class="section-number-4">9.4.5.</span> Depth-First Search</h4>
+<div class="outline-text-4" id="text-9-4-5">
+<div class="org-src-container">
+<pre class="src src-c">Procedure DFS-VISIT(u)
+    Mark u as discovered
+    time &#8592; time + <span style="color: #fab387;">1</span>
+    d[u] &#8592; time
+    For each neighbor v of u
+        If v is not-discovered
+            &#960;[v] &#8592; u
+            DFS-VISIT(v)
+    Mark u as finished
+    time &#8592; time + <span style="color: #fab387;">1</span>
+    f[u] &#8592; time
+</pre>
+</div>
+<ul class="org-ul">
+<li>For each of the vertices v, we take information:</li>
+<li>\(d[v]\): discover time, timestamp when is first discovered</li>
+<li>\(f[v]\): finish time, timestamp when the search finishes examining \(v\)’s adjacency list
+<ul class="org-ul">
+<li>\(d[v]<f[v]\le 2|V|\)</li>
+</ul></li>
+<li>\(\pi[v]\): the predecessor of \(v\) when we traverse the graph</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgc057bd5"></a>Parenthesis Theorem<br />
+<div class="outline-text-5" id="text-9-4-5-1">
+<p>
+In any DFS of a graph \(G=(V,E)\), for any two vertices \(u,v\in V\), there are three cases of the positions of u and v in the depth-first forest
+</p>
+<ul class="org-ul">
+<li>\(u\) is a descendant of \(v\)
+<ul class="org-ul">
+<li>\([d[u]], f[u]]\) is contained entirely within \([d[v],f[v]]\)</li>
+</ul></li>
+<li>\(v\) is a descendant of \(u\), or
+<ul class="org-ul">
+<li>\([d[v],f[v]]\) is contained entirely within \([d[u],f[u]]\)</li>
+</ul></li>
+<li>neither \(u\) nor \(v\) is a descendant of the other
+<ul class="org-ul">
+<li>\([d[u],f[u]]\) and \([d[v],f[v]]\) are entirely disjoint</li>
+</ul></li>
+</ul>
+
+
+<div id="orgc04a060" class="figure">
+<p><img src="Graphs/2024-02-22_10-03-04_screenshot.png" alt="2024-02-22_10-03-04_screenshot.png" />
+</p>
+</div>
+
+<p>
+<b>Theorem:</b> In any DFS of a graph \(G=(V,E)\), for any two vertices \(u,v\in V\), \(v\) is a proper descendant of \(u\) in the depth-first forest if and only if \(d[u]<d[v]<f[v]<f[u]\)
+</p>
+</div>
+</li>
+<li><a id="org1592cbb"></a>Edges Classification<br />
+<div class="outline-text-5" id="text-9-4-5-2">
+<p>
+According to the Depth-first forest \(G_\pi(V,E_\pi)\), each edge \((u,v)\in E\) is on of for type
+• Tree edges: the edges in \(E_\pi\)
+• Back edges: pointing from a descendant to an ancestor
+• Forward edges: non-tree-edges pointing from an ancestor to a descendant
+• Cross edges: all other edges
+</p>
+
+
+<div id="orgcf743bc" class="figure">
+<p><img src="Graphs/2024-02-22_10-10-01_screenshot.png" alt="2024-02-22_10-10-01_screenshot.png" />
+</p>
+</div>
+</div>
+</li>
+<li><a id="org8c8f0c2"></a>White-Path Theorem<br />
+<div class="outline-text-5" id="text-9-4-5-3">
+<p>
+From slide 137
+In a depth-first forest of a graph \(G\), vertex \(v\) is a descendant of \(u\) vertex if and only if at the time that \(u\) is discovered by DFS, vertex \(v\) can be reached from \(u\) along a path consisting entirely of white vertices.
+</p>
+
+<p>
+Application: Cycle Detection
+</p>
+<ul class="org-ul">
+<li>Given a directed graph \(G\), there is a directed cycle if and only if a DFS of \(G\) yields at least one back edge.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga441ee3" class="outline-3">
+<h3 id="orga441ee3"><span class="section-number-3">9.5.</span> All pair shortest paths</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+We want to know the shortest path from every possible source to every possible destination.
+</p>
+
+<p>
+The algorithm should return \(\delta(u,v)\) for any pairs of vertices \(u\) and \(v\).
+</p>
+
+<p>
+A naive way would be to just run Dijkstra or Bellman-Ford for each of the vertices.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Martijn Voordouw</p>
+<p class="date">Created: 2024-04-07 Sun 13:23</p>
+</div>
+</body>
+</html>
