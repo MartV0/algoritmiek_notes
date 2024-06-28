@@ -338,8 +338,18 @@ Practisch: reken bij elke verzameling de “opvolgende oplossingen” uit (met h
 - Per combinatie 𝑛 tijd, want kijken naar elk een-na- laatste adres:
 - $O(2^n n^2)$
 - Generalisatie: bijvoorbeeld: hoeveel adressen kan je binnen 𝑘 tijd bezoeken? (openingstijd van een winkelgebied?)
-* TODO Greedy algorithms
-SCHEDULED: <2024-06-27 Thu>
+* Greedy algorithms
+Greedy algorithms are those which build the solution step-by-step, making the optimal choice at every step.
+
+To show the correctness of the greedy strategy, one needs to prove the following:
+- *Greedy Choice Property:* We need to prove that the greedy choice that we make, indeed yields an optimal solution. To do so, we show that there exists some optimal solution that contains the best option as per our greedy strategy.
+- *Optimality Principle:* To demonstrate optimal substructure of the problem, we need to show that if we combine the greedy choice with the optimal solution of the subproblem we are left with, we get the optimum solution to the original problem.
+
+To show if a problem has the greedy choice property consider an optimal solution that does not contain your greedy choice.
+- *Exchange Argument:* Modify the solution by replacing some part of it with your greedy choice. Show that the modified solution preserves optimality.
+
+** Fractional Knapsack problem, Interval Scheduling en Huffman's codes
+Niet super boeiend best simple, bewijs is wel handig om even door te lezen in de lecture notes.
 * Graphs
 ** Graph representation
 $G=(V,E)$
