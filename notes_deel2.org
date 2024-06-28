@@ -7,8 +7,461 @@
 #+EXPORT_FILE_NAME: index.html
 #+category: Uni
 
-#+ATTR_ORG: :width 400
+* Divide and Conquer
+grote O: $f(n)=O(g(n))$ als er een constante c bestaat zdd voor iedere $n\ge n_0$ geldt dat $f(n)\le c*g(n)$
 
+- $f(n)=O(g(n))$: f(n) is asymptotisch hoogstens g(n)
+- $f(n)=\Omega(g(n))$: f(n) is asymptotisch minstens g(n)
+- $f(n)=\Theta(g(n))$: f(n) is asymptotisch gelijk aan g(n)
+- $f(n)=o(g(n))$: f(n) is asymp. 'strict kleiner' dan g(n)
+- $f(n)=\omega(g(n))$: f(n) is asymp. 'strict groter' dan g(n)
+
+** Divide and Conquer : in het algemeen
+1. Divide: splits in deelproblemen
+2. Conquer: los deelproblemen recursief op
+3. Combine: voeg deeloplossingen samen tot oplossing hele probleem
+4. Basisgeval: niet vergeten
+
+#+begin_src python
+if input is 'klein'
+then los direct op (basisgeval)
+else splits in deelproblemen
+    los deelproblemen recursief op
+    oplossingen deelproblemn samenvoegen
+#+end_src
+
+- Doe geen overbodig werk
+  - Bijv.: iedere keer sorteren, arrays kopiëren
+- Denk goed na over je combine-stap
+  - Gebruik hulpwaarden!
+- Soms kan het handig zijn om de invoer in meer dan twee stukken te splitsen
+  - Zie bijvoorbeeld Selection-algoritme (boek 9.3)
+** Correctheid: inductie
+- Bewijs dat basisgeval correct is
+- Inductiehypothese: algoritme werkt voor alle kleinere invoeren
+- Inductiestap:
+  - Deelproblemen hebben kleinere invoeren en worden dus correct opgelost (IH)
+  - Oplossingen van deelproblemen worden correct samengevoegd
+** MergeSort
+Sorteer array van getallen
+
+1. Divide: splits array in twee helften
+2. Conquer: sorteer helften
+3. Combine: voeg gesorteerde lijsten samen tot één gesorteerde lijst
+   - Pak telkens kleinste element uit twee lijsten
+4. Basisgeval: array heeft grootte 1
+
+#+begin_src python
+MergeSort(int[] X, int a, int b)
+    if b-a == 1 then return
+    MergeSort(X, a, (a+b)/2)
+    MergeSort(X, (a+b)/2, b)
+    Merge(X, a, (a+b)/2, b)
+#+end_src
+*** Correctheid Mergesort
+- Gebruik inductie!
+- Basisgeval: lijst van 1 element altijd gesorteerd
+- Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen
+
+- Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen
+- Inductiestap: Invoer is een array met n elementen
+  - Twee helften worden correct gesorteerd (IH)
+  - Merge werkt correct (Apart bewijs)
+*** Looptijd
+- MergeSort(int[] X, int a, int b)  O(1)
+- if b-a == 1 then return           T(n)
+- MergeSort(X, a, (a+b)/2)          T(n/2)
+- MergeSort(X, (a+b)/2, b)          T(n/2)
+- Merge(X, a, (a+b)/2, b)           O(n)
+
+*Recurrente betrekking:* T(n) = 2T(n/2) + O(n)
+** Oplossen recurrente betrekking
+*** Subsitutie
+- Inductiebewijs!
+- Gegeven recurrente betrekking T(n), doe een ‘goede gok’ van de oplossing
+  - Tip voor de gok: schrijf de recurrente betrekking een aantal stappen of geheel uit
+  - Kijk of je hieruit iets kunt afleiden
+  - Houd het simpel
+  - Voeg extra termen/constantes toe indien nodig
+
+Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen $O()$).
+- Pas na je inductie-bewijs schat je af met $O()$
+**** Voorbeeld
+- Voorbeeld: T(n) = T(n/2) + 1; T(1)=0
+- Gok: T(n) = log n. Gebruik nu inductie!
+- Basis: n=1: T(1) = 0; log n = 0. Correct!
+- IH: voor alle n’ < n geldt T(n’) = log n’
+- Stap: T(n) = T(n/2)+1 = log(n/2) + 1 = log n
+- Het bewijs volgt dus uit inductie
+
+*MergeSort:*
+- $T(n)=2T(n/2)+c\ n;\ T(1)=c'$
+- Herinner: MergeSort in $O(n\log n)$
+- Gok: $T(n)\le d\ n\log n$ voor te kiezen $d (d\ge c'+c)$
+- Gebruik inductie. Basis: $n=2$
+  - $T(2)$
+  - $d\ n\log n = 2d$
+  - Als $d$ tenminste $c'+c$, dan is $T(2)\le 2d$
+- Inductiehypothese: $T(n')\le d\ n'\log n'$ voor alle $n'<n$
+- Stap:
+$$T(n)=2T(n/2)+cn $$
+$$\le 2d \frac n 2 \log \left(\frac n 2\right) + cn$$
+$$=d\ n\left ( (\log n)-1\right)+cn$$
+$$=d n \log n - dn + cn$$
+- Als $d\ge c$, dan is $T(n)\le d\ n \log n$
+*** Recursieboom
+[[file:Divide_and_Conquer/2024-03-02_12-18-44_screenshot.png]]
+- O(n) per niveau. Hoeveel niveaus?
+- Halveren tot grootte 1: n/2i=1 => i = log n
+- O(n log n) tij
+*** master theorem
+Uit het book van vierde editie, dit is de beste volgensmij
+- Stel $a>0$, $b>1$, $g(n)$ een functie
+- Dan lost $T(n)= a\ T(n/b)+g(n)$ op tot:
+  1. $\Theta (n^p)$ als $g(n)=O(n^e)$ voor $e<p$
+  2. $\Theta (n^p \log^{k+1}n)$ als $g(n)=\Theta(n^e\log ^k n)$ voor $k\ge 0$ als $e=p$
+  3. $\Theta(g(n))$ als $g(n)=\Omega(n^e)$ voor $e>p$ en er constante $c<1$ bestaat zdd $a\ g(n/b)\le c\ g(n)$
+- Hierbij is $p=\log _b a$
+
+**** Derde editie versie
+Iets simpeler, minder compleet
+
+- Stel $a\ge 1$, $b>1$, $g(n)$ een functie
+- Dan lost $T(n)= a\ T(n/b)+g(n)$ op tot:
+  1. $\Theta (n^p)$ als $g(n)=O(n^e)$ voor $e<p$
+  2. $\Theta (n^p \log n)$ als $g(n)=\Theta(n^e)$ voor $e=p$
+  3. $\Theta(g(n))$ als $g(n)=\Omega(n^e)$ voor $e>p$ en er constante $c<1$ bestaat zdd $a\ g(n/b)\le c\ g(n)$
+- Hierbij is $p=\log _b a$
+* Recursief programmeren
+Los deelproblemen op en voeg oplossingen samen
+- Deelproblemen kunnen wel overlappen
+- Vaak: alle mogelijkheden proberen
+- Bewijs correctheid: inductie
+- Werkt voor veel verschillende problemen
+  - Grootste voordeel bij optimaliseringsproblemen
+
+** Gepast betalen
+*Optimaliseringsprobleem*:
+- Je moet deelverzameling/volgorde selecteren die optimaal is
+- In welke volgorde levert de postbode pakketjes af in zo kort mogelijke tijd?
+
+Gegeven: positieve gehele getallen $a_1,...,a_r$ (waarde munten), niet-negatief geheel getal $b$ (doelbedrag)
+
+Gevraagd: op welke manier kan $b$ verkregen worden door zo min mogelijk munten van waardes $a_1,...,a_r$ ?
+- Hoeveelheid munten van ieder soort is onbeperkt
+- Totale som moet b zijn.
+- We zoeken dus de aantallen $x_1,...,x_r\in N = \{0,1,...\}$ met
+  - $\sum^r_{i=1}x_i\cdot a_i=b$
+  - en $\sum_{i=1}^r x_i$ zo klein mogelijk
+
+- Wat is de rij keuzes die leidt tot een oplossing?
+  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
+- Identificeer de laatste keuze *(top-choice)*. Die leidt tot een splitsing in een deelprobleem
+
+- *Top-choice:* de laatste munt die ik geef, zeg een munt van waarde $a_i$
+- Blijft over: Hoe kunnen we $b-a_i$ gepast betalen met zo min mogelijk munten?
+- Deelprobleem: veralgemeniseer dit, want we weten $a_i$ en dus $b-a_i$ niet
+- Hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
+
+- Deelprobleem: gegeven $c$ met $0 \le c \le b$ , hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
+- Merk op: originele probleem is speciaal geval van deelprobleem (kies $c = b$)
+
+- Wat is de rij keuzes die leidt tot een oplossing?
+  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
+- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
+- Gebruik top-choice en deelprobleem om een recursieve functie te maken
+  - Let op de basisgevallen
+
+- $G(c)$ = kleinste aantal munten waarmee we c gepast kunnen betalen
+- Basisgeval: $G(0) = 0$
+- We geven munt van waarde $a_i$ : $G(c) = 1+G(c-a_i)$
+- Essentieel: we proberen alle mogelijkheden en nemen de beste
+- $G(c) = \min_i \{ 1 + G(c-a_i) \}$
+  - Minimum over alle i z.d.d. $c \ge a_i$
+
+** optimaliteitsprincipe
+[[file:Recursief_programmeren/2024-02-21_10-45-11_screenshot.png]]
+- Hoe weten we dat recursieve functie correct is?
+- Gebruik inductie!
+- Basisgeval: vaak triviaal (laten we hier achterwege)
+- Te bewijzen: als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
+
+- Probleem: gegeven $c$ met $0 \le c \le b$, hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
+- $T=\{m_1,..,m_k\}$ is optimale oplossing om $c$ gepast te betalen. Zeg $m_k$ waarde $a_i$
+- $\{m_1,..,m_{k-1}\}$ is een manier om $c-a_i$ gepast te betalen
+- Stel $D =\{n_1,..,n_{k'}\}$ is optimale oplossing van deel- probleem om $c-a_i$ gepast te betalen. Dan $k' \le k -1$
+- Laat $T' = \{n_1,..n_{k'},m_k\}$. $T'$ nog steeds een oplossing om $c$ gepast te betalen
+
+- $T=\{m_1,..,m_k\}$ , $T' = \{n_1,..n_{k'},m_k\}$
+- $T$ en $T'$ zijn een oplossing om $c$ gepast te betalen
+- $|T'| = k' +1 \le k = |T|$, want $k' \le k -1$.
+- $|T'| \ge |T|$, want $T$ is optimaal
+- Dus $|T'|=|T|$
+- Dus optimale oplossing opgebouwd uit optimale oplossing voor deelprobleem
+- Optimaliteitsprincipe bewezen
+
+Uitwisselargument:
+[[file:Recursief_programmeren/2024-02-21_11-05-35_screenshot.png]]
+** Samenvatting
+- Wat is de rij keuzes die leidt tot een oplossing?
+  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
+- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
+- Gebruik top-choice en deelprobleem om een recursieve functie te maken
+  - Let op de basisgevallen
+- Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
+*
+* Dynamisch Programmeren
+Twee mogelijkheden:
+- *Memoisatie:* kijk of we ‘t al eerder hebben uitgerekend – zo ja, geef dat antwoord; zo nee: reken uit en sla antwoord op in datastructuur (bijvoorbeeld array of hashtabel)
+- *'Klassiek' DP:* vul datastructuur met antwoorden voor deelproblemen, zodat nodige gegevens al eerder zijn berekend
+
+** Driehoek van Pascal DP
+** Klassiek DP
+- Initialiseer array
+- Vul de basisgevallen in
+- Vul de array, lettend op de opvul-volgorde
+  - Vul van basis naar eind-antwoord
+- Return oplossing
+
+*** Ontwerp
+- Wat is de rij keuzes die leidt tot een oplossing?
+  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
+- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
+- Gebruik top-choice en deelprobleem om een recursieve functie te maken
+  - Let op de basisgevallen
+- Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
+- Vind de juiste berekeningsvolgorde
+  - Memoisatie volgt uit recursieve functie
+  - Opletten bij DP algoritme
+- Eventueel: geheugenbesparing of oplossing vinden
+
+*Technieken die vaak werken*
+- Terugredeneren van antwoord
+- Bijhouden van extra informatie die vertelt waar je vandaan komt, of dit later zien aan de opgeslagen informatie
+
+*Versies van problemen*
+- Optimalisatieprobleem
+  - Wat is het kleinste aantal munten waarmee $b$ betaald kan worden met munten van waardes $a_1, ... , a_r$? (Antwoord is een getal.)
+- Constructieprobleem
+  - Op welke manier kan $b$ betaald worden met zo min mogelijk munten van waardes $a_1, ... , a_r$? (Antwoord is een serie van waardes van munten.)
+- Beslissingsprobleem
+  - Vb: kan $b$ betaald worden met hooguit i munten van waardes $a_1, ... , a_r$? (Antwoord is: JA of NEE.)
+*** Constructieversies
+1. Doe eerst DP algoritme voor beslisprobleem of optimalisatieprobleem
+   - Eventueel met bijhouden van extra gegevens
+2. Construeer antwoord achterstevoren door gebruik te maken van de opgeslagen en door het DP algoritme berekende informatie
+   - Bijvoorbeeld: hoe werd het minimum/maximum berekend?
+
+zie slides vanaf 44 voor voorbeeld
+*** Voorbeeld: gepast betalen:
+- $G(c) = \min_i \{ 1 + G(c-a_i) \}$
+  - Minimum over alle i z.d.d. $c \ge a_i$
+- Basisgeval: $G(0) = 0$
+
+Method $Gepast(a_1,..,a_r,b)$
+- Maak array G[0..b]; G[0] = 0; G[1..b] = ∞
+- for c = 1 to b do // nu het minimum berekenen
+  - for i = 1 to r do
+    - if $c \ge a_i$ then $G[c] = \min\{G[c], 1+ G[c-a_i] \}$
+- return G[b]
+** Keuzes/deelproblemen identificeren
+Let goed op de probleemstelling
+- Zit er een volgorde die gebruikt kan worden?
+- Wat wil je optimaliseren
+
+Identificeer de top-choice
+- Welke beslissingen kan het optimum nemen?
+
+Bekijk de situatie die overblijft na een top-choice
+** Traveling Salesman problem
+Een handelsreiziger moet n steden bezoeken:
+- Bezoek elke stad 1 keer
+- Elk paar steden v, w heeft een afstand $d(v,w)$
+- Beginstad = eindstad
+- Wat is de kortste route?
+
+*Top choice*: laatste bezochte adres
+
+Deelprobleem hier is minder makkelijk, je kan niet zeggen hoe kan ik het snelste de eerste i adressen bezoeken. Snelste route voor eerste drie adressen hoeft geen deel te zijn van een snelste route voor eerste vier adressen.
+
+*Deelprobleem*: Gegeven een verzameling adressen $s$ en een adres $k$, wat is de minimum tijd om alle adressen in $S$ te bezoeken, beginnend bij depot en eindigend bij adres $k$?
+- Handige notatie: $s$ is alle adressen die we bezoeken tussen het depot en het bezoek aan adres $k$, dus we bezoeken $s\cup$ {depot, k}
+
+Merk op: algemene probleem is speciaal geval van deelprobleem
+- Bekijk optimale oplossing en kies k als laatste adres en S = {1,…,n}\{k}
+
+$A(S,k) =$ minimum tijd van trip als we beginnen in depot, dan alle adressen in S bezoeken (met de beste volgorde) en dan naar adres k gaan
+
+Neem beste optie van alle mogelijke laatst bezochte adressen k
+
+$\min\{A(V-\{k\},k)+ d(k,depot)|k\in V\}$
+- $d(k,depot)$ geeft tijd voor laatste stap van k terug naar depot
+
+#+BEGIN_SRC c
+Method HK(V = {depot, 1, ..,n})
+Maak een hashtabel Q, initieel leeg
+best = ∞
+forall 𝑘 ∈ {1, … , 𝑛} do // loop door alle depots
+        // zie k als eindpunt van route, doe daar bij de afstand van k tot depot
+        best = min{ best, HKrec(𝑉 − {𝑘}, 𝑘) + d(𝑘, depot) }
+return best
+
+// functie om afstand van route adress g tot depot te bereken door S lopend
+Method HKrec(𝑆, 𝑔) // volg recursieve functie
+if 𝑆, 𝑔 ∈ 𝑄 then return 𝑄(𝑆, 𝑔)
+else
+    if 𝑆 = ∅ then return 𝑑 𝑑𝑒𝑝𝑜𝑡, 𝑔
+    else 𝑎𝑛𝑡𝑤 = ∞;
+        for 𝑘 ∈ 𝑆 do
+            // recursieve call, afstand van k door de rest plus afstand tussen k en g
+            𝑎𝑛𝑡𝑤 = min{𝑎𝑛𝑡𝑤, HKrec (𝑆 – 𝑘 , 𝑘) + 𝑑 (𝑘, 𝑔) }
+        𝑄(𝑆, 𝑔) = 𝑎𝑛𝑡𝑤
+        return 𝑎𝑛𝑡𝑤
+#+END_SRC
+
+Andere aanpak: hier gaan we een soort van vanaf het depot rekenen en telkens alle afstanden bijhouden
+
+Reken alle 𝐴(𝑆, 𝑔) uit:
+- Eerst alleen 𝑆 = ∅
+- Dan alle 𝑆 met één adres
+- Dan alle 𝑆 met twee adressen
+- Dan alle 𝑆 met drie adressen
+- Etc
+
+Of representeer 𝑆 als integer …
+
+Practisch: reken bij elke verzameling de “opvolgende oplossingen” uit (met heuristieken om stukken die nooit optimaal kunnen zijn weg te laten)
+
+*** Complexiteit
+- Tijd: we kijken naar alle deelverzamelingen: 2𝑛
+- Per verzameling 𝑛 keuzes voor laatste adres
+- Per combinatie 𝑛 tijd, want kijken naar elk een-na- laatste adres:
+- $O(2^n n^2)$
+- Generalisatie: bijvoorbeeld: hoeveel adressen kan je binnen 𝑘 tijd bezoeken? (openingstijd van een winkelgebied?)
+* TODO Greedy algorithms
+SCHEDULED: <2024-06-27 Thu>
+* Graphs
+** Graph representation
+$G=(V,E)$
+- V: set of vertices in the graps (dots)
+  - $n=|v|$
+  - Example : $V={a,b,c,d,e}$
+- E: set of edges in the graph (lines)
+  - $m=|E|$
+  - Example: $E=\{(a, b), (a, c), (b, c), (c, d)\}$
+
+In directed graphs, the edges are ordered set. That is, $(u,v)\ne (v,u)$
+[[file:Graphs/2024-02-22_09-08-27_screenshot.png]]
+
+Weighted graph: the edges can be associated with weights.
+[[file:Graphs/2024-02-22_09-10-03_screenshot.png]]
+
+Terminologies:
+[[file:Graphs/2024-02-22_09-10-21_screenshot.png]]
+
+** Adjacency list
+For each vertex, store its neighbors in a linked list
+- Space complexity: $O(|E|)$
+- Querying complexity: $O(max\ degree)$
+
+[[file:Graphs/2024-02-22_09-15-25_screenshot.png]]
+** Adjacency Matrix
+[[file:Graphs/2024-02-22_09-21-03_screenshot.png]]
+
+Use a $|V|\times |V|$ matrix A such that
+- $A(u,v)=1$ iff $(u,v)\in E$
+- $A(u,v)=0$ otherwise
+
+- Space complexity: $O(|V|^2)$
+- Querying complexity: $O(1)$
+- For directed graphs, A is not necessarily symmetric
+** Adjacency List and Adjacency Matrix
+|                                     | Adjacency list             | Adjacency matrix |
+|-------------------------------------+----------------------------+------------------|
+| Space                               | $O(V+E)$                   | $O(V^2)$         |
+| Add an edge                         | $O(1)$                     | $O(1)$           |
+| Delete an edge                      | $O(max degree) = O(V)$     | $O(1)$           |
+| List all neighbors of a vertex      | $O(# of neighbors) = O(V)$ | $O(V)$           |
+| Check adjacency of vertices u and v | $O(max degree) = O(V)$     | $O(1)$           |
+| List all edges                      | $O(E)$                     | $O(V^2)$         |
+** Depth-First Search
+#+begin_src c
+Procedure DFS-VISIT(u)
+    Mark u as discovered
+    time ← time + 1
+    d[u] ← time
+    For each neighbor v of u
+        If v is not-discovered
+            π[v] ← u
+            DFS-VISIT(v)
+    Mark u as finished
+    time ← time + 1
+    f[u] ← time
+#+end_src
+- For each of the vertices v, we take information:
+- $d[v]$: discover time, timestamp when is first discovered
+- $f[v]$: finish time, timestamp when the search finishes examining $v$’s adjacency list
+  - $d[v]<f[v]\le 2|V|$
+- $\pi[v]$: the predecessor of $v$ when we traverse the graph
+*** Parenthesis Theorem
+In any DFS of a graph $G=(V,E)$, for any two vertices $u,v\in V$, there are three cases of the positions of u and v in the depth-first forest
+- $u$ is a descendant of $v$
+  - $[d[u]], f[u]]$ is contained entirely within $[d[v],f[v]]$
+- $v$ is a descendant of $u$, or
+  - $[d[v],f[v]]$ is contained entirely within $[d[u],f[u]]$
+- neither $u$ nor $v$ is a descendant of the other
+  - $[d[u],f[u]]$ and $[d[v],f[v]]$ are entirely disjoint
+
+[[file:Graphs/2024-02-22_10-03-04_screenshot.png]]
+
+*Theorem:* In any DFS of a graph $G=(V,E)$, for any two vertices $u,v\in V$, $v$ is a proper descendant of $u$ in the depth-first forest if and only if $d[u]<d[v]<f[v]<f[u]$
+*** Edges Classification
+According to the Depth-first forest $G_\pi(V,E_\pi)$, each edge $(u,v)\in E$ is on of for type
+- Tree edges: the edges in $E_\pi$
+  - (u,v) is a tree edge if v was first discovered by exploring edge (u,v)
+- Back edges: pointing from a descendant to an ancestor
+- Forward edges: non-tree-edges pointing from an ancestor to a descendant
+- Cross edges: all other edges
+
+[[file:Graphs/2024-02-22_10-10-01_screenshot.png]]
+*** White-Path Theorem
+In a depth-first forest of a graph $G$, vertex $v$ is a descendant of $u$ vertex if and only if at the time that $u$ is discovered by DFS, vertex $v$ can be reached from $u$ along a path consisting entirely of white vertices.
+
+Application: Cycle Detection
+- Given a directed graph $G$, there is a directed cycle if and only if a DFS of $G$ yields at least one back edge.
+** Directed Acyclic Graph
+A *directed acyclic graph (DAG)* is a directed graph which does not have any directed cycles
+- So no back edges in the graph
+
+A *topological sort* of a DAG is a linear ordering of all its vertices such that for any edge $(u,v)\in E$, u appears before v in the ordering
+
+#+begin_src python
+Procedure Topological-Sort(G)
+   Linked list L_sort <- NIL
+   Call DFS(G)
+   As each vertex v is finished
+      Put v to the front of L_sort
+   Return L_sort
+#+end_src
+
+Same time complexity as DFS
+** Strongly connected component
+A strongly connected component of a directed graph $G=(V,E)$ is a maximal set of vertices $C\subseteq V$ such that for every pair of vertices u and v in C, there is a path from u to v and a path from v to u. That is, u and v are reachable from each other.
+
+[[file:Deel_1/2024-05-09_16-02-26_screenshot.png]]
+
+
+[[file:Deel_1/2024-05-09_16-02-53_screenshot.png]]
+* TODO Single source shortest path
+SCHEDULED: <2024-06-28 Fri>
+* TODO All pair shortest paths
+SCHEDULED: <2024-06-28 Fri>
+
+We want to know the shortest path from every possible source to every possible destination.
+
+The algorithm should return $\delta(u,v)$ for any pairs of vertices $u$ and $v$.
+
+A naive way would be to just run Dijkstra or Bellman-Ford for each of the vertices.
 * Matchings
 chapter 25
 - Book defines flow as something between vertices, instead as something belonging to an arc
@@ -615,7 +1068,6 @@ So an order-k tree has at least $F_{k+2}\ge \phi^k$ nodes, where $\phi$ is the g
 
 So the amortized extract min cost is $O(\log n)$
 * Minimum spanning trees and Union find
-SCHEDULED: <2024-04-03 Wed>
 Example minimum spanning tree: connect the cities with as little cost as possible
 
 [[file:minimum_spanning_trees_and_Union_find/2024-04-05_08-45-15_screenshot.png]]
@@ -649,7 +1101,6 @@ while F does not form a spanning tree
 
 [[file:minimum_spanning_trees_and_Union_find/2024-04-05_08-59-19_screenshot.png]]
 ** Light Edges
-SCHEDULED: <2024-04-06 Sat>
 How do we now if an edge is safe to add to a graph?
 - An edge is safe when it belongs to the minimum spanning tree.
 - We call that a *light edge*
@@ -974,6 +1425,7 @@ Gemiddelde looptijd:
 
 Dit algoritme is traag want het gebruikt de informatie van een mismatch niet
 ** TODO fix -1 stuff (word geupdated in slides)
+SCHEDULED: <2024-06-28 Fri>
 ** Rabin-Karp
 Idee: sla strings op als getallen in base $|\Sigma |$
 
@@ -1071,6 +1523,8 @@ Eindige automaat is $O(n)$ tijd, met $O(m|\Sigma |)$
 
 /Na slide 60 en knuth morris hoeven we niet te weten/
 * TODO Gerandomiseerde algoritmes
+SCHEDULED: <2024-06-28 Fri>
+
 Gebruiken getallen uit toevalsgeneratoren
 
 De toevalsgetallen sturen twee dingen:
@@ -1106,362 +1560,3 @@ Ieder Monte Carlo algoritme kan een Las Vegas algoritme worden, mits je efficië
 Toevalsvariable $X$, $P(X=k)$: kans dat $X$ waarde $k$ heeft
 
 $E[X] =$ gemiddelde waarde van toevalsvariabele $X$, gewogen door kansen
-* Deel 1
-Niet heel goed samengevat
-** Divide and Conquer
-grote O: $f(n)=O(g(n))$ als er een constante c bestaat zdd voor iedere $n\ge n_0$ geldt dat $f(n)\le c*g(n)$
-
-- $f(n)=O(g(n))$: f(n) is asymptotisch hoogstens g(n)
-- $f(n)=\Omega(g(n))$: f(n) is asymptotisch minstens g(n)
-- $f(n)=\Theta(g(n))$: f(n) is asymptotisch gelijk aan g(n)
-- $f(n)=o(g(n))$: f(n) is asymp. 'strict kleiner' dan g(n)
-- $f(n)=\omega(g(n))$: f(n) is asymp. 'strict groter' dan g(n)
-
-*** Divide and Conquer : in het algemeen
-1. Divide: splits in deelproblemen
-2. Conquer: los deelproblemen recursief op
-3. Combine: voeg deeloplossingen samen tot oplossing hele probleem
-4. Basisgeval: niet vergeten
-
-#+begin_src python
-if input is 'klein'
-then los direct op (basisgeval)
-else splits in deelproblemen
-    los deelproblemen recursief op
-    oplossingen deelproblemn samenvoegen
-#+end_src
-
-- Doe geen overbodig werk
-  - Bijv.: iedere keer sorteren, arrays kopiëren
-- Denk goed na over je combine-stap
-  - Gebruik hulpwaarden!
-- Soms kan het handig zijn om de invoer in meer dan twee stukken te splitsen
-  - Zie bijvoorbeeld Selection-algoritme (boek 9.3)
-*** Correctheid: inductie
-- Bewijs dat basisgeval correct is
-- Inductiehypothese: algoritme werkt voor alle kleinere invoeren
-- Inductiestap:
-  - Deelproblemen hebben kleinere invoeren en worden dus correct opgelost (IH)
-  - Oplossingen van deelproblemen worden correct samengevoegd
-*** MergeSort
-Sorteer array van getallen
-
-1. Divide: splits array in twee helften
-2. Conquer: sorteer helften
-3. Combine: voeg gesorteerde lijsten samen tot één gesorteerde lijst
-   - Pak telkens kleinste element uit twee lijsten
-4. Basisgeval: array heeft grootte 1
-
-#+begin_src python
-MergeSort(int[] X, int a, int b)
-    if b-a == 1 then return
-    MergeSort(X, a, (a+b)/2)
-    MergeSort(X, (a+b)/2, b)
-    Merge(X, a, (a+b)/2, b)
-#+end_src
-**** Correctheid Mergesort
-- Gebruik inductie!
-- Basisgeval: lijst van 1 element altijd gesorteerd
-- Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen
-
-- Inductiehypothese: Algoritme sorteert correct voor alle arrays met minder dan n elementen
-- Inductiestap: Invoer is een array met n elementen
-  - Twee helften worden correct gesorteerd (IH)
-  - Merge werkt correct (Apart bewijs)
-**** Looptijd
-- MergeSort(int[] X, int a, int b)  O(1)
-- if b-a == 1 then return           T(n)
-- MergeSort(X, a, (a+b)/2)          T(n/2)
-- MergeSort(X, (a+b)/2, b)          T(n/2)
-- Merge(X, a, (a+b)/2, b)           O(n)
-
-*Recurrente betrekking:* T(n) = 2T(n/2) + O(n)
-*** Oplossen recurrente betrekking
-**** Subsitutie
-- Inductiebewijs!
-- Gegeven recurrente betrekking T(n), doe een ‘goede gok’ van de oplossing
-  - Tip voor de gok: schrijf de recurrente betrekking een aantal stappen of geheel uit
-  - Kijk of je hieruit iets kunt afleiden
-  - Houd het simpel
-  - Voeg extra termen/constantes toe indien nodig
-
-Zorg ervoor dat je je subsitutie doet met expliciete constanten. (dus geen $O()$).
-- Pas na je inductie-bewijs schat je af emt $O()$
-***** Voorbeeld
-- Voorbeeld: T(n) = T(n/2) + 1; T(1)=0
-- Gok: T(n) = log n. Gebruik nu inductie!
-- Basis: n=1: T(1) = 0; log n = 0. Correct!
-- IH: voor alle n’ < n geldt T(n’) = log n’
-- Stap: T(n) = T(n/2)+1 = log(n/2) + 1 = log n
-- Het bewijs volgt dus uit inductie
-
-*MergeSort:*
-- $T(n)=2T(n/2)+c\ n;\ T(1)=c'$
-- Herinner: MergeSort in $O(n\log n)$
-- Gok: $T(n)\le d\ n\log n$ voor te kiezen $d (d\ge c'+c)$
-- Gebruik inductie. Basis: $n=2$
-  - $T(2)$
-  - $d\ n\log n = 2d$
-  - Als $d$ tenminste $c'+c$, dan is $T(2)\le 2d$
-- Inductiehypothese: $T(n')\le d\ n'\log n'$ voor alle $n'<n$
-- Stap:
-$$T(n)=2T(n/2)+cn $$
-$$\le 2d \frac n 2 \log \left(\frac n 2\right) + cn$$
-$$=d\ n\left ( (\log n)-1\right)+cn$$
-$$=d n \log n - dn + cn$$
-- Als $d\ge c$, dan is $T(n)\le d\ n \log n$
-**** Recursieboom
-[[file:Divide_and_Conquer/2024-03-02_12-18-44_screenshot.png]]
-- O(n) per niveau. Hoeveel niveaus?
-- Halveren tot grootte 1: n/2i=1 => i = log n
-- O(n log n) tij
-**** master theorem
-Uit het book van vierde editie, dit is de beste volgensmij
-- Stel $a>0$, $b>1$, $g(n)$ een functie
-- Dan lost $T(n)= a\ T(n/b)+g(n)$ op tot:
-  1. $\Theta (n^p)$ als $g(n)=O(n^e)$ voor $e<p$
-  2. $\Theta (n^p \log^{k+1}n)$ als $g(n)=\Theta(n^e\log ^k n)$ voor $k\ge 0$ als $e=p$
-  3. $\Theta(g(n))$ als $g(n)=\Omega(n^e)$ voor $e>p$ en er constante $c<1$ bestaat zdd $a\ g(n/b)\le c\ g(n)$
-- Hierbij is $p=\log _b a$
-
-***** Derde editie versie
-Iets simpeler, minder compleet
-
-- Stel $a\ge 1$, $b>1$, $g(n)$ een functie
-- Dan lost $T(n)= a\ T(n/b)+g(n)$ op tot:
-  1. $\Theta (n^p)$ als $g(n)=O(n^e)$ voor $e<p$
-  2. $\Theta (n^p \log n)$ als $g(n)=\Theta(n^e)$ voor $e=p$
-  3. $\Theta(g(n))$ als $g(n)=\Omega(n^e)$ voor $e>p$ en er constante $c<1$ bestaat zdd $a\ g(n/b)\le c\ g(n)$
-- Hierbij is $p=\log _b a$
-** Recursief programmeren
-Los deelproblemen op en voeg oplossingen samen
-- Deelproblemen kunnen wel overlappen
-- Vaak: alle mogelijkheden proberen
-- Bewijs correctheid: inductie
-- Werkt voor veel verschillende problemen
-  - Grootste voordeel bij optimaliseringsproblemen
-
-*** Gepast betalen
-*Optimaliseringsprobleem*:
-- Je moet deelverzameling/volgorde selecteren die optimaal is
-- In welke volgorde levert de postbode pakketjes af in zo kort mogelijke tijd?
-
-Gegeven: positieve gehele getallen $a_1,...,a_r$ (waarde munten), niet-negatief geheel getal $b$ (doelbedrag)
-
-Gevraagd: op welke manier kan $b$ verkregen worden door zo min mogelijk munten van waardes $a_1,...,a_r$ ?
-- Hoeveelheid munten van ieder soort is onbeperkt
-- Totale som moet b zijn.
-- We zoeken dus de aantallen $x_1,...,x_r\in N = \{0,1,...\}$ met
-  - $\sum^r_{i=1}x_i\cdot a_i=b$
-  - en $\sum_{i=1}^r x_i$ zo klein mogelijk
-
-- Wat is de rij keuzes die leidt tot een oplossing?
-  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
-- Identificeer de laatste keuze *(top-choice)*. Die leidt tot een splitsing in een deelprobleem
-
-- *Top-choice:* de laatste munt die ik geef, zeg een munt van waarde $a_i$
-- Blijft over: Hoe kunnen we $b-a_i$ gepast betalen met zo min mogelijk munten?
-- Deelprobleem: veralgemeniseer dit, want we weten $a_i$ en dus $b-a_i$ niet
-- Hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
-
-- Deelprobleem: gegeven $c$ met $0 \le c \le b$ , hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
-- Merk op: originele probleem is speciaal geval van deelprobleem (kies $c = b$)
-
-- Wat is de rij keuzes die leidt tot een oplossing?
-  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
-- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
-- Gebruik top-choice en deelprobleem om een recursieve functie te maken
-  - Let op de basisgevallen
-
-- $G(c)$ = kleinste aantal munten waarmee we c gepast kunnen betalen
-- Basisgeval: $G(0) = 0$
-- We geven munt van waarde $a_i$ : $G(c) = 1+G(c-a_i)$
-- Essentieel: we proberen alle mogelijkheden en nemen de beste
-- $G(c) = \min_i \{ 1 + G(c-a_i) \}$
-  - Minimum over alle i z.d.d. $c \ge a_i$
-
-*** optimaliteitsprincipe
-[[file:Recursief_programmeren/2024-02-21_10-45-11_screenshot.png]]
-- Hoe weten we dat recursieve functie correct is?
-- Gebruik inductie!
-- Basisgeval: vaak triviaal (laten we hier achterwege)
-- Te bewijzen: als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
-
-- Probleem: gegeven $c$ met $0 \le c \le b$, hoe kunnen we $c$ gepast betalen met zo min mogelijk munten?
-- $T=\{m_1,..,m_k\}$ is optimale oplossing om $c$ gepast te betalen. Zeg $m_k$ waarde $a_i$
-- $\{m_1,..,m_{k-1}\}$ is een manier om $c-a_i$ gepast te betalen
-- Stel $D =\{n_1,..,n_{k'}\}$ is optimale oplossing van deel- probleem om $c-a_i$ gepast te betalen. Dan $k' \le k -1$
-- Laat $T' = \{n_1,..n_{k'},m_k\}$. $T'$ nog steeds een oplossing om $c$ gepast te betalen
-
-- $T=\{m_1,..,m_k\}$ , $T' = \{n_1,..n_{k'},m_k\}$
-- $T$ en $T'$ zijn een oplossing om $c$ gepast te betalen
-- $|T'| = k' +1 \le k = |T|$, want $k' \le k -1$.
-- $|T'| \ge |T|$, want $T$ is optimaal
-- Dus $|T'|=|T|$
-- Dus optimale oplossing opgebouwd uit optimale oplossing voor deelprobleem
-- Optimaliteitsprincipe bewezen
-
-Uitwisselargument:
-[[file:Recursief_programmeren/2024-02-21_11-05-35_screenshot.png]]
-*** Samenvatting
-- Wat is de rij keuzes die leidt tot een oplossing?
-  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
-- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
-- Gebruik top-choice en deelprobleem om een recursieve functie te maken
-  - Let op de basisgevallen
-- Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
-*
-** Dynamisch Programmeren
-Twee mogelijkheden:
-- *Memoisatie:* kijk of we ‘t al eerder hebben uitgerekend – zo ja, geef dat antwoord; zo nee: reken uit en sla antwoord op in datastructuur (bijvoorbeeld array of hashtabel)
-- *'Klassiek' DP:* vul datastructuur met antwoorden voor deelproblemen, zodat nodige gegevens al eerder zijn berekend
-
-*** Driehoek van Pascal DP
-*** Klassiek DP
-- Initialiseer array
-- Vul de basisgevallen in
-- Vul de array, lettend op de opvul-volgorde
-  - Vul van basis naar eind-antwoord
-- Return oplossing
-
-**** Ontwerp
-- Wat is de rij keuzes die leidt tot een oplossing?
-  - Je kiest uit een aantal mogelijkheden waarvan er tenminste één tot een optimale oplossing leidt
-- Identificeer de laatste keuze (top-choice). Die leidt tot een splitsing in een deelprobleem
-- Gebruik top-choice en deelprobleem om een recursieve functie te maken
-  - Let op de basisgevallen
-- Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
-- Vind de juiste berekeningsvolgorde
-  - Memoisatie volgt uit recursieve functie
-  - Opletten bij DP algoritme
-- Eventueel: geheugenbesparing of oplossing vinden
-
-*Technieken die vaak werken*
-- Terugredeneren van antwoord
-- Bijhouden van extra informatie die vertelt waar je vandaan komt, of dit later zien aan de opgeslagen informatie
-
-*Versies van problemen*
-- Optimalisatieprobleem
-  - Wat is het kleinste aantal munten waarmee $b$ betaald kan worden met munten van waardes $a_1, ... , a_r$? (Antwoord is een getal.)
-- Constructieprobleem
-  - Op welke manier kan $b$ betaald worden met zo min mogelijk munten van waardes $a_1, ... , a_r$? (Antwoord is een serie van waardes van munten.)
-- Beslissingsprobleem
-  - Vb: kan $b$ betaald worden met hooguit i munten van waardes $a_1, ... , a_r$? (Antwoord is: JA of NEE.)
-**** Constructieversies
-1. Doe eerst DP algoritme voor beslisprobleem of optimalisatieprobleem
-   - Eventueel met bijhouden van extra gegevens
-2. Construeer antwoord achterstevoren door gebruik te maken van de opgeslagen en door het DP algoritme berekende informatie
-   - Bijvoorbeeld: hoe werd het minimum/maximum berekend?
-
-zie slides vanaf 44 voor voorbeeld
-**** Voorbeeld: gepast betalen:
-- $G(c) = \min_i \{ 1 + G(c-a_i) \}$
-  - Minimum over alle i z.d.d. $c \ge a_i$
-- Basisgeval: $G(0) = 0$
-
-Method $Gepast(a_1,..,a_r,b)$
-- Maak array G[0..b]; G[0] = 0; G[1..b] = ∞
-- for c = 1 to b do // nu het minimum berekenen
-  - for i = 1 to r do
-    - if $c \ge a_i$ then $G[c] = \min\{G[c], 1+ G[c-a_i] \}$
-- return G[b]
-*** Knapsack probleem
-vanaf slide 52
-vanaf slide 67
-*** subset sum
-*** DP slides 2
-** Graphs
-*** Graph representation
-$G=(V,E)$
-- V: set of vertices in the graps (dots)
-  - $n=|v|$
-  - Example : $V={a,b,c,d,e}$
-- E: set of edges in the graph (lines)
-  - $m=|E|$
-  - Example: $E=\{(a, b), (a, c), (b, c), (c, d)\}$
-
-In directed graphs, the edges are ordered set. That is, $(u,v)\ne (v,u)$
-[[file:Graphs/2024-02-22_09-08-27_screenshot.png]]
-
-Weighted graph: the edges can be associated with weights.
-[[file:Graphs/2024-02-22_09-10-03_screenshot.png]]
-
-Terminologies:
-[[file:Graphs/2024-02-22_09-10-21_screenshot.png]]
-
-*** Adjacency list
-For each vertex, store its neighbors in a linked list
-- Space complexity: $O(|E|)$
-- Querying complexity: $O(max\ degree)$
-
-[[file:Graphs/2024-02-22_09-15-25_screenshot.png]]
-*** Adjacency Matrix
-[[file:Graphs/2024-02-22_09-21-03_screenshot.png]]
-
-Use a $|V|\times |V|$ matrix A such that
-- $A(u,v)=1$ iff $(u,v)\in E$
-- $A(u,v)=0$ otherwise
-
-- Space complexity: $O(|V|^2)$
-- Querying complexity: $O(1)$
-- For directed graphs, A is not necessarily symmetric
-*** Adjacency List and Adjacency Matrix
-|                                     | Adjacency list             | Adjacency matrix |
-|-------------------------------------+----------------------------+------------------|
-| Space                               | $O(V+E)$                   | $O(V^2)$         |
-| Add an edge                         | $O(1)$                     | $O(1)$           |
-| Delete an edge                      | $O(max degree) = O(V)$     | $O(1)$           |
-| List all neighbors of a vertex      | $O(# of neighbors) = O(V)$ | $O(V)$           |
-| Check adjacency of vertices u and v | $O(max degree) = O(V)$     | $O(1)$           |
-| List all edges                      | $O(E)$                     | $O(V^2)$         |
-*** Depth-First Search
-#+begin_src c
-Procedure DFS-VISIT(u)
-    Mark u as discovered
-    time ← time + 1
-    d[u] ← time
-    For each neighbor v of u
-        If v is not-discovered
-            π[v] ← u
-            DFS-VISIT(v)
-    Mark u as finished
-    time ← time + 1
-    f[u] ← time
-#+end_src
-- For each of the vertices v, we take information:
-- $d[v]$: discover time, timestamp when is first discovered
-- $f[v]$: finish time, timestamp when the search finishes examining $v$’s adjacency list
-  - $d[v]<f[v]\le 2|V|$
-- $\pi[v]$: the predecessor of $v$ when we traverse the graph
-**** Parenthesis Theorem
-In any DFS of a graph $G=(V,E)$, for any two vertices $u,v\in V$, there are three cases of the positions of u and v in the depth-first forest
-- $u$ is a descendant of $v$
-  - $[d[u]], f[u]]$ is contained entirely within $[d[v],f[v]]$
-- $v$ is a descendant of $u$, or
-  - $[d[v],f[v]]$ is contained entirely within $[d[u],f[u]]$
-- neither $u$ nor $v$ is a descendant of the other
-  - $[d[u],f[u]]$ and $[d[v],f[v]]$ are entirely disjoint
-
-[[file:Graphs/2024-02-22_10-03-04_screenshot.png]]
-
-*Theorem:* In any DFS of a graph $G=(V,E)$, for any two vertices $u,v\in V$, $v$ is a proper descendant of $u$ in the depth-first forest if and only if $d[u]<d[v]<f[v]<f[u]$
-**** Edges Classification
-According to the Depth-first forest $G_\pi(V,E_\pi)$, each edge $(u,v)\in E$ is on of for type
-• Tree edges: the edges in $E_\pi$
-• Back edges: pointing from a descendant to an ancestor
-• Forward edges: non-tree-edges pointing from an ancestor to a descendant
-• Cross edges: all other edges
-
-[[file:Graphs/2024-02-22_10-10-01_screenshot.png]]
-**** White-Path Theorem
-From slide 137
-In a depth-first forest of a graph $G$, vertex $v$ is a descendant of $u$ vertex if and only if at the time that $u$ is discovered by DFS, vertex $v$ can be reached from $u$ along a path consisting entirely of white vertices.
-
-Application: Cycle Detection
-- Given a directed graph $G$, there is a directed cycle if and only if a DFS of $G$ yields at least one back edge.
-** All pair shortest paths
-We want to know the shortest path from every possible source to every possible destination.
-
-The algorithm should return $\delta(u,v)$ for any pairs of vertices $u$ and $v$.
-
-A naive way would be to just run Dijkstra or Bellman-Ford for each of the vertices.
