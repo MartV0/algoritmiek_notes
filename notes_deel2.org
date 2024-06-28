@@ -462,8 +462,52 @@ A strongly connected component of a directed graph $G=(V,E)$ is a maximal set of
 
 
 [[file:Deel_1/2024-05-09_16-02-53_screenshot.png]]
-* TODO Single source shortest path
-SCHEDULED: <2024-06-28 Fri>
+* Single source shortest path
+The problem:
+- A directed graph $G=(V,E,w)$
+- Where every edge $(u,v)\in E$ has a weight $w(u,v)$
+- A path P is a sequence of vertices $v_0, ..., v_k$ path that for any $i \in [1,k],\ (v_{i-1},v_i)\in E$.
+- The weight of a path P, denoted by w(P), is defined by $\sum^k_{i=1}w(v_{i-1},v_i)$
+- We denote te shortest distance between $u,v \in V$, $\delta(u,v)$ by $\min \{w(P)|P\text{ is a path from u to v}\}$
+- The *single-source shortest paths* problem is to find the shortest distance from the source to any vertex $v\in V$
+
+In the next paragraphs the following variables are used:
+- $d[v]$: the distance from the source s to it
+- $\pi [v]$: the predecessor of v when we traverse the graph
+** Breadth-First Search: unweighted graph or graph with uniform weight
+BFS keeps a queue of visited virtices. In each round, BFS dequeues a vertex from the queue and enqueues all its neighbors that are not discovered yet.
+
+[[file:Single_source_shortest_path/2024-06-28_20-03-44_screenshot.png]]
+
+Time complexity of $O(|V|+|E|)$: every vertex is enqueued and dequeued once, and each edge is checked once.
+** Tense edges and relaxation
+$d[v]$ is the temporal estimation (initially $\infty$) of the shortest distance from s to v. We keep updating it when we find an shorter distance from s to v.
+
+An edge $(u,v)$ is *tense* if $d[v] > d[u] + w(u,v)$
+
+We relax a tense edge by udating the value of $d[v]$ to $d[v]+w(u,v)$
+
+Throughout the single-source shorest paths algoriths, we keep relaxing tense edges if there are any.
+
+Using these concept we can rewrite BFS like this
+
+[[file:Single_source_shortest_path/2024-06-28_20-33-07_screenshot.png]]
+** Weighted DAG single source shortest path
+[[file:Single_source_shortest_path/2024-06-28_20-34-45_screenshot.png]]
+
+[[file:Single_source_shortest_path/2024-06-28_20-40-40_screenshot.png]]
+
+Also time complexity of $O(|V|+|E|)$
+** Dijkstras algorithm: weigthed graph with non-negagive weight
+It can be looked at as bfs but by replacing the normal queue with a priority queue
+
+[[file:Single_source_shortest_path/2024-06-28_20-54-16_screenshot.png]]
+
+Time complexity: $O(|V|^2)$, this can be improved to $O(|E|+|V|\log|V|)$
+** Bellman-Ford: weigthed graph without negative cycle
+[[file:Single_source_shortest_path/2024-06-28_21-07-59_screenshot.png]]
+
+Time complexity is $O(|V||E|)$: There is no shortest path with more than |V | − 1 edges. Therefore, the Bellman-Ford algorithm takes at most |V | − 1 rounds, and each round takes at most |E| checking and relaxation.
 * TODO All pair shortest paths
 SCHEDULED: <2024-06-28 Fri>
 
