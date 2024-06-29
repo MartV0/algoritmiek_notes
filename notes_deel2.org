@@ -508,14 +508,67 @@ Time complexity: $O(|V|^2)$, this can be improved to $O(|E|+|V|\log|V|)$
 [[file:Single_source_shortest_path/2024-06-28_21-07-59_screenshot.png]]
 
 Time complexity is $O(|V||E|)$: There is no shortest path with more than |V | − 1 edges. Therefore, the Bellman-Ford algorithm takes at most |V | − 1 rounds, and each round takes at most |E| checking and relaxation.
-* TODO All pair shortest paths
-SCHEDULED: <2024-06-28 Fri>
-
+* All pair shortest paths
 We want to know the shortest path from every possible source to every possible destination.
 
 The algorithm should return $\delta(u,v)$ for any pairs of vertices $u$ and $v$.
 
-A naive way would be to just run Dijkstra or Bellman-Ford for each of the vertices.
+[[file:All_pair_shortest_paths/2024-06-29_13-00-26_screenshot.png]]
+** Lots of single sources
+A naive approach is simply running a single source algorithm on every vertex.
+
+For graphs with non negative weights Dijkstra can be used. For the general case Bellman-Ford can be used.
+[[file:All_pair_shortest_paths/2024-06-29_10-57-16_screenshot.png]]
+
+For dijkstra this will result in a timecomplexity of $O(|V|^2\log |V|+|V||E|)$ using the fibonacci heap.
+
+For Bellman-ford the time-complexity is $O(|V|^2|E|)=O(|V|^4)$
+** DP by length
+We define $dist^{(l)}_{uv}$: the shortest distance from vertex u to vertex v, containing at most l edges
+[[file:All_pair_shortest_paths/2024-06-29_11-20-06_screenshot.png]]
+
+This has a complexity of: $O(|V|^2|E|)=O(|V|^4)$
+
+This algorithm can be improved upon by doubling the amount of involved edges each round.
+
+[[file:All_pair_shortest_paths/2024-06-29_11-43-08_screenshot.png]]
+** Floyd-Warhall algorithm
+This is also a dynamic programming base approach.
+
+Number the vertices $1,2,3,...,|V|$
+
+$dist^{(k)}_{uv}$: the shortest distance form vertex u to vertex v, only going through vertices $\{1,2,3,...,k\}$ (doesn't have to go through all vertices.)
+
+[[file:All_pair_shortest_paths/2024-06-29_12-02-54_screenshot.png]]
+
+Time complexity: $O(|V|^3)$
+
+Uitleg hoe dit algoritme werkt in het boek
+** Johsons algorithm
+We want to reweigh the edge so that there are no negative weights. Then just run Dijkstra's algorithm again on every vertex again.
+
+We can't simply add some constant to each weight, this doesn't always preserve the same longest path.
+
+The new weights $w'(u,v)$ for any edge $(u,v)$ should satisfy the following properties:
+- For all edges (u,v), the new weight $w'(u,v)$ is non-negative
+- P is the shortest path from s to t using the original weights if and only if P is the shortest path from s to t in the original graph with new weights
+  - For all pair of vertices $s,t\in V$ and a shortest path P from s to t, $w(P)=\delta(s,t)$ if and only if $w'(P)=\delta'(s,t)$
+
+The re-weighting:
+- Every vertex v has a value $h(v)$
+- The new weight: $w'(u,v)=h(u)+w(u,v)-h(v)$
+
+Proof that this preserves the shortest path can be found in the slides.
+
+H is defined by adding a vertex to the graph that has an outgoing edge to each other vertex. Then bellman ford is ran from the new vertex, the h-value is the shortest path from the new vertex.
+
+[[file:All_pair_shortest_paths/2024-06-29_12-55-30_screenshot.png]]
+
+[[file:All_pair_shortest_paths/2024-06-29_12-55-53_screenshot.png]]
+
+After calculating the h-values we can reweight all edges, run dijkstra and finally return the weights to the old value.
+
+[[file:All_pair_shortest_paths/2024-06-29_12-58-01_screenshot.png]]
 * Matchings
 chapter 25
 - Book defines flow as something between vertices, instead as something belonging to an arc
