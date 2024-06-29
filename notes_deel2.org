@@ -1460,7 +1460,7 @@ Take the matching-based approximation algorithm Approx-Knapsack for the minimum 
 * String Matching
 Gegeven string (*haystack*) zoek alle voorkomens van een patroon (*needle*)
 - Tekst $A[0..n-1]$, patroon $P[0..m-1]$
-- Wil: k zodat $A[k..k+m]=P[0..m-1]$
+- Wil: k zodat $A[k..k+m-1]=P[0..m-1]$
 - Tekst is over alfabet $\Sigma (\{0,1\},\{A,B,...,Z\},[0,255],\text{etc})$
 - We zoeken alle voorkomens van P in A
 
@@ -1471,13 +1471,11 @@ Gegeven string (*haystack*) zoek alle voorkomens van een patroon (*needle*)
 - Verwacht: verwachte looptijd bij één invoer
   - Algoritme maakt gebruik van randomisatie
   - Looptijd afhankelijk van random keuzes van algoritme
-
 ** Kansrekening
 - Variabele X waarvan de waarde afhangt van de uitkomst van een kansexperiment
   - Waarde is een getal
 - Bijvoorbeeld: Het aantal keren kop als je 10 keer een munt opgooid
 - $P(X=k)$: kans dat $X$ waarde $k$ heeft
-
 
 - X een toevalsvariable, met k mogelijke uitkomsten (1..k): $\sum^k_{i=1}P(X=i)=1$
 - Als X en Y onafhankelijk zijn. $P(X=a\text{ en }Y=b)=P(X=a)*P(Y=b)$
@@ -1531,8 +1529,6 @@ Gemiddelde looptijd:
 - Dus $O(1)$ verwachte vergelijkingen, dus looptijd $O(n)$
 
 Dit algoritme is traag want het gebruikt de informatie van een mismatch niet
-** TODO fix -1 stuff (word geupdated in slides)
-SCHEDULED: <2024-06-28 Fri>
 ** Rabin-Karp
 Idee: sla strings op als getallen in base $|\Sigma |$
 
@@ -1629,9 +1625,7 @@ Overgangsfunctie:
 Eindige automaat is $O(n)$ tijd, met $O(m|\Sigma |)$
 
 /Na slide 60 en knuth morris hoeven we niet te weten/
-* TODO Gerandomiseerde algoritmes
-SCHEDULED: <2024-06-28 Fri>
-
+* Gerandomiseerde algoritmes
 Gebruiken getallen uit toevalsgeneratoren
 
 De toevalsgetallen sturen twee dingen:
@@ -1667,3 +1661,10 @@ Ieder Monte Carlo algoritme kan een Las Vegas algoritme worden, mits je efficië
 Toevalsvariable $X$, $P(X=k)$: kans dat $X$ waarde $k$ heeft
 
 $E[X] =$ gemiddelde waarde van toevalsvariabele $X$, gewogen door kansen
+
+Bekijk een reeks onafhankelijke Bernouilli experimenten (kans p op succes)
+- Het aantal benodigde experimenten X tot een succes volgt een geometrische kansverdelinlg
+- $P(X=k)=(1-p)^{k-1}p$
+- $E[X]=\frac 1 p$
+** TODO Minimum cut probleem met gerandomiseerd algoritme
+kijk ff in werkcollege hoe belangrijk dit is
