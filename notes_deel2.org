@@ -209,7 +209,6 @@ Uitwisselargument:
 - Gebruik top-choice en deelprobleem om een recursieve functie te maken
   - Let op de basisgevallen
 - Optimaliteitsprincipe: Als de top-choice gemaakt wordt volgens de optimale oplossing, dan is de optimale oplossing de juiste combinatie van optimale oplossingen van de deelproblemen
-*
 * Dynamisch Programmeren
 Twee mogelijkheden:
 - *Memoisatie:* kijk of we ‘t al eerder hebben uitgerekend – zo ja, geef dat antwoord; zo nee: reken uit en sla antwoord op in datastructuur (bijvoorbeeld array of hashtabel)
